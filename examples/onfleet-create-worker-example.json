@@ -1,0 +1,35 @@
+{
+  "operation": "createWorker",
+  "request": {
+    "method": "POST",
+    "url": "https://onfleet.com/api/v2/workers",
+    "headers": {
+      "Authorization": "Basic <base64(apiKey:)>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "A Swartz",
+      "phone": "+16195558853",
+      "teams": ["nz1nG1Hpx9EHjQCJsT2VAs~o"],
+      "vehicle": {
+        "type": "CAR",
+        "description": "Tesla Model 3",
+        "licensePlate": "FKNS9A",
+        "color": "purple"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "1Ds6ulPYWxNPgaIaoLPqlIQE",
+      "timeCreated": 1779724600000,
+      "name": "A Swartz",
+      "phone": "+16195558853",
+      "onDuty": false,
+      "tasks": [],
+      "teams": ["nz1nG1Hpx9EHjQCJsT2VAs~o"],
+      "vehicle": {"type": "CAR", "description": "Tesla Model 3", "licensePlate": "FKNS9A", "color": "purple"}
+    }
+  }
+}

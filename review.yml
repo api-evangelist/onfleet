@@ -1,0 +1,48 @@
+aid: onfleet
+name: Onfleet
+reviewed: '2026-05-25'
+reviewer: api-evangelist
+tier: 1
+verdict: Tier 1 — Real, comprehensive REST API with documented endpoints, lifecycle webhooks, multi-language SDKs, and an operational public dev hub.
+
+summary: |
+  Onfleet is a textbook Tier 1 API provider for the last-mile delivery space. The v2.7 REST API
+  covers the entire delivery lifecycle — tasks, workers, recipients, destinations, route plans,
+  route optimization (Enterprise), orders, organizations, teams, and webhooks — with consistent
+  resource IDs, GeoJSON coordinates, Unix-millisecond timestamps, and E.164 phone formatting.
+  The webhook surface is exceptional for the category (27 triggers including a predicted-delay AI
+  trigger), and Onfleet ships first-party SDKs in Python, Node.js, PHP, Java, and Go.
+
+strengths:
+  - Comprehensive, well-organized API reference at docs.onfleet.com with Markdown source available via llms.txt for AI agents
+  - 27 webhook trigger types with HMAC-SHA256 signing covering task, worker, route plan, SMS, and async job lifecycles
+  - First-party SDKs across Python, Node.js, PHP, Java, Go; archived Ruby SDK; published Postman collection
+  - Clear, normative conventions for IDs, timestamps, coordinates, and phone numbers documented in a single "Data Types and Response Formats" page
+  - Public outbound IPs documented for webhook whitelisting
+  - Open developer GitHub org with example payload templates and contribution-ready SDK repos
+  - Pricing fully published with task quotas per plan (rare clarity in logistics SaaS)
+  - Native integrations with Shopify, Zapier, Dutchie, GigSmart, Zendrive plus the 150+ courier Onfleet Connect network
+
+gaps:
+  - No publicly hosted OpenAPI specification — the docs site is rendered from Markdown rather than from a downloadable spec
+  - Rate-limit policy is not published explicitly; only a 70-second server timeout and list-tasks page size of 64 are documented
+  - Route Optimization endpoints are gated behind the Enterprise plan ($3,099+/mo)
+  - Ruby SDK is archived; older language coverage trailing
+  - Authentication is Basic Auth with API key as username — functional but dated compared to OAuth/JWT/PAT patterns
+
+scores:
+  documentation: 9
+  openapi-spec: 6
+  webhooks: 10
+  sdks: 9
+  sandbox: 7
+  pricing-transparency: 9
+  support: 8
+
+links:
+  homepage: https://onfleet.com
+  docs: https://docs.onfleet.com/
+  reference: https://docs.onfleet.com/reference/introduction
+  github: https://github.com/onfleet
+  pricing: https://onfleet.com/pricing
+  status: https://status.onfleet.com

@@ -1,0 +1,72 @@
+apiCommonsFinOps: '0.1'
+provider:
+  id: onfleet
+  name: Onfleet
+focus:
+  version: '1.0'
+  description: |
+    Map of the Onfleet commercial surface aligned to FinOps Framework / FOCUS data spec for cost
+    and usage analysis on last-mile delivery operations.
+billing:
+  model: Subscription with included task quota and per-task overage
+  cycle: monthly
+  currency: USD
+  invoiceVia: Onfleet dashboard / billing contact
+focusColumns:
+  - column: ServiceCategory
+    value: Logistics
+  - column: ServiceName
+    value: Onfleet Last-Mile Delivery Platform
+  - column: ProviderName
+    value: Onfleet
+  - column: PublisherName
+    value: Onfleet
+  - column: BillingCurrency
+    value: USD
+  - column: ChargeCategory
+    values: [Usage, Subscription, Adjustment]
+  - column: ChargeFrequency
+    values: [Monthly, One-Time]
+  - column: PricingUnit
+    values: [task, month, seat]
+  - column: BilledCost
+    description: The contracted monthly subscription plus any overage tasks beyond the included quota.
+  - column: EffectiveCost
+    description: Same as BilledCost; Onfleet does not currently apply blended/amortized adjustments.
+costDrivers:
+  - id: subscription
+    name: Plan Subscription
+    chargeCategory: Subscription
+    chargeFrequency: Monthly
+    description: Launch / Scale / Enterprise base plan fee.
+  - id: included-tasks
+    name: Included Tasks
+    chargeCategory: Usage
+    description: Tasks consumed within plan quota; no incremental cost.
+    pricingUnit: task
+  - id: overage-tasks
+    name: Overage Tasks
+    chargeCategory: Usage
+    description: Tasks consumed beyond plan quota; billed per-task at plan-specific rate.
+    pricingUnit: task
+  - id: courier-suite-addon
+    name: Courier Suite Add-On
+    chargeCategory: Subscription
+    chargeFrequency: Monthly
+    description: Optional Courier Suite for client portals, invoicing, and label printing.
+allocation:
+  recommendedTags:
+    - team
+    - region
+    - merchant
+    - executor
+    - client
+  notes:
+    - Use Onfleet metadata fields on tasks and workers to carry cost-center, business-unit, and customer identifiers; Onfleet metadata supports api/dashboard/worker visibility scopes.
+    - Reports on tasks per merchant/executor support direct chargeback for hybrid fleets and Onfleet Connect clients.
+notes:
+  - Onfleet does not publish a public FinOps export endpoint; cost data is downloaded from the dashboard billing area.
+  - Per-task overage rates and Enterprise volume discounts are negotiated with the Onfleet sales team.
+sources:
+  - https://onfleet.com/pricing
+updated: '2026-05-25'

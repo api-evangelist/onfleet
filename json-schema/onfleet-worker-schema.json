@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/onfleet/main/json-schema/onfleet-worker-schema.json",
+  "title": "OnfleetWorker",
+  "description": "An Onfleet worker — the driver who executes pickup and dropoff tasks.",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string"},
+    "organization": {"type": "string"},
+    "name": {"type": "string"},
+    "displayName": {"type": ["string", "null"]},
+    "phone": {"type": "string", "description": "E.164 phone number."},
+    "onDuty": {"type": "boolean"},
+    "timeLastSeen": {"type": ["integer", "null"]},
+    "activeTask": {"type": ["string", "null"]},
+    "tasks": {"type": "array", "items": {"type": "string"}},
+    "teams": {"type": "array", "items": {"type": "string"}},
+    "vehicle": {
+      "type": "object",
+      "properties": {
+        "type": {"type": "string", "enum": ["CAR", "MOTORCYCLE", "BICYCLE", "TRUCK"]},
+        "description": {"type": "string"},
+        "licensePlate": {"type": "string"},
+        "color": {"type": "string"}
+      },
+      "required": ["type"]
+    },
+    "location": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"type": "number"},
+      "description": "GeoJSON [longitude, latitude]."
+    },
+    "capacity": {"type": ["number", "null"]}
+  },
+  "required": ["name", "phone", "teams"]
+}

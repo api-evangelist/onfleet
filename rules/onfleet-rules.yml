@@ -1,0 +1,84 @@
+extends:
+  - spectral:oas
+rules:
+  operation-summary-title-case:
+    description: Operation summaries must use Title Case.
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][a-z0-9'-]*)(\\s+([A-Z][a-z0-9'-]*|[A-Z]+|By|To|In|On|For|And|Or|The|Of|A|An))*$"
+  operation-id-camel-case:
+    description: operationId must be camelCase.
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+  servers-base-path-v2:
+    description: Onfleet base URL must use /api/v2 path.
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://onfleet\\.com/api/v2$"
+  security-basic-auth-required:
+    description: Onfleet APIs must declare basic auth as the default security scheme.
+    severity: error
+    given: "$"
+    then:
+      field: "components.securitySchemes.basicAuth"
+      function: truthy
+  geojson-coordinates-array:
+    description: Geographic coordinates must be modelled as GeoJSON [longitude, latitude].
+    severity: warn
+    given: "$..properties[?(@property === 'location')]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            type:
+              const: array
+            minItems:
+              const: 2
+            maxItems:
+              const: 2
+  unix-millisecond-timestamps:
+    description: Timestamps must be int64 unix milliseconds.
+    severity: warn
+    given: "$..properties[?(@property.match(/^(time|timeCreated|timeLastModified|completeAfter|completeBefore|startTime|endTime|eta)$/))]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            type:
+              enum: [integer]
+            format:
+              const: int64
+  resource-id-string:
+    description: Resource id fields must be string.
+    severity: warn
+    given: "$..properties.id"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            type:
+              const: string
+  no-trailing-slash:
+    description: Path templates must not end with a trailing slash.
+    severity: error
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".+/$"

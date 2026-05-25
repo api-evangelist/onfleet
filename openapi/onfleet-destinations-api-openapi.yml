@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: Onfleet Destinations API
+  description: |
+    The Destinations API manages physical addresses associated with tasks.
+    Destinations include parsed address fields and a GeoJSON location, and can
+    be reused across tasks. Onfleet geocodes addresses on creation; you can
+    also supply an `unparsed` address.
+  version: '2.7'
+  contact:
+    name: Onfleet Support
+    email: support@onfleet.com
+  license:
+    name: Onfleet Terms of Service
+    url: https://onfleet.com/legal
+servers:
+  - url: https://onfleet.com/api/v2
+    description: Production
+security:
+  - basicAuth: []
+tags:
+  - name: Destinations
+paths:
+  /destinations:
+    post:
+      tags: [Destinations]
+      summary: Create Destination
+      operationId: createDestination
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/DestinationCreate'}
+      responses:
+        '200':
+          description: Destination created
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Destination'}
+  /destinations/{destinationId}:
+    get:
+      tags: [Destinations]
+      summary: Get Destination
+      operationId: getDestination
+      parameters:
+        - name: destinationId
+          in: path
+          required: true
+          schema: {type: string}
+      responses:
+        '200':
+          description: Destination
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Destination'}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    Address:
+      type: object
+      properties:
+        unparsed: {type: string}
+        number: {type: string}
+        street: {type: string}
+        city: {type: string}
+        state: {type: string}
+        postalCode: {type: string}
+        country: {type: string}
+        apartment: {type: string}
+    Destination:
+      type: object
+      properties:
+        id: {type: string}
+        timeCreated: {type: integer, format: int64}
+        timeLastModified: {type: integer, format: int64}
+        address: {$ref: '#/components/schemas/Address'}
+        location:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items: {type: number}
+          description: GeoJSON [longitude, latitude].
+        notes: {type: string}
+        warnings:
+          type: array
+          items: {type: string}
+        metadata:
+          type: array
+          items: {type: object}
+    DestinationCreate:
+      type: object
+      properties:
+        address:
+          allOf:
+            - $ref: '#/components/schemas/Address'
+        location:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items: {type: number}
+        notes: {type: string}
+        metadata:
+          type: array
+          items: {type: object}

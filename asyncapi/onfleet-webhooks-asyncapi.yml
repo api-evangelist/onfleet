@@ -1,0 +1,222 @@
+asyncapi: 2.6.0
+info:
+  title: Onfleet Webhooks
+  version: '2.7'
+  description: |
+    Real-time event stream delivered as HTTPS POST callbacks from Onfleet to a
+    URL you register via the Webhooks API. Each webhook is bound to a single
+    triggerId; payloads share a common envelope with `time`, `triggerId`,
+    `triggerName`, and `data`.
+  contact:
+    name: Onfleet Support
+    email: support@onfleet.com
+defaultContentType: application/json
+servers:
+  production:
+    url: https://onfleet.com
+    protocol: https
+channels:
+  task.started:
+    description: Task started by worker.
+    subscribe:
+      operationId: onTaskStarted
+      message: {$ref: '#/components/messages/Task'}
+  task.eta:
+    description: Worker ETA meets configured threshold (seconds).
+    subscribe:
+      operationId: onTaskEta
+      message: {$ref: '#/components/messages/Task'}
+  task.arrival:
+    description: Worker proximity meets configured threshold (meters).
+    subscribe:
+      operationId: onTaskArrival
+      message: {$ref: '#/components/messages/Task'}
+  task.completed:
+    description: Task marked successful.
+    subscribe:
+      operationId: onTaskCompleted
+      message: {$ref: '#/components/messages/Task'}
+  task.failed:
+    description: Task failed.
+    subscribe:
+      operationId: onTaskFailed
+      message: {$ref: '#/components/messages/Task'}
+  worker.duty:
+    description: Worker on/off duty status changed.
+    subscribe:
+      operationId: onWorkerDuty
+      message: {$ref: '#/components/messages/Worker'}
+  task.created:
+    subscribe:
+      operationId: onTaskCreated
+      message: {$ref: '#/components/messages/Task'}
+  task.updated:
+    subscribe:
+      operationId: onTaskUpdated
+      message: {$ref: '#/components/messages/Task'}
+  task.deleted:
+    subscribe:
+      operationId: onTaskDeleted
+      message: {$ref: '#/components/messages/Task'}
+  task.assigned:
+    subscribe:
+      operationId: onTaskAssigned
+      message: {$ref: '#/components/messages/Task'}
+  task.unassigned:
+    subscribe:
+      operationId: onTaskUnassigned
+      message: {$ref: '#/components/messages/Task'}
+  task.delayed:
+    subscribe:
+      operationId: onTaskDelayed
+      message: {$ref: '#/components/messages/Task'}
+  task.cloned:
+    subscribe:
+      operationId: onTaskCloned
+      message: {$ref: '#/components/messages/Task'}
+  task.predicted.delay:
+    subscribe:
+      operationId: onPredictedTaskDelay
+      message: {$ref: '#/components/messages/Task'}
+  sms.response.missed:
+    subscribe:
+      operationId: onSmsRecipientResponseMissed
+      message: {$ref: '#/components/messages/Sms'}
+  sms.recipient.opt_out:
+    subscribe:
+      operationId: onSMSRecipientOptOut
+      message: {$ref: '#/components/messages/Sms'}
+  worker.created:
+    subscribe:
+      operationId: onWorkerCreated
+      message: {$ref: '#/components/messages/Worker'}
+  worker.deleted:
+    subscribe:
+      operationId: onWorkerDeleted
+      message: {$ref: '#/components/messages/Worker'}
+  worker.updated:
+    subscribe:
+      operationId: onWorkerUpdated
+      message: {$ref: '#/components/messages/Worker'}
+  auto_dispatch.completed:
+    subscribe:
+      operationId: onAutoDispatchJobCompleted
+      message: {$ref: '#/components/messages/JobCompletion'}
+  task_batch_create.completed:
+    subscribe:
+      operationId: onTaskBatchCreateJobCompleted
+      message: {$ref: '#/components/messages/JobCompletion'}
+  route_optimization.completed:
+    subscribe:
+      operationId: onRouteOptimizationJobCompleted
+      message: {$ref: '#/components/messages/JobCompletion'}
+  route_plan.created:
+    subscribe:
+      operationId: onRoutePlanCreated
+      message: {$ref: '#/components/messages/RoutePlan'}
+  route_plan.started:
+    subscribe:
+      operationId: onRoutePlanStarted
+      message: {$ref: '#/components/messages/RoutePlan'}
+  route_plan.completed:
+    subscribe:
+      operationId: onRoutePlanCompleted
+      message: {$ref: '#/components/messages/RoutePlan'}
+  route_plan.updated:
+    subscribe:
+      operationId: onRoutePlanUpdated
+      message: {$ref: '#/components/messages/RoutePlan'}
+  route_plan.unassigned:
+    subscribe:
+      operationId: onRoutePlanUnassigned
+      message: {$ref: '#/components/messages/RoutePlan'}
+  route_plan.assigned:
+    subscribe:
+      operationId: onRoutePlanAssigned
+      message: {$ref: '#/components/messages/RoutePlan'}
+  route_plan.delayed:
+    subscribe:
+      operationId: onRoutePlanDelayed
+      message: {$ref: '#/components/messages/RoutePlan'}
+components:
+  messageTraits:
+    common:
+      headers:
+        type: object
+        properties:
+          X-Onfleet-Signature:
+            type: string
+            description: HMAC-SHA256 of the payload using the webhook signing secret.
+  messages:
+    Task:
+      traits:
+        - $ref: '#/components/messageTraits/common'
+      payload:
+        type: object
+        properties:
+          time: {type: integer, format: int64}
+          triggerId: {type: integer}
+          triggerName: {type: string}
+          taskId: {type: string}
+          workerId: {type: string, nullable: true}
+          data:
+            type: object
+            properties:
+              task: {type: object}
+              worker: {type: object, nullable: true}
+    Worker:
+      traits:
+        - $ref: '#/components/messageTraits/common'
+      payload:
+        type: object
+        properties:
+          time: {type: integer, format: int64}
+          triggerId: {type: integer}
+          triggerName: {type: string}
+          data:
+            type: object
+            properties:
+              worker: {type: object}
+              status: {type: integer, enum: [0, 1]}
+    RoutePlan:
+      traits:
+        - $ref: '#/components/messageTraits/common'
+      payload:
+        type: object
+        properties:
+          time: {type: integer, format: int64}
+          triggerId: {type: integer}
+          triggerName: {type: string}
+          data:
+            type: object
+            properties:
+              routePlan: {type: object}
+    Sms:
+      traits:
+        - $ref: '#/components/messageTraits/common'
+      payload:
+        type: object
+        properties:
+          time: {type: integer, format: int64}
+          triggerId: {type: integer}
+          triggerName: {type: string}
+          data:
+            type: object
+            properties:
+              recipient: {type: object}
+              message: {type: string}
+    JobCompletion:
+      traits:
+        - $ref: '#/components/messageTraits/common'
+      payload:
+        type: object
+        properties:
+          time: {type: integer, format: int64}
+          triggerId: {type: integer}
+          triggerName: {type: string}
+          data:
+            type: object
+            properties:
+              jobId: {type: string}
+              status: {type: string}
+              results: {type: object}

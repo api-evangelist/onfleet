@@ -1,0 +1,27 @@
+{
+  "name": "OnfleetTask",
+  "description": "Operational structure of a delivery or pickup task in Onfleet.",
+  "fields": [
+    {"path": "id", "type": "string", "description": "24-char resource ID."},
+    {"path": "shortId", "type": "string", "description": "Short 8-char identifier shown on dashboards and tracking pages."},
+    {"path": "state", "type": "integer", "enum": [0, 1, 2, 3], "description": "0 Unassigned, 1 Assigned, 2 Active, 3 Completed."},
+    {"path": "pickupTask", "type": "boolean"},
+    {"path": "completeAfter", "type": "integer", "format": "unix-ms"},
+    {"path": "completeBefore", "type": "integer", "format": "unix-ms"},
+    {"path": "destination.location", "type": "array", "format": "geojson-point"},
+    {"path": "destination.address.unparsed", "type": "string"},
+    {"path": "recipients[].name", "type": "string"},
+    {"path": "recipients[].phone", "type": "string", "format": "e164"},
+    {"path": "worker", "type": "string", "nullable": true},
+    {"path": "container.type", "type": "string", "enum": ["ORGANIZATION", "TEAM", "WORKER"]},
+    {"path": "dependencies", "type": "array", "items": "task-id"},
+    {"path": "metadata[].name", "type": "string"},
+    {"path": "metadata[].type", "type": "string", "enum": ["boolean", "number", "string", "object", "array"]},
+    {"path": "metadata[].value", "type": "any"},
+    {"path": "eta", "type": "integer", "format": "unix-ms"},
+    {"path": "trackingURL", "type": "string", "format": "uri"},
+    {"path": "completionDetails.success", "type": "boolean"},
+    {"path": "completionDetails.photoUploadIds", "type": "array"},
+    {"path": "completionDetails.signatureUploadId", "type": "string"}
+  ]
+}

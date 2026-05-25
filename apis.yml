@@ -1,0 +1,331 @@
+aid: onfleet
+url: https://raw.githubusercontent.com/api-evangelist/onfleet/refs/heads/main/apis.yml
+name: Onfleet
+apis:
+- aid: onfleet:onfleet-tasks-api
+  name: Onfleet Tasks API
+  tags:
+  - Last Mile Delivery
+  - Logistics
+  - Tasks
+  humanURL: https://docs.onfleet.com/reference/tasks
+  baseURL: https://onfleet.com/api/v2
+  properties:
+  - url: https://docs.onfleet.com/reference/tasks.md
+    type: Documentation
+  - url: https://docs.onfleet.com/reference/create-task.md
+    type: Documentation
+  - url: https://docs.onfleet.com/reference/list-tasks.md
+    type: Documentation
+  - url: openapi/onfleet-tasks-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/onfleet-task-schema.json
+    type: JSONSchema
+  - url: json-structure/onfleet-task-structure.json
+    type: JSONStructure
+  - url: examples/onfleet-create-task-example.json
+    type: Example
+  - url: capabilities/shared/tasks.yaml
+    type: NaftikoCapability
+  description: |
+    Create, list, fetch, update, clone, force-complete, and delete pickup/dropoff tasks. Tasks are the
+    atomic unit of work in Onfleet — each has a destination, recipient, completion window, optional
+    dependencies, and a state lifecycle (Unassigned → Assigned → Active → Completed). Supports
+    batch creation (up to 100 per request) and assignment to workers via the containers endpoint.
+- aid: onfleet:onfleet-workers-api
+  name: Onfleet Workers API
+  tags:
+  - Last Mile Delivery
+  - Drivers
+  - Workers
+  humanURL: https://docs.onfleet.com/reference/workers
+  baseURL: https://onfleet.com/api/v2
+  properties:
+  - url: https://docs.onfleet.com/reference/create-worker.md
+    type: Documentation
+  - url: https://docs.onfleet.com/reference/delivery-manifest.md
+    type: Documentation
+  - url: openapi/onfleet-workers-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/onfleet-worker-schema.json
+    type: JSONSchema
+  - url: examples/onfleet-create-worker-example.json
+    type: Example
+  - url: capabilities/shared/workers.yaml
+    type: NaftikoCapability
+  description: |
+    Manage drivers — create, list, update, delete, fetch a worker's assigned tasks, and pull a
+    delivery manifest for compliance reporting. Workers are bound to teams, have vehicle metadata
+    (CAR/MOTORCYCLE/BICYCLE/TRUCK), and report duty status and location.
+- aid: onfleet:onfleet-route-plans-api
+  name: Onfleet Route Plans API
+  tags:
+  - Last Mile Delivery
+  - Route Optimization
+  - Route Plans
+  humanURL: https://docs.onfleet.com/reference/routeplan
+  baseURL: https://onfleet.com/api/v2
+  properties:
+  - url: https://docs.onfleet.com/reference/routeplan.md
+    type: Documentation
+  - url: https://docs.onfleet.com/reference/route-optimization.md
+    type: Documentation
+  - url: openapi/onfleet-route-plans-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/onfleet-route-plan-schema.json
+    type: JSONSchema
+  - url: capabilities/shared/route-plans.yaml
+    type: NaftikoCapability
+  description: |
+    Create and manage route plans — ordered sequences of tasks assigned to a worker for a time window
+    — and kick off asynchronous route optimization jobs (task-based, vehicle-based, or auto-dispatch).
+    Optimization endpoints are an Enterprise plan feature; results delivered via the
+    routeOptimizationJobCompleted webhook.
+- aid: onfleet:onfleet-orders-api
+  name: Onfleet Orders API
+  tags:
+  - Last Mile Delivery
+  - Orders
+  - Courier
+  humanURL: https://docs.onfleet.com/reference/orders
+  baseURL: https://onfleet.com/api/v2
+  properties:
+  - url: https://docs.onfleet.com/reference/orders.md
+    type: Documentation
+  - url: openapi/onfleet-orders-api-openapi.yml
+    type: OpenAPI
+  - url: capabilities/shared/orders.yaml
+    type: NaftikoCapability
+  description: |
+    Orders represent a pickup-dropoff task pair shared between a courier organization and its clients
+    on the Onfleet Connect network. Clients can quote, create, update, clone, cancel, or reject orders;
+    couriers can create orders on behalf of clients and respond to them.
+- aid: onfleet:onfleet-organizations-api
+  name: Onfleet Organizations & Teams API
+  tags:
+  - Last Mile Delivery
+  - Organizations
+  - Teams
+  - Administrators
+  humanURL: https://docs.onfleet.com/reference/team-auto-dispatch
+  baseURL: https://onfleet.com/api/v2
+  properties:
+  - url: https://docs.onfleet.com/reference/team-auto-dispatch.md
+    type: Documentation
+  - url: openapi/onfleet-organizations-api-openapi.yml
+    type: OpenAPI
+  description: |
+    Look up your own organization and connected delegatee organizations on Onfleet Connect, manage
+    administrators (Super and Standard, optionally read-only), create and list teams, and trigger
+    Team Auto-Dispatch — Onfleet's batch task-to-worker assignment engine (Beta).
+- aid: onfleet:onfleet-recipients-api
+  name: Onfleet Recipients API
+  tags:
+  - Last Mile Delivery
+  - Recipients
+  - Customers
+  humanURL: https://docs.onfleet.com/reference/recipients
+  baseURL: https://onfleet.com/api/v2
+  properties:
+  - url: openapi/onfleet-recipients-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/onfleet-recipient-schema.json
+    type: JSONSchema
+  description: |
+    Create and look up end customers (recipients) by ID, name, or E.164 phone number. Recipients carry
+    SMS notification preferences and metadata, and can be reused across tasks.
+- aid: onfleet:onfleet-destinations-api
+  name: Onfleet Destinations API
+  tags:
+  - Last Mile Delivery
+  - Destinations
+  - Geocoding
+  humanURL: https://docs.onfleet.com/reference/destinations
+  baseURL: https://onfleet.com/api/v2
+  properties:
+  - url: https://docs.onfleet.com/reference/create-destination.md
+    type: Documentation
+  - url: openapi/onfleet-destinations-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/onfleet-destination-schema.json
+    type: JSONSchema
+  description: |
+    Manage geocoded physical addresses used as task pickup/dropoff locations. Accepts a parsed
+    address structure or a single `unparsed` field; coordinates are returned as GeoJSON
+    [longitude, latitude].
+- aid: onfleet:onfleet-webhooks-api
+  name: Onfleet Webhooks API
+  tags:
+  - Last Mile Delivery
+  - Webhooks
+  - Events
+  humanURL: https://docs.onfleet.com/reference/webhooks
+  baseURL: https://onfleet.com/api/v2
+  properties:
+  - url: https://docs.onfleet.com/reference/webhooks.md
+    type: Documentation
+  - url: https://docs.onfleet.com/reference/secrets.md
+    type: Documentation
+  - url: openapi/onfleet-webhooks-api-openapi.yml
+    type: OpenAPI
+  - url: asyncapi/onfleet-webhooks-asyncapi.yml
+    type: AsyncAPI
+  - url: examples/onfleet-webhook-task-completed-example.json
+    type: Example
+  - url: capabilities/shared/webhooks.yaml
+    type: NaftikoCapability
+  description: |
+    Register HTTPS callbacks against 27 trigger types covering task lifecycle, worker duty/CRUD,
+    route plan state changes, SMS recipient events, and async job completions (auto-dispatch, task
+    batch create, route optimization). Payloads are signed with HMAC-SHA256 using the secret
+    obtained from /webhooks/secret.
+tags:
+- Last Mile Delivery
+- Logistics
+- Fleet Management
+- Dispatch
+- Route Optimization
+- Courier
+- Drivers
+- Tracking
+- Geocoding
+- Webhooks
+- AI
+- SaaS
+kind: contract
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+common:
+- type: Portal
+  url: https://onfleet.com
+- type: Documentation
+  url: https://docs.onfleet.com/
+- type: Documentation
+  name: API Reference (v2.7)
+  url: https://docs.onfleet.com/reference/introduction
+- type: GettingStarted
+  url: https://docs.onfleet.com/reference/setup-tutorial
+- type: Documentation
+  name: Data Types and Response Formats
+  url: https://docs.onfleet.com/reference/data-types-and-response-formats
+- type: Documentation
+  name: Querying by Metadata
+  url: https://docs.onfleet.com/reference/querying-by-metadata
+- type: ChangeLog
+  url: https://docs.onfleet.com/changelog/api-documentation-updates-may-2026
+- type: ChangeLog
+  url: https://docs.onfleet.com/changelog/order-endpoints
+- type: ChangeLog
+  url: https://docs.onfleet.com/changelog/custom-fields
+- type: StatusPage
+  url: https://status.onfleet.com
+- type: Blog
+  url: https://onfleet.com/blog
+- type: SignUp
+  url: https://onfleet.com/signup
+- type: Pricing
+  url: https://onfleet.com/pricing
+- type: TermsOfService
+  url: https://onfleet.com/legal
+- type: PrivacyPolicy
+  url: https://onfleet.com/privacy
+- type: Support
+  url: https://onfleet.com/support
+- type: GitHubOrganization
+  url: https://github.com/onfleet
+- type: SDK
+  name: Python (pyonfleet)
+  url: https://github.com/onfleet/pyonfleet
+- type: SDK
+  name: Node.js (node-onfleet)
+  url: https://github.com/onfleet/node-onfleet
+- type: SDK
+  name: PHP (php-onfleet)
+  url: https://github.com/onfleet/php-onfleet
+- type: SDK
+  name: Java (java-onfleet)
+  url: https://github.com/onfleet/java-onfleet
+- type: SDK
+  name: Go (gonfleet)
+  url: https://github.com/onfleet/gonfleet
+- type: SDK
+  name: Ruby (ruby-onfleet, archived)
+  url: https://github.com/onfleet/ruby-onfleet
+- type: CodeExamples
+  name: Developer repository (example payloads)
+  url: https://github.com/onfleet/developer
+- type: Documentation
+  name: Postman Collection
+  url: https://app.getpostman.com/run-collection/14168007-2dc047db-9556-442a-b643-e913027a74cf
+- type: Plans
+  url: plans/onfleet-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/onfleet-rate-limits.yml
+- type: FinOps
+  url: finops/onfleet-finops.yml
+- type: NaftikoCapability
+  url: capabilities/last-mile-delivery.yaml
+- type: NaftikoCapability
+  url: capabilities/dispatch-and-optimize.yaml
+- type: JSONLD
+  url: json-ld/onfleet-context.jsonld
+- type: Vocabulary
+  url: vocabulary/onfleet-vocabulary.yml
+- type: Rules
+  url: rules/onfleet-rules.yml
+- type: Features
+  data:
+  - REST API v2.7 over HTTPS with Basic Auth using the API key as the username and an empty password
+  - Base URL https://onfleet.com/api/v2; JSON-only request and response bodies
+  - 24-character URL-safe resource IDs; GeoJSON [longitude, latitude] coordinates; Unix-millisecond timestamps; E.164 phone numbers
+  - Tasks API with create, batch create (100 per request), clone, force-complete, dependencies, custom fields, and metadata search
+  - Workers API with vehicle metadata (CAR / MOTORCYCLE / BICYCLE / TRUCK), capacity, additionalCapacities, and route delivery manifest
+  - Route Plans API for hub-to-hub routes plus asynchronous Route Optimization (task-based, vehicle-based, auto-dispatch) — Enterprise plan endpoints
+  - Orders API for pickup-dropoff pair workflows on the Onfleet Connect courier network (quote, create, update, clone, cancel, reject)
+  - Recipients and Destinations APIs with geocoding and reusable resource lookup by name/phone
+  - Team Auto-Dispatch (Beta) for batched assignment of unassigned tasks to a team
+  - Webhooks API with 27 trigger types — full task lifecycle, worker duty/CRUD, route plan events, SMS opt-out, predictive delay, and async job completions
+  - HMAC-SHA256 webhook signing via /webhooks/secret with X-Onfleet-Signature header
+  - lastId-based pagination on List Tasks (up to 64 per page); 70-second server timeout on long-running queries
+  - Official SDKs for Python, Node.js, PHP, Java, and Go; archived Ruby SDK; Postman collection
+  - AI-powered route optimization trained on 400M+ deliveries; predictive ETA and delay alerts
+  - Proof of delivery with photos, signatures, timestamps, barcode scanning, and ID verification (Scale+)
+  - Branded customer tracking pages and two-way driver-customer chat
+  - Driver mobile apps (iOS and Android) rated 4.7 stars on both stores
+  - 150+ courier partners via Onfleet Connect
+  - Native integrations with Shopify, Zapier, GigSmart, Dutchie, Zendrive
+  sources:
+  - https://docs.onfleet.com/
+  - https://docs.onfleet.com/reference/introduction
+  - https://docs.onfleet.com/reference/webhooks
+  - https://onfleet.com/pricing
+  - https://onfleet.com
+  updated: '2026-05-25'
+- type: Integrations
+  data:
+  - Shopify
+  - Zapier
+  - Dutchie
+  - GigSmart
+  - Zendrive
+  - Onfleet Connect (150+ courier partners)
+  sources:
+  - https://onfleet.com/
+  updated: '2026-05-25'
+created: '2026-05-25T00:00:00.000Z'
+modified: '2026-05-25'
+position: Consuming
+description: |
+  Onfleet is an AI-powered last-mile delivery management platform that orchestrates fleet operations,
+  dispatch, route optimization, and customer experience across internal and outsourced delivery fleets.
+  The platform powers 400M+ deliveries for brands including Eaze, Total Wine & More, Pizza Hut, Kroger,
+  and Urbanstems across industries from prepared meals and grocery to cannabis, pharmacy, and
+  furniture. Onfleet exposes a comprehensive REST API v2.7 for tasks, workers, route plans, route
+  optimization, orders, recipients, destinations, organizations/teams, and webhooks — backed by
+  official SDKs in Python, Node.js, PHP, Java, and Go, plus the 150+ courier Onfleet Connect network.
+maintainers:
+- FN: Kin Lane
+  email: info@apievangelist.com
+  X: apievangelist
+  url: https://apievangelist.com
+specificationVersion: '0.16'

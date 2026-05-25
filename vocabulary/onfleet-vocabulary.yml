@@ -1,0 +1,100 @@
+name: Onfleet Vocabulary
+description: |
+  Vocabulary mapping for the Onfleet last-mile delivery management platform. Captures the operational
+  entities (tasks, workers, destinations, route plans, orders), the lifecycle states, the
+  webhook event types, and the cross-cutting concepts (Onfleet Connect, auto-dispatch, proof of delivery).
+version: '0.1'
+
+entities:
+  - name: Task
+    description: An atomic unit of pickup or dropoff work with a destination, recipient, and completion window.
+    states: [Unassigned, Assigned, Active, Completed]
+    identifierFormat: 24-character resource ID
+  - name: Worker
+    description: A driver who executes tasks; represented by an iOS or Android app session.
+    states: [Offline, OnDutyIdle, OnDutyActive]
+  - name: Recipient
+    description: The end customer receiving a delivery.
+  - name: Destination
+    description: A geocoded physical address; expressed in GeoJSON [longitude, latitude].
+  - name: RoutePlan
+    description: An ordered sequence of tasks assigned to a worker for a time window.
+    states: [Draft, Active, Completed]
+  - name: Order
+    description: A pickup-dropoff task pair used in courier-client workflows on Onfleet Connect.
+    states: [Quoted, Created, Assigned, InProgress, Completed, Cancelled, Rejected]
+  - name: Team
+    description: A grouping of workers and managers, optionally tied to a hub.
+  - name: Hub
+    description: A physical pickup or staging location used as a route start/end point.
+  - name: Administrator
+    description: A dashboard user with Super, Standard, or read-only access.
+  - name: Webhook
+    description: An HTTPS callback registered against a single trigger ID.
+  - name: Optimization
+    description: An asynchronous route optimization job (task-based, vehicle-based, or auto-dispatch).
+
+concepts:
+  - LastMileDelivery
+  - RouteOptimization
+  - TeamAutoDispatch
+  - ProofOfDelivery
+  - DriverManifest
+  - TrackingPage
+  - OnfleetConnect
+  - DispatchDashboard
+  - ChainOfCustody
+  - SMSNotifications
+  - PredictiveETA
+  - PredictedDelay
+  - HybridFleet
+  - CourierSuite
+
+events:
+  - taskStarted
+  - taskEta
+  - taskArrival
+  - taskCompleted
+  - taskFailed
+  - taskCreated
+  - taskUpdated
+  - taskDeleted
+  - taskAssigned
+  - taskUnassigned
+  - taskDelayed
+  - taskCloned
+  - predictedTaskDelay
+  - workerDuty
+  - workerCreated
+  - workerDeleted
+  - workerUpdated
+  - smsRecipientResponseMissed
+  - SMSRecipientOptOut
+  - autoDispatchJobCompleted
+  - taskBatchCreateJobCompleted
+  - routeOptimizationJobCompleted
+  - routePlanCreated
+  - routePlanStarted
+  - routePlanCompleted
+  - routePlanUpdated
+  - routePlanUnassigned
+  - routePlanAssigned
+  - routePlanDelayed
+
+units:
+  distance: meters (default)
+  time: Unix milliseconds (except Driver Time Estimate uses seconds)
+  coordinates: GeoJSON [longitude, latitude]
+  phone: E.164
+
+tags:
+  - Last Mile Delivery
+  - Logistics
+  - Fleet Management
+  - Dispatch
+  - Route Optimization
+  - Courier
+  - Driver
+  - Tracking
+  - Webhooks
+  - Geocoding

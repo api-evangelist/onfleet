@@ -1,0 +1,39 @@
+{
+  "operation": "webhook.taskCompleted",
+  "request": {
+    "method": "POST",
+    "url": "https://your-app.example.com/onfleet/webhook",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Onfleet-Signature": "<hmac-sha256-of-payload-using-webhook-secret>"
+    },
+    "body": {
+      "time": 1779730000000,
+      "triggerId": 3,
+      "triggerName": "taskCompleted",
+      "taskId": "11z1BFspwhBYDvIH_FrJfWMm",
+      "workerId": "1Ds6ulPYWxNPgaIaoLPqlIQE",
+      "data": {
+        "task": {
+          "id": "11z1BFspwhBYDvIH_FrJfWMm",
+          "shortId": "8f983639",
+          "state": 3,
+          "completionDetails": {
+            "success": true,
+            "time": 1779730000000,
+            "notes": "Delivered at front desk",
+            "photoUploadIds": ["b5OuQ7t9d1zk5lbqgPyzM3rQ"]
+          }
+        },
+        "worker": {
+          "id": "1Ds6ulPYWxNPgaIaoLPqlIQE",
+          "name": "A Swartz"
+        }
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "OK"
+  }
+}

@@ -1,0 +1,49 @@
+apiCommonsRateLimits: '0.1'
+provider:
+  id: onfleet
+  name: Onfleet
+  documentation: https://docs.onfleet.com/reference/introduction
+policies:
+  - id: server-timeout
+    type: timeout
+    appliesTo: All endpoints
+    value: 70
+    unit: seconds
+    description: Onfleet enforces a 70-second internal system timeout; long-running queries (notably listTasks) may return 502 if exceeded. Narrow the search parameters to stay under the limit.
+  - id: list-tasks-page-size
+    type: page-size
+    appliesTo: GET /tasks/all
+    value: 64
+    unit: items
+    description: Each page of List Tasks returns up to 64 tasks. Use the returned `lastId` to walk pagination.
+  - id: list-tasks-query-shape
+    type: query-shape
+    appliesTo: GET /tasks/all
+    description: |
+      When a search parameter contains multiple values, supply them as a single comma-delimited
+      value (`state=1,2,3`) rather than repeated parameters (`state=1&state=2&state=3`).
+  - id: batch-tasks-size
+    type: batch-size
+    appliesTo: POST /tasks/batch
+    value: 100
+    unit: items
+    description: Up to 100 tasks per batch create request; completion delivered via taskBatchCreateJobCompleted webhook.
+outboundIps:
+  description: Whitelist these IPs for webhook delivery from Onfleet.
+  addresses:
+    - 54.84.188.171
+    - 35.171.245.6
+    - 52.202.131.11
+    - 54.83.192.154
+    - 3.219.23.167
+    - 44.223.120.236
+    - 75.101.166.117
+notes:
+  - Onfleet does not publish a request-per-second or request-per-minute throttle on the public API documentation; tier-2 abuse protection is enforced server-side at Onfleet's discretion.
+  - Webhook callbacks from Onfleet to your URL include an X-Onfleet-Signature header (HMAC-SHA256 of the payload using the secret from /webhooks/secret) and must be ack'd with a 2xx within a reasonable window or they are retried.
+sources:
+  - https://docs.onfleet.com/reference/introduction
+  - https://docs.onfleet.com/reference/list-tasks
+  - https://docs.onfleet.com/reference/data-types-and-response-formats
+  - https://docs.onfleet.com/reference/webhooks
+updated: '2026-05-25'

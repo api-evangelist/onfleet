@@ -1,0 +1,56 @@
+{
+  "operation": "createTask",
+  "request": {
+    "method": "POST",
+    "url": "https://onfleet.com/api/v2/tasks",
+    "headers": {
+      "Authorization": "Basic <base64(apiKey:)>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "destination": {
+        "address": {
+          "unparsed": "1 Warriors Way, San Francisco, CA 94158, USA"
+        }
+      },
+      "recipients": [
+        {
+          "name": "Justin K.",
+          "phone": "+14155550199"
+        }
+      ],
+      "completeAfter": 1779724800000,
+      "completeBefore": 1779732000000,
+      "pickupTask": false,
+      "notes": "Leave at front desk.",
+      "autoAssign": {"mode": "distance"}
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "11z1BFspwhBYDvIH_FrJfWMm",
+      "shortId": "8f983639",
+      "organization": "yAM*fDkztrT3gUcz9mNDgNOL",
+      "timeCreated": 1779724500000,
+      "state": 0,
+      "pickupTask": false,
+      "completeAfter": 1779724800000,
+      "completeBefore": 1779732000000,
+      "destination": {
+        "id": "zrVeyAoaT2bvFLH7Z3DOM~bn",
+        "address": {
+          "number": "1",
+          "street": "Warriors Way",
+          "city": "San Francisco",
+          "state": "California",
+          "postalCode": "94158",
+          "country": "USA"
+        },
+        "location": [-122.3878131, 37.7679569]
+      },
+      "recipients": [{"id": "VVLx5OdKvw0dRSjT2rGOc6Y*", "name": "Justin K.", "phone": "+14155550199"}],
+      "trackingURL": "https://onf.lt/8f983639"
+    }
+  }
+}

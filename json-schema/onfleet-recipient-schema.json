@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/onfleet/main/json-schema/onfleet-recipient-schema.json",
+  "title": "OnfleetRecipient",
+  "description": "An Onfleet recipient — the end customer receiving a delivery.",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string"},
+    "organization": {"type": "string"},
+    "name": {"type": "string"},
+    "phone": {"type": "string", "description": "E.164 phone number."},
+    "notes": {"type": "string"},
+    "skipSMSNotifications": {"type": "boolean"},
+    "metadata": {"type": "array"}
+  },
+  "required": ["name", "phone"]
+}

@@ -1,0 +1,124 @@
+openapi: 3.0.3
+info:
+  title: Onfleet Webhooks API
+  description: |
+    The Onfleet Webhooks API lets you register HTTPS URLs to receive
+    real-time event payloads for tasks, workers, route plans, and dispatch
+    operations. Each webhook is bound to a single trigger ID (0-30); payloads
+    are signed with the secret from /webhooks/secret.
+  version: '2.7'
+  contact:
+    name: Onfleet Support
+    email: support@onfleet.com
+  license:
+    name: Onfleet Terms of Service
+    url: https://onfleet.com/legal
+servers:
+  - url: https://onfleet.com/api/v2
+    description: Production
+security:
+  - basicAuth: []
+tags:
+  - name: Webhooks
+paths:
+  /webhooks:
+    get:
+      tags: [Webhooks]
+      summary: List Webhooks
+      operationId: listWebhooks
+      responses:
+        '200':
+          description: Webhooks
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {$ref: '#/components/schemas/Webhook'}
+    post:
+      tags: [Webhooks]
+      summary: Create Webhook
+      operationId: createWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/WebhookCreate'}
+      responses:
+        '200':
+          description: Webhook created
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Webhook'}
+  /webhooks/{webhookId}:
+    parameters:
+      - name: webhookId
+        in: path
+        required: true
+        schema: {type: string}
+    put:
+      tags: [Webhooks]
+      summary: Update Webhook
+      operationId: updateWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url: {type: string, format: uri}
+                name: {type: string}
+                threshold: {type: integer}
+      responses:
+        '200':
+          description: Updated webhook
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Webhook'}
+    delete:
+      tags: [Webhooks]
+      summary: Delete Webhook
+      operationId: deleteWebhook
+      responses:
+        '200':
+          description: Webhook deleted
+  /webhooks/secret:
+    get:
+      tags: [Webhooks]
+      summary: Get Webhook Signing Secret
+      operationId: getWebhookSecret
+      responses:
+        '200':
+          description: Signing secret
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  secret: {type: string}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    Webhook:
+      type: object
+      properties:
+        id: {type: string}
+        organization: {type: string}
+        url: {type: string, format: uri}
+        name: {type: string}
+        count: {type: integer}
+        trigger:
+          type: integer
+          enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+        threshold: {type: integer, nullable: true}
+    WebhookCreate:
+      type: object
+      required: [url, trigger]
+      properties:
+        url: {type: string, format: uri}
+        name: {type: string}
+        trigger: {type: integer}
+        threshold: {type: integer, description: Required for triggers that compare against a threshold (taskEta, taskArrival, taskDelayed).}

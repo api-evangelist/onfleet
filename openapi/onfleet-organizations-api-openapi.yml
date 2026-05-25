@@ -1,0 +1,212 @@
+openapi: 3.0.3
+info:
+  title: Onfleet Organizations API
+  description: |
+    The Organizations API exposes information about your Onfleet
+    organization and connected delegatee organizations in the Onfleet Connect
+    courier network. Use it to retrieve your own organization details and look
+    up delegatees you've connected with for cross-organization deliveries.
+  version: '2.7'
+  contact:
+    name: Onfleet Support
+    email: support@onfleet.com
+  license:
+    name: Onfleet Terms of Service
+    url: https://onfleet.com/legal
+servers:
+  - url: https://onfleet.com/api/v2
+    description: Production
+security:
+  - basicAuth: []
+tags:
+  - name: Organizations
+paths:
+  /organization:
+    get:
+      tags: [Organizations]
+      summary: Get Own Organization Details
+      operationId: getOwnOrganization
+      responses:
+        '200':
+          description: Organization
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Organization'}
+  /organizations/{organizationId}:
+    get:
+      tags: [Organizations]
+      summary: Get Delegatee Organization Details
+      operationId: getDelegateeOrganization
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema: {type: string}
+      responses:
+        '200':
+          description: Organization
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Organization'}
+  /admins:
+    get:
+      tags: [Organizations]
+      summary: List Administrators
+      operationId: listAdmins
+      responses:
+        '200':
+          description: Administrators
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {$ref: '#/components/schemas/Administrator'}
+    post:
+      tags: [Organizations]
+      summary: Create Administrator
+      operationId: createAdmin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email]
+              properties:
+                name: {type: string}
+                email: {type: string, format: email}
+                phone: {type: string}
+                isReadOnly: {type: boolean}
+                type: {type: string, enum: [super, standard]}
+                teams:
+                  type: array
+                  items: {type: string}
+                metadata:
+                  type: array
+                  items: {type: object}
+      responses:
+        '200':
+          description: Administrator created
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Administrator'}
+  /teams:
+    get:
+      tags: [Organizations]
+      summary: List Teams
+      operationId: listTeams
+      responses:
+        '200':
+          description: Teams
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {$ref: '#/components/schemas/Team'}
+    post:
+      tags: [Organizations]
+      summary: Create Team
+      operationId: createTeam
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, workers, managers]
+              properties:
+                name: {type: string}
+                workers:
+                  type: array
+                  items: {type: string}
+                managers:
+                  type: array
+                  items: {type: string}
+                hub: {type: string}
+                enableSelfAssignment: {type: boolean}
+      responses:
+        '200':
+          description: Team created
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Team'}
+  /teams/dispatch/{teamId}:
+    post:
+      tags: [Organizations]
+      summary: Team Auto-Dispatch
+      description: Trigger Team Auto-Dispatch to assign open unassigned tasks to team workers using Onfleet's batching and routing engine (Beta).
+      operationId: teamAutoDispatch
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          schema: {type: string}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                maxAllowedDelay: {type: integer}
+                maxTasksPerRoute: {type: integer}
+                taskTimeWindow:
+                  type: array
+                  items: {type: integer, format: int64}
+                scheduleTimeWindow:
+                  type: array
+                  items: {type: integer, format: int64}
+                serviceTime: {type: integer}
+                routeEnd: {type: string}
+      responses:
+        '200':
+          description: Auto-dispatch queued
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    Organization:
+      type: object
+      properties:
+        id: {type: string}
+        timeCreated: {type: integer, format: int64}
+        timeLastModified: {type: integer, format: int64}
+        name: {type: string}
+        email: {type: string, format: email}
+        country: {type: string}
+        timezone: {type: string}
+        image: {type: string, nullable: true}
+        delegatees:
+          type: array
+          items: {type: string}
+    Administrator:
+      type: object
+      properties:
+        id: {type: string}
+        timeCreated: {type: integer, format: int64}
+        organization: {type: string}
+        email: {type: string, format: email}
+        name: {type: string}
+        phone: {type: string, nullable: true}
+        isAccountOwner: {type: boolean}
+        isReadOnly: {type: boolean}
+        isActive: {type: boolean}
+        type: {type: string, enum: [super, standard]}
+        teams:
+          type: array
+          items: {type: string}
+    Team:
+      type: object
+      properties:
+        id: {type: string}
+        timeCreated: {type: integer, format: int64}
+        name: {type: string}
+        workers:
+          type: array
+          items: {type: string}
+        managers:
+          type: array
+          items: {type: string}
+        hub: {type: string, nullable: true}
+        enableSelfAssignment: {type: boolean}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/onfleet/main/json-schema/onfleet-destination-schema.json",
+  "title": "OnfleetDestination",
+  "description": "A physical address associated with an Onfleet task; geocoded by Onfleet on creation.",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string"},
+    "address": {
+      "type": "object",
+      "properties": {
+        "unparsed": {"type": "string"},
+        "number": {"type": "string"},
+        "street": {"type": "string"},
+        "city": {"type": "string"},
+        "state": {"type": "string"},
+        "postalCode": {"type": "string"},
+        "country": {"type": "string"},
+        "apartment": {"type": "string"}
+      }
+    },
+    "location": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"type": "number"},
+      "description": "GeoJSON [longitude, latitude]."
+    },
+    "notes": {"type": "string"},
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  }
+}

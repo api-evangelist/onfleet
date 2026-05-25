@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/onfleet/main/json-schema/onfleet-task-schema.json",
+  "title": "OnfleetTask",
+  "description": "An Onfleet task — the atomic unit of pickup or dropoff work assigned to a worker.",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string", "description": "24-character resource identifier."},
+    "shortId": {"type": "string"},
+    "organization": {"type": "string"},
+    "timeCreated": {"type": "integer", "description": "Unix milliseconds."},
+    "timeLastModified": {"type": "integer"},
+    "worker": {"type": ["string", "null"]},
+    "destination": {"$ref": "onfleet-destination-schema.json"},
+    "recipients": {
+      "type": "array",
+      "items": {"$ref": "onfleet-recipient-schema.json"}
+    },
+    "completeAfter": {"type": ["integer", "null"]},
+    "completeBefore": {"type": ["integer", "null"]},
+    "pickupTask": {"type": "boolean"},
+    "dependencies": {"type": "array", "items": {"type": "string"}},
+    "notes": {"type": "string", "maxLength": 10000},
+    "quantity": {"type": "integer"},
+    "serviceTime": {"type": "integer"},
+    "state": {"type": "integer", "enum": [0, 1, 2, 3], "description": "0=Unassigned, 1=Assigned, 2=Active, 3=Completed."},
+    "trackingURL": {"type": "string", "format": "uri"},
+    "eta": {"type": ["integer", "null"]},
+    "metadata": {"type": "array"}
+  },
+  "required": ["destination"]
+}

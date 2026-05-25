@@ -1,0 +1,33 @@
+name: last-mile-delivery
+description: |
+  Workflow capability for orchestrating last-mile delivery on Onfleet.
+  Creates a recipient and destination, creates a task, assigns it to a worker,
+  receives real-time webhook events through completion, and reads the
+  delivery manifest for compliance.
+apis:
+  - onfleet-tasks-api
+  - onfleet-workers-api
+  - onfleet-recipients-api
+  - onfleet-destinations-api
+  - onfleet-webhooks-api
+steps:
+  - id: create-recipient
+    operation: createRecipient
+    description: Create or look up the recipient by E.164 phone.
+  - id: create-destination
+    operation: createDestination
+    description: Geocode the dropoff address.
+  - id: create-task
+    operation: createTask
+    description: Create a dropoff task referencing the recipient and destination.
+  - id: register-webhook
+    operation: createWebhook
+    description: Register a callback for task lifecycle events.
+  - id: assign-task
+    operation: assignTasksToWorker
+    description: Assign the task to a specific worker.
+  - id: monitor-events
+    description: Receive taskStarted, taskEta, taskArrival, taskCompleted webhooks.
+  - id: get-manifest
+    operation: getDeliveryManifest
+    description: Pull the worker's delivery manifest for compliance reporting.

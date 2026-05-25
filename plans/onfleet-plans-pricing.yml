@@ -1,0 +1,85 @@
+apiCommonsPlans: '0.1'
+provider:
+  id: onfleet
+  name: Onfleet
+  url: https://onfleet.com
+  pricingPage: https://onfleet.com/pricing
+metering:
+  primaryUnit: task
+  description: A "task" is a single delivery or pickup; orders count as two tasks (pickup + dropoff).
+plans:
+  - id: launch
+    name: Launch
+    tier: Starter
+    currency: USD
+    billingCycle: month
+    price: 619
+    unit: month
+    includedUnits:
+      - {name: tasks, quantity: 2500, unit: task}
+      - {name: users, quantity: -1, unit: seat, description: Unlimited users}
+    features:
+      - Photo and signature proof of delivery
+      - Driver-dispatcher chat
+      - Basic route optimization
+      - Status and ETA notifications
+      - Driver pay calculation
+      - 90-day reporting
+      - API access
+      - Email support
+      - Branded tracking pages
+  - id: scale
+    name: Scale
+    tier: Growth
+    currency: USD
+    billingCycle: month
+    price: 1349
+    unit: month
+    includedUnits:
+      - {name: tasks, quantity: 5000, unit: task}
+      - {name: users, quantity: -1, unit: seat}
+    features:
+      - Everything in Launch
+      - Barcode scanning
+      - ID verification
+      - Customized completion requirements
+      - Advanced route optimization with API
+      - Dynamic ETA notifications
+      - Auto-dispatch
+      - Custom fields
+      - Command Center
+      - 1-year reporting
+      - Guided onboarding
+  - id: enterprise
+    name: Enterprise
+    tier: Enterprise
+    currency: USD
+    billingCycle: month
+    price: 3099
+    priceQualifier: starting
+    unit: month
+    includedUnits:
+      - {name: tasks, quantity: 10000, unit: task, qualifier: starting}
+      - {name: users, quantity: -1, unit: seat}
+    features:
+      - Everything in Scale
+      - Multi-brand and multi-region support
+      - Enhanced branding
+      - Enterprise SSO
+      - Lifetime historical reporting
+      - Premium support
+      - Route Optimization API endpoints
+addOns:
+  - id: courier-suite
+    name: Courier Suite
+    currency: USD
+    price: 299
+    priceQualifier: starting
+    unit: month
+    description: Customizable services, client portals, e-commerce integrations, address book, invoicing, label printing.
+notes:
+  - Pricing displayed is US list as of May 2026; contact sales for international, overage, and custom volumes.
+  - Overage tasks beyond the included quota are billed per-task; rate varies by plan and is negotiated for Enterprise.
+sources:
+  - https://onfleet.com/pricing
+updated: '2026-05-25'

@@ -1,0 +1,19 @@
+name: webhooks
+description: Shared capability definitions for the Onfleet Webhooks API.
+api: onfleet-webhooks-api
+operations:
+  - id: listWebhooks
+    method: GET
+    path: /webhooks
+  - id: createWebhook
+    method: POST
+    path: /webhooks
+  - id: updateWebhook
+    method: PUT
+    path: /webhooks/{webhookId}
+  - id: deleteWebhook
+    method: DELETE
+    path: /webhooks/{webhookId}
+  - id: getWebhookSecret
+    method: GET
+    path: /webhooks/secret

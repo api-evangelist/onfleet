@@ -1,0 +1,279 @@
+openapi: 3.0.3
+info:
+  title: Onfleet Route Plans API
+  description: |
+    The Onfleet Route Plans API manages reusable routes — ordered sequences of
+    tasks assigned to a worker for a given time window. Use these endpoints to
+    create, update, fetch, add tasks to, and delete route plans, plus run
+    asynchronous route optimization across an organization or team.
+  version: '2.7'
+  contact:
+    name: Onfleet Support
+    email: support@onfleet.com
+  license:
+    name: Onfleet Terms of Service
+    url: https://onfleet.com/legal
+servers:
+  - url: https://onfleet.com/api/v2
+    description: Production
+security:
+  - basicAuth: []
+tags:
+  - name: Route Plans
+  - name: Route Optimization
+paths:
+  /routePlans:
+    get:
+      tags: [Route Plans]
+      summary: List Route Plans
+      operationId: listRoutePlans
+      parameters:
+        - name: from
+          in: query
+          required: true
+          schema: {type: integer, format: int64}
+        - name: to
+          in: query
+          schema: {type: integer, format: int64}
+        - name: teams
+          in: query
+          schema: {type: string}
+        - name: workers
+          in: query
+          schema: {type: string}
+      responses:
+        '200':
+          description: Route plans
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  routePlans:
+                    type: array
+                    items: {$ref: '#/components/schemas/RoutePlan'}
+    post:
+      tags: [Route Plans]
+      summary: Create Route Plan
+      operationId: createRoutePlan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/RoutePlanCreate'}
+      responses:
+        '200':
+          description: Route plan created
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/RoutePlan'}
+  /routePlans/{routePlanId}:
+    parameters:
+      - name: routePlanId
+        in: path
+        required: true
+        schema: {type: string}
+    get:
+      tags: [Route Plans]
+      summary: Get Route Plan By ID
+      operationId: getRoutePlan
+      responses:
+        '200':
+          description: Route plan
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/RoutePlan'}
+    put:
+      tags: [Route Plans]
+      summary: Update Route Plan
+      operationId: updateRoutePlan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/RoutePlanCreate'}
+      responses:
+        '200':
+          description: Updated route plan
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/RoutePlan'}
+    delete:
+      tags: [Route Plans]
+      summary: Delete Route Plan
+      operationId: deleteRoutePlan
+      responses:
+        '200':
+          description: Deleted
+  /routePlans/{routePlanId}/tasks:
+    put:
+      tags: [Route Plans]
+      summary: Add Tasks To Route Plan
+      operationId: addTasksToRoutePlan
+      parameters:
+        - name: routePlanId
+          in: path
+          required: true
+          schema: {type: string}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tasks:
+                  type: array
+                  items: {type: string}
+      responses:
+        '200':
+          description: Updated route plan
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/RoutePlan'}
+  /optimizations/scheduled:
+    post:
+      tags: [Route Optimization]
+      summary: Initialize Route Optimization
+      description: Start an asynchronous route optimization job for a team or set of workers; result delivered via the routeOptimizationJobCompleted webhook. Enterprise-only.
+      operationId: initializeOptimization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/OptimizationRequest'}
+      responses:
+        '200':
+          description: Optimization queued
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  optimizationId: {type: string}
+                  status: {type: string}
+  /optimizations/{optimizationId}/start:
+    post:
+      tags: [Route Optimization]
+      summary: Start Route Optimization
+      operationId: startOptimization
+      parameters:
+        - name: optimizationId
+          in: path
+          required: true
+          schema: {type: string}
+      responses:
+        '200':
+          description: Started
+  /optimizations/{optimizationId}/status:
+    get:
+      tags: [Route Optimization]
+      summary: Get Optimization Status
+      operationId: getOptimizationStatus
+      parameters:
+        - name: optimizationId
+          in: path
+          required: true
+          schema: {type: string}
+      responses:
+        '200':
+          description: Status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  optimizationId: {type: string}
+                  status: {type: string, enum: [PENDING, IN_PROGRESS, COMPLETED, FAILED, ABORTED]}
+                  progress: {type: number}
+  /optimizations/{optimizationId}/apply:
+    post:
+      tags: [Route Optimization]
+      summary: Apply Optimization Results
+      operationId: applyOptimization
+      parameters:
+        - name: optimizationId
+          in: path
+          required: true
+          schema: {type: string}
+      responses:
+        '200':
+          description: Applied
+  /optimizations/{optimizationId}/abort:
+    post:
+      tags: [Route Optimization]
+      summary: Abort Optimization
+      operationId: abortOptimization
+      parameters:
+        - name: optimizationId
+          in: path
+          required: true
+          schema: {type: string}
+      responses:
+        '200':
+          description: Aborted
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    RoutePlan:
+      type: object
+      properties:
+        id: {type: string}
+        name: {type: string}
+        organization: {type: string}
+        timeCreated: {type: integer, format: int64}
+        timeLastModified: {type: integer, format: int64}
+        startTime: {type: integer, format: int64}
+        endTime: {type: integer, format: int64, nullable: true}
+        team: {type: string, nullable: true}
+        worker: {type: string, nullable: true}
+        vehicleType: {type: string, nullable: true}
+        startAt: {type: string, enum: [HUB, WORKER_LOCATION, WORKER_ADDRESS]}
+        endAt: {type: string, enum: [HUB, WORKER_LOCATION, WORKER_ADDRESS, ANYWHERE]}
+        startingHubId: {type: string, nullable: true}
+        endingHubId: {type: string, nullable: true}
+        color: {type: string, nullable: true}
+        tasks:
+          type: array
+          items: {type: string}
+        state: {type: string, enum: [DRAFT, ACTIVE, COMPLETED]}
+    RoutePlanCreate:
+      type: object
+      required: [name, startTime, worker]
+      properties:
+        name: {type: string}
+        startTime: {type: integer, format: int64}
+        endTime: {type: integer, format: int64}
+        worker: {type: string}
+        team: {type: string}
+        vehicleType: {type: string, enum: [CAR, MOTORCYCLE, BICYCLE, TRUCK]}
+        startAt: {type: string, enum: [HUB, WORKER_LOCATION, WORKER_ADDRESS]}
+        endAt: {type: string, enum: [HUB, WORKER_LOCATION, WORKER_ADDRESS, ANYWHERE]}
+        startingHubId: {type: string}
+        endingHubId: {type: string}
+        color: {type: string}
+        tasks:
+          type: array
+          items: {type: string}
+    OptimizationRequest:
+      type: object
+      properties:
+        type: {type: string, enum: [TASK_BASED, VEHICLE_BASED, AUTO_DISPATCH]}
+        tasks:
+          type: array
+          items: {type: string}
+        workers:
+          type: array
+          items: {type: string}
+        team: {type: string}
+        startTime: {type: integer, format: int64}
+        endTime: {type: integer, format: int64}
+        considerDependencies: {type: boolean}
+        balance:
+          type: object
+          properties:
+            byTaskCount: {type: boolean}
+            byWorkload: {type: boolean}

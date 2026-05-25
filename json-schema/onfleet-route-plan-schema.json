@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/onfleet/main/json-schema/onfleet-route-plan-schema.json",
+  "title": "OnfleetRoutePlan",
+  "description": "An Onfleet route plan — an ordered sequence of tasks assigned to a worker for a defined time window.",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string"},
+    "name": {"type": "string"},
+    "organization": {"type": "string"},
+    "startTime": {"type": "integer"},
+    "endTime": {"type": ["integer", "null"]},
+    "worker": {"type": ["string", "null"]},
+    "team": {"type": ["string", "null"]},
+    "vehicleType": {"type": ["string", "null"], "enum": ["CAR", "MOTORCYCLE", "BICYCLE", "TRUCK", null]},
+    "startAt": {"type": "string", "enum": ["HUB", "WORKER_LOCATION", "WORKER_ADDRESS"]},
+    "endAt": {"type": "string", "enum": ["HUB", "WORKER_LOCATION", "WORKER_ADDRESS", "ANYWHERE"]},
+    "startingHubId": {"type": ["string", "null"]},
+    "endingHubId": {"type": ["string", "null"]},
+    "tasks": {"type": "array", "items": {"type": "string"}},
+    "state": {"type": "string", "enum": ["DRAFT", "ACTIVE", "COMPLETED"]}
+  },
+  "required": ["name", "startTime"]
+}
