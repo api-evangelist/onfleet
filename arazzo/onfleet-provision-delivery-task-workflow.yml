@@ -1,0 +1,121 @@
+arazzo: 1.0.1
+info:
+  title: Onfleet Provision Delivery Task
+  summary: Create a recipient and destination, then create a delivery task and confirm it.
+  description: >-
+    The canonical Onfleet last-mile setup flow. It creates the end customer as a
+    reusable recipient, geocodes and stores the delivery address as a
+    destination, creates a dropoff task that binds the recipient and destination
+    together with a completion window, and then re-reads the task to confirm it
+    was provisioned and to capture its tracking URL. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: recipientsApi
+  url: ../openapi/onfleet-recipients-api-openapi.yml
+  type: openapi
+- name: destinationsApi
+  url: ../openapi/onfleet-destinations-api-openapi.yml
+  type: openapi
+- name: tasksApi
+  url: ../openapi/onfleet-tasks-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-delivery-task
+  summary: Create recipient, create destination, create task, then read it back.
+  description: >-
+    Resolves the customer and address into reusable Onfleet resources and then
+    creates and confirms a single dropoff task referencing both.
+  inputs:
+    type: object
+    required:
+    - recipientName
+    - recipientPhone
+    - unparsedAddress
+    properties:
+      recipientName:
+        type: string
+        description: The recipient's full name.
+      recipientPhone:
+        type: string
+        description: The recipient's phone number in E.164 format.
+      recipientNotes:
+        type: string
+        description: Optional delivery notes about the recipient.
+      unparsedAddress:
+        type: string
+        description: A single-line street address Onfleet will geocode.
+      destinationNotes:
+        type: string
+        description: Optional notes about the destination (gate code, etc.).
+      completeAfter:
+        type: integer
+        description: Earliest completion time in Unix milliseconds.
+      completeBefore:
+        type: integer
+        description: Latest completion time in Unix milliseconds.
+      taskNotes:
+        type: string
+        description: Optional notes shown to the assigned worker.
+  steps:
+  - stepId: createRecipient
+    description: Create the end customer who will receive the delivery.
+    operationId: createRecipient
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.recipientName
+        phone: $inputs.recipientPhone
+        notes: $inputs.recipientNotes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      recipientId: $response.body#/id
+  - stepId: createDestination
+    description: Geocode and store the delivery address as a reusable destination.
+    operationId: createDestination
+    requestBody:
+      contentType: application/json
+      payload:
+        address:
+          unparsed: $inputs.unparsedAddress
+        notes: $inputs.destinationNotes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      destinationId: $response.body#/id
+  - stepId: createTask
+    description: Create the dropoff task binding the recipient and destination.
+    operationId: createTask
+    requestBody:
+      contentType: application/json
+      payload:
+        destination: $steps.createDestination.outputs.destinationId
+        recipients:
+        - $steps.createRecipient.outputs.recipientId
+        completeAfter: $inputs.completeAfter
+        completeBefore: $inputs.completeBefore
+        notes: $inputs.taskNotes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      taskId: $response.body#/id
+      shortId: $response.body#/shortId
+  - stepId: confirmTask
+    description: Read the created task back to confirm provisioning and capture tracking.
+    operationId: getTask
+    parameters:
+    - name: taskId
+      in: path
+      value: $steps.createTask.outputs.taskId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      state: $response.body#/state
+      trackingURL: $response.body#/trackingURL
+  outputs:
+    recipientId: $steps.createRecipient.outputs.recipientId
+    destinationId: $steps.createDestination.outputs.destinationId
+    taskId: $steps.createTask.outputs.taskId
+    trackingURL: $steps.confirmTask.outputs.trackingURL

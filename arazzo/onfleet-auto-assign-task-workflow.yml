@@ -1,0 +1,103 @@
+arazzo: 1.0.1
+info:
+  title: Onfleet Auto-Assign Task
+  summary: Create a task with auto-assignment to a team, then confirm a worker was assigned.
+  description: >-
+    Lets Onfleet's routing engine pick the best driver instead of assigning
+    manually. The workflow creates a dropoff task with an autoAssign block scoped
+    to a team, then reads the task back and branches on the result: when a worker
+    was selected it captures the assignment, and when the task remains
+    unassigned it surfaces that the task is still waiting in the queue. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: tasksApi
+  url: ../openapi/onfleet-tasks-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: auto-assign-task
+  summary: Create an auto-assigned task and verify whether a worker was selected.
+  description: >-
+    Creates a task with team-scoped auto-assignment and inspects the resulting
+    task to confirm whether a worker was assigned.
+  inputs:
+    type: object
+    required:
+    - teamId
+    - unparsedAddress
+    properties:
+      teamId:
+        type: string
+        description: The team id to auto-assign the task within.
+      unparsedAddress:
+        type: string
+        description: A single-line street address Onfleet will geocode.
+      mode:
+        type: string
+        description: Auto-assign mode, either "distance" or "load".
+      completeBefore:
+        type: integer
+        description: Latest completion time in Unix milliseconds.
+      taskNotes:
+        type: string
+        description: Optional notes shown to the assigned worker.
+  steps:
+  - stepId: createAutoAssignedTask
+    description: Create a task that asks Onfleet to auto-assign a worker on the team.
+    operationId: createTask
+    requestBody:
+      contentType: application/json
+      payload:
+        destination:
+          address:
+            unparsed: $inputs.unparsedAddress
+        completeBefore: $inputs.completeBefore
+        notes: $inputs.taskNotes
+        autoAssign:
+          mode: $inputs.mode
+          team: $inputs.teamId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      taskId: $response.body#/id
+  - stepId: confirmAssignment
+    description: Read the task back to determine whether a worker was assigned.
+    operationId: getTask
+    parameters:
+    - name: taskId
+      in: path
+      value: $steps.createAutoAssignedTask.outputs.taskId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      worker: $response.body#/worker
+      state: $response.body#/state
+    onSuccess:
+    - name: assigned
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.worker != null
+        type: jsonpath
+    - name: stillUnassigned
+      type: goto
+      stepId: reportUnassigned
+      criteria:
+      - context: $response.body
+        condition: $.worker == null
+        type: jsonpath
+  - stepId: reportUnassigned
+    description: Re-read the task to surface that it is still unassigned (state 0).
+    operationId: getTask
+    parameters:
+    - name: taskId
+      in: path
+      value: $steps.createAutoAssignedTask.outputs.taskId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      state: $response.body#/state
+  outputs:
+    taskId: $steps.createAutoAssignedTask.outputs.taskId
+    assignedWorker: $steps.confirmAssignment.outputs.worker

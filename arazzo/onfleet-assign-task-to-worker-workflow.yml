@@ -1,0 +1,88 @@
+arazzo: 1.0.1
+info:
+  title: Onfleet Assign Task to Worker
+  summary: Create a task and explicitly assign it to a worker's container, then verify.
+  description: >-
+    Performs an explicit, manual dispatch rather than letting Onfleet
+    auto-assign. The workflow creates a dropoff task, sets the ordered task list
+    on a specific worker's container so the task is assigned to that driver, and
+    then reads the worker back to confirm the task now appears in their assigned
+    task list. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: tasksApi
+  url: ../openapi/onfleet-tasks-api-openapi.yml
+  type: openapi
+- name: workersApi
+  url: ../openapi/onfleet-workers-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: assign-task-to-worker
+  summary: Create a task, assign it to a worker, and confirm the worker holds it.
+  description: >-
+    Creates a task and sets it on a worker's container, then verifies the
+    assignment by listing the worker's assigned tasks.
+  inputs:
+    type: object
+    required:
+    - workerId
+    - unparsedAddress
+    properties:
+      workerId:
+        type: string
+        description: The worker id to assign the task to.
+      unparsedAddress:
+        type: string
+        description: A single-line street address Onfleet will geocode.
+      completeBefore:
+        type: integer
+        description: Latest completion time in Unix milliseconds.
+      taskNotes:
+        type: string
+        description: Optional notes shown to the assigned worker.
+  steps:
+  - stepId: createTask
+    description: Create the dropoff task that will be assigned to the worker.
+    operationId: createTask
+    requestBody:
+      contentType: application/json
+      payload:
+        destination:
+          address:
+            unparsed: $inputs.unparsedAddress
+        completeBefore: $inputs.completeBefore
+        notes: $inputs.taskNotes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      taskId: $response.body#/id
+  - stepId: assignToWorker
+    description: Set the worker's container task list to include the new task.
+    operationId: assignTasksToWorker
+    parameters:
+    - name: workerId
+      in: path
+      value: $inputs.workerId
+    requestBody:
+      contentType: application/json
+      payload:
+        tasks:
+        - $steps.createTask.outputs.taskId
+        considerDependencies: true
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: confirmWorkerTasks
+    description: List the worker's assigned tasks to confirm the assignment took effect.
+    operationId: listWorkerAssignedTasks
+    parameters:
+    - name: workerId
+      in: path
+      value: $inputs.workerId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      assignedTasks: $response.body
+  outputs:
+    taskId: $steps.createTask.outputs.taskId
+    assignedTasks: $steps.confirmWorkerTasks.outputs.assignedTasks

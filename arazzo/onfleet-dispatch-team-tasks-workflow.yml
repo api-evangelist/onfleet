@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: Onfleet Dispatch Team Tasks
+  summary: Survey unassigned tasks, trigger team auto-dispatch, then re-check what remains.
+  description: >-
+    Sweeps a team's queue of open work and hands it to Onfleet's batching and
+    routing engine. The workflow first lists the organization's unassigned tasks
+    to establish a baseline, triggers Team Auto-Dispatch for the target team so
+    open tasks are batched into routes and assigned to team workers, and then
+    re-lists unassigned tasks to confirm the queue was drained. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: tasksApi
+  url: ../openapi/onfleet-tasks-api-openapi.yml
+  type: openapi
+- name: organizationsApi
+  url: ../openapi/onfleet-organizations-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: dispatch-team-tasks
+  summary: Baseline unassigned tasks, run team auto-dispatch, and re-check the queue.
+  description: >-
+    Lists unassigned tasks, triggers team auto-dispatch, and re-lists tasks to
+    confirm the dispatch drained the queue.
+  inputs:
+    type: object
+    required:
+    - teamId
+    - from
+    properties:
+      teamId:
+        type: string
+        description: The team id to run auto-dispatch for.
+      from:
+        type: integer
+        description: Start of the task search range in Unix milliseconds.
+      to:
+        type: integer
+        description: End of the task search range in Unix milliseconds.
+      maxTasksPerRoute:
+        type: integer
+        description: Optional cap on tasks per generated route.
+  steps:
+  - stepId: baselineUnassigned
+    description: List currently unassigned tasks (state 0) to establish a baseline.
+    operationId: listTasks
+    parameters:
+    - name: from
+      in: query
+      value: $inputs.from
+    - name: to
+      in: query
+      value: $inputs.to
+    - name: state
+      in: query
+      value: "0"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tasksBefore: $response.body#/tasks
+  - stepId: autoDispatch
+    description: Trigger Team Auto-Dispatch to batch and assign the team's open tasks.
+    operationId: teamAutoDispatch
+    parameters:
+    - name: teamId
+      in: path
+      value: $inputs.teamId
+    requestBody:
+      contentType: application/json
+      payload:
+        maxTasksPerRoute: $inputs.maxTasksPerRoute
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: recheckUnassigned
+    description: Re-list unassigned tasks to confirm the dispatch drained the queue.
+    operationId: listTasks
+    parameters:
+    - name: from
+      in: query
+      value: $inputs.from
+    - name: to
+      in: query
+      value: $inputs.to
+    - name: state
+      in: query
+      value: "0"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tasksAfter: $response.body#/tasks
+  outputs:
+    tasksBefore: $steps.baselineUnassigned.outputs.tasksBefore
+    tasksAfter: $steps.recheckUnassigned.outputs.tasksAfter

@@ -1,0 +1,118 @@
+arazzo: 1.0.1
+info:
+  title: Onfleet Optimize Team Routes
+  summary: Initialize and start a route optimization, poll its status, then apply the result.
+  description: >-
+    Runs Onfleet's asynchronous route optimization end to end. The workflow
+    initializes an optimization job for a team, starts it, polls the
+    optimization status, and then branches: when the job has completed it applies
+    the optimized routes, and when the job failed it aborts to release the
+    resources. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: routePlansApi
+  url: ../openapi/onfleet-route-plans-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: optimize-team-routes
+  summary: Initialize, start, poll, and apply (or abort) a route optimization job.
+  description: >-
+    Initializes a route optimization for a team, starts and polls it, then
+    applies the result when complete or aborts it when it failed.
+  inputs:
+    type: object
+    required:
+    - team
+    - startTime
+    properties:
+      team:
+        type: string
+        description: The team id to optimize routes for.
+      startTime:
+        type: integer
+        description: The optimization window start in Unix milliseconds.
+      endTime:
+        type: integer
+        description: The optimization window end in Unix milliseconds.
+      tasks:
+        type: array
+        description: Optional explicit list of task ids to include.
+        items:
+          type: string
+  steps:
+  - stepId: initializeOptimization
+    description: Queue an asynchronous route optimization job for the team.
+    operationId: initializeOptimization
+    requestBody:
+      contentType: application/json
+      payload:
+        type: AUTO_DISPATCH
+        team: $inputs.team
+        startTime: $inputs.startTime
+        endTime: $inputs.endTime
+        tasks: $inputs.tasks
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      optimizationId: $response.body#/optimizationId
+  - stepId: startOptimization
+    description: Start the queued optimization job.
+    operationId: startOptimization
+    parameters:
+    - name: optimizationId
+      in: path
+      value: $steps.initializeOptimization.outputs.optimizationId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: checkStatus
+    description: Poll the optimization job status and branch on the result.
+    operationId: getOptimizationStatus
+    parameters:
+    - name: optimizationId
+      in: path
+      value: $steps.initializeOptimization.outputs.optimizationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      progress: $response.body#/progress
+    onSuccess:
+    - name: completed
+      type: goto
+      stepId: applyOptimization
+      criteria:
+      - context: $response.body
+        condition: $.status == "COMPLETED"
+        type: jsonpath
+    - name: failed
+      type: goto
+      stepId: abortOptimization
+      criteria:
+      - context: $response.body
+        condition: $.status == "FAILED"
+        type: jsonpath
+  - stepId: applyOptimization
+    description: Apply the optimized routes when the job completed successfully.
+    operationId: applyOptimization
+    parameters:
+    - name: optimizationId
+      in: path
+      value: $steps.initializeOptimization.outputs.optimizationId
+    successCriteria:
+    - condition: $statusCode == 200
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: abortOptimization
+    description: Abort the optimization job when it failed to release resources.
+    operationId: abortOptimization
+    parameters:
+    - name: optimizationId
+      in: path
+      value: $steps.initializeOptimization.outputs.optimizationId
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    optimizationId: $steps.initializeOptimization.outputs.optimizationId
+    status: $steps.checkStatus.outputs.status

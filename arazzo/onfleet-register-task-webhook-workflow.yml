@@ -1,0 +1,74 @@
+arazzo: 1.0.1
+info:
+  title: Onfleet Register Task Webhook
+  summary: Register a webhook, fetch the signing secret, then confirm it is listed.
+  description: >-
+    Sets up real-time event delivery for task lifecycle changes. The workflow
+    creates a webhook bound to a single trigger id pointing at an HTTPS URL,
+    fetches the organization's webhook signing secret so incoming payloads can be
+    verified, and then lists all webhooks to confirm the new registration is
+    present. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: webhooksApi
+  url: ../openapi/onfleet-webhooks-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: register-task-webhook
+  summary: Create a webhook, fetch the signing secret, and confirm it is registered.
+  description: >-
+    Registers a webhook for a task trigger, retrieves the signing secret, and
+    verifies the webhook appears in the webhook list.
+  inputs:
+    type: object
+    required:
+    - url
+    - trigger
+    properties:
+      url:
+        type: string
+        description: The HTTPS URL Onfleet will POST event payloads to.
+      name:
+        type: string
+        description: A human-readable name for the webhook.
+      trigger:
+        type: integer
+        description: The trigger id (0-30) the webhook fires on.
+      threshold:
+        type: integer
+        description: Threshold value for triggers that compare against one (e.g. taskEta).
+  steps:
+  - stepId: createWebhook
+    description: Register the webhook bound to the supplied trigger and URL.
+    operationId: createWebhook
+    requestBody:
+      contentType: application/json
+      payload:
+        url: $inputs.url
+        name: $inputs.name
+        trigger: $inputs.trigger
+        threshold: $inputs.threshold
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      webhookId: $response.body#/id
+      trigger: $response.body#/trigger
+  - stepId: getSecret
+    description: Fetch the signing secret used to verify incoming webhook payloads.
+    operationId: getWebhookSecret
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      secret: $response.body#/secret
+  - stepId: confirmListed
+    description: List all webhooks to confirm the new registration is present.
+    operationId: listWebhooks
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      webhooks: $response.body
+  outputs:
+    webhookId: $steps.createWebhook.outputs.webhookId
+    secret: $steps.getSecret.outputs.secret
+    webhooks: $steps.confirmListed.outputs.webhooks

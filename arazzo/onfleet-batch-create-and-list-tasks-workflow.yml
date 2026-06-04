@@ -1,0 +1,71 @@
+arazzo: 1.0.1
+info:
+  title: Onfleet Batch Create and List Tasks
+  summary: Submit a batch of tasks asynchronously, then list tasks to verify the load.
+  description: >-
+    Loads many deliveries at once for a daily route build. The workflow submits a
+    batch of up to 100 tasks for asynchronous creation (results are also
+    delivered via the taskBatchCreateJobCompleted webhook), captures the returned
+    batch job id, and then lists tasks over the same time window so the newly
+    created tasks can be observed once the batch job has processed. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: tasksApi
+  url: ../openapi/onfleet-tasks-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: batch-create-and-list-tasks
+  summary: Submit a batch of tasks and then list tasks over the same window.
+  description: >-
+    Asynchronously creates a batch of tasks and lists tasks in the supplied time
+    window to observe the result.
+  inputs:
+    type: object
+    required:
+    - tasks
+    - from
+    properties:
+      tasks:
+        type: array
+        description: Up to 100 task-create objects to submit in the batch.
+        items:
+          type: object
+      from:
+        type: integer
+        description: Start of the list search range in Unix milliseconds.
+      to:
+        type: integer
+        description: End of the list search range in Unix milliseconds.
+  steps:
+  - stepId: createBatch
+    description: Submit the task batch for asynchronous creation.
+    operationId: createTaskBatch
+    requestBody:
+      contentType: application/json
+      payload:
+        tasks: $inputs.tasks
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      jobId: $response.body#/jobId
+  - stepId: listCreatedTasks
+    description: List tasks over the supplied window to observe the batch result.
+    operationId: listTasks
+    parameters:
+    - name: from
+      in: query
+      value: $inputs.from
+    - name: to
+      in: query
+      value: $inputs.to
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tasks: $response.body#/tasks
+      lastId: $response.body#/lastId
+  outputs:
+    jobId: $steps.createBatch.outputs.jobId
+    tasks: $steps.listCreatedTasks.outputs.tasks

@@ -1,0 +1,79 @@
+arazzo: 1.0.1
+info:
+  title: Onfleet Provision Administrator and Team
+  summary: Create an administrator, create a team they manage, then confirm the team list.
+  description: >-
+    Bootstraps organizational structure for a new operation. The workflow creates
+    an administrator account, creates a team that names that administrator as its
+    manager, and then lists all teams to confirm the new team is present. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: organizationsApi
+  url: ../openapi/onfleet-organizations-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-admin-and-team
+  summary: Create an administrator, a team they manage, and confirm the team exists.
+  description: >-
+    Creates an administrator, creates a team managed by that administrator, and
+    lists teams to confirm the new team.
+  inputs:
+    type: object
+    required:
+    - adminName
+    - adminEmail
+    - teamName
+    properties:
+      adminName:
+        type: string
+        description: The administrator's full name.
+      adminEmail:
+        type: string
+        description: The administrator's email address.
+      adminType:
+        type: string
+        description: The administrator type, either "super" or "standard".
+      teamName:
+        type: string
+        description: The display name for the new team.
+  steps:
+  - stepId: createAdmin
+    description: Create the administrator account that will manage the team.
+    operationId: createAdmin
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.adminName
+        email: $inputs.adminEmail
+        type: $inputs.adminType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      adminId: $response.body#/id
+  - stepId: createTeam
+    description: Create a team managed by the newly created administrator.
+    operationId: createTeam
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.teamName
+        workers: []
+        managers:
+        - $steps.createAdmin.outputs.adminId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      teamId: $response.body#/id
+  - stepId: confirmTeams
+    description: List all teams to confirm the new team is present.
+    operationId: listTeams
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      teams: $response.body
+  outputs:
+    adminId: $steps.createAdmin.outputs.adminId
+    teamId: $steps.createTeam.outputs.teamId
+    teams: $steps.confirmTeams.outputs.teams

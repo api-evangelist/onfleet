@@ -1,0 +1,78 @@
+arazzo: 1.0.1
+info:
+  title: Onfleet Clone and Force-Complete Task
+  summary: Read a task, clone it for a redelivery, then force-complete the original.
+  description: >-
+    Handles a failed delivery by spawning a redelivery and closing out the
+    original. The workflow reads an existing task to capture its details, clones
+    it so a fresh task is queued for another attempt, and then force-completes
+    the original task with a failure note so it leaves the active queue. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: tasksApi
+  url: ../openapi/onfleet-tasks-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: clone-and-complete-task
+  summary: Clone a task for redelivery and force-complete the original.
+  description: >-
+    Reads a task, clones it to queue a redelivery, and force-completes the
+    original task with a failure note.
+  inputs:
+    type: object
+    required:
+    - taskId
+    properties:
+      taskId:
+        type: string
+        description: The id of the original task to clone and complete.
+      success:
+        type: boolean
+        description: Whether the original task should be marked successful on completion.
+      notes:
+        type: string
+        description: Completion notes recorded against the original task.
+  steps:
+  - stepId: getOriginalTask
+    description: Read the original task to capture its details before cloning.
+    operationId: getTask
+    parameters:
+    - name: taskId
+      in: path
+      value: $inputs.taskId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      shortId: $response.body#/shortId
+      state: $response.body#/state
+  - stepId: cloneTask
+    description: Clone the original task to queue a fresh redelivery attempt.
+    operationId: cloneTask
+    parameters:
+    - name: taskId
+      in: path
+      value: $inputs.taskId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      clonedTaskId: $response.body#/id
+  - stepId: completeOriginal
+    description: Force-complete the original task with the supplied outcome and notes.
+    operationId: forceCompleteTask
+    parameters:
+    - name: taskId
+      in: path
+      value: $inputs.taskId
+    requestBody:
+      contentType: application/json
+      payload:
+        completionDetails:
+          success: $inputs.success
+          notes: $inputs.notes
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    originalTaskId: $inputs.taskId
+    clonedTaskId: $steps.cloneTask.outputs.clonedTaskId

@@ -1,0 +1,132 @@
+arazzo: 1.0.1
+info:
+  title: Onfleet Upsert Recipient and Create Task
+  summary: Look up a recipient by phone, create one if missing, then create a task for them.
+  description: >-
+    Avoids duplicate recipients when repeat customers place new deliveries. The
+    workflow looks the recipient up by E.164 phone number and branches: when a
+    matching recipient is found it reuses that record, and when none exists it
+    creates a new recipient. Either branch then creates a dropoff task addressed
+    to an inline destination for that recipient. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: recipientsApi
+  url: ../openapi/onfleet-recipients-api-openapi.yml
+  type: openapi
+- name: tasksApi
+  url: ../openapi/onfleet-tasks-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-recipient-and-create-task
+  summary: Resolve a recipient by phone (create if absent) and create a delivery task.
+  description: >-
+    Finds an existing recipient by phone number or creates a new one, then
+    creates a dropoff task to a geocoded address for that recipient.
+  inputs:
+    type: object
+    required:
+    - recipientPhone
+    - recipientName
+    - unparsedAddress
+    properties:
+      recipientPhone:
+        type: string
+        description: The recipient phone number in E.164 format to look up or create.
+      recipientName:
+        type: string
+        description: The recipient name used when a new recipient must be created.
+      unparsedAddress:
+        type: string
+        description: A single-line street address Onfleet will geocode for the task.
+      completeBefore:
+        type: integer
+        description: Latest completion time in Unix milliseconds.
+      taskNotes:
+        type: string
+        description: Optional notes shown to the assigned worker.
+  steps:
+  - stepId: findRecipient
+    description: Look up an existing recipient by their E.164 phone number.
+    operationId: getRecipientByPhone
+    parameters:
+    - name: phone
+      in: path
+      value: $inputs.recipientPhone
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      existingRecipientId: $response.body#/id
+    onSuccess:
+    - name: recipientFound
+      type: goto
+      stepId: createTaskForExisting
+      criteria:
+      - context: $response.body
+        condition: $.id != null
+        type: jsonpath
+    onFailure:
+    - name: recipientMissing
+      type: goto
+      stepId: createRecipient
+      criteria:
+      - condition: $statusCode == 404
+  - stepId: createRecipient
+    description: Create a new recipient because none matched the supplied phone number.
+    operationId: createRecipient
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.recipientName
+        phone: $inputs.recipientPhone
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      newRecipientId: $response.body#/id
+    onSuccess:
+    - name: createTaskForNew
+      type: goto
+      stepId: createTaskForNew
+  - stepId: createTaskForExisting
+    description: Create a dropoff task for the recipient that already existed.
+    operationId: createTask
+    requestBody:
+      contentType: application/json
+      payload:
+        destination:
+          address:
+            unparsed: $inputs.unparsedAddress
+        recipients:
+        - $steps.findRecipient.outputs.existingRecipientId
+        completeBefore: $inputs.completeBefore
+        notes: $inputs.taskNotes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      taskId: $response.body#/id
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createTaskForNew
+    description: Create a dropoff task for the newly created recipient.
+    operationId: createTask
+    requestBody:
+      contentType: application/json
+      payload:
+        destination:
+          address:
+            unparsed: $inputs.unparsedAddress
+        recipients:
+        - $steps.createRecipient.outputs.newRecipientId
+        completeBefore: $inputs.completeBefore
+        notes: $inputs.taskNotes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      taskId: $response.body#/id
+  outputs:
+    existingRecipientId: $steps.findRecipient.outputs.existingRecipientId
+    newRecipientId: $steps.createRecipient.outputs.newRecipientId
+    taskIdForExisting: $steps.createTaskForExisting.outputs.taskId
+    taskIdForNew: $steps.createTaskForNew.outputs.taskId

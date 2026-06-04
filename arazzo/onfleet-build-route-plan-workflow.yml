@@ -1,0 +1,93 @@
+arazzo: 1.0.1
+info:
+  title: Onfleet Build Route Plan
+  summary: Create a route plan for a worker, append tasks to it, then read it back.
+  description: >-
+    Assembles an ordered route for a single driver. The workflow creates a route
+    plan bound to a worker and a start time, appends a set of task ids to that
+    plan so they become the ordered stops, and then re-reads the route plan to
+    confirm the tasks landed and to capture the plan's state. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: routePlansApi
+  url: ../openapi/onfleet-route-plans-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: build-route-plan
+  summary: Create a route plan, add tasks to it, and confirm the assembled route.
+  description: >-
+    Creates a worker route plan, appends tasks to it, and reads the plan back to
+    confirm its tasks and state.
+  inputs:
+    type: object
+    required:
+    - name
+    - startTime
+    - worker
+    - tasks
+    properties:
+      name:
+        type: string
+        description: A human-readable name for the route plan.
+      startTime:
+        type: integer
+        description: The route start time in Unix milliseconds.
+      endTime:
+        type: integer
+        description: Optional route end time in Unix milliseconds.
+      worker:
+        type: string
+        description: The worker id the route plan is assigned to.
+      tasks:
+        type: array
+        description: The ordered list of task ids to add to the route plan.
+        items:
+          type: string
+  steps:
+  - stepId: createRoutePlan
+    description: Create the route plan bound to the worker and start time.
+    operationId: createRoutePlan
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        startTime: $inputs.startTime
+        endTime: $inputs.endTime
+        worker: $inputs.worker
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      routePlanId: $response.body#/id
+  - stepId: addTasks
+    description: Append the ordered task ids to the route plan.
+    operationId: addTasksToRoutePlan
+    parameters:
+    - name: routePlanId
+      in: path
+      value: $steps.createRoutePlan.outputs.routePlanId
+    requestBody:
+      contentType: application/json
+      payload:
+        tasks: $inputs.tasks
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tasks: $response.body#/tasks
+  - stepId: confirmRoutePlan
+    description: Read the route plan back to confirm its tasks and state.
+    operationId: getRoutePlan
+    parameters:
+    - name: routePlanId
+      in: path
+      value: $steps.createRoutePlan.outputs.routePlanId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      state: $response.body#/state
+      tasks: $response.body#/tasks
+  outputs:
+    routePlanId: $steps.createRoutePlan.outputs.routePlanId
+    tasks: $steps.confirmRoutePlan.outputs.tasks
+    state: $steps.confirmRoutePlan.outputs.state

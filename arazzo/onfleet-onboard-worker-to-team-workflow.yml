@@ -1,0 +1,97 @@
+arazzo: 1.0.1
+info:
+  title: Onfleet Onboard Worker to Team
+  summary: Create a team, add a new worker to it, then confirm the worker's membership.
+  description: >-
+    Stands up a delivery team and its first driver in one pass. The workflow
+    creates a team, creates a worker assigned to that team in the same flow
+    (Onfleet requires a worker to belong to at least one team at creation), and
+    then reads the worker back to confirm the team membership and capture the
+    worker's organization and duty status. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: organizationsApi
+  url: ../openapi/onfleet-organizations-api-openapi.yml
+  type: openapi
+- name: workersApi
+  url: ../openapi/onfleet-workers-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: onboard-worker-to-team
+  summary: Create a team and a worker, then verify the worker belongs to the team.
+  description: >-
+    Creates a team, creates a worker that belongs to it, and confirms the
+    resulting membership.
+  inputs:
+    type: object
+    required:
+    - teamName
+    - managerId
+    - workerName
+    - workerPhone
+    properties:
+      teamName:
+        type: string
+        description: The display name for the new team.
+      managerId:
+        type: string
+        description: An administrator id to set as the team manager.
+      workerName:
+        type: string
+        description: The worker's full name.
+      workerPhone:
+        type: string
+        description: The worker's phone number in E.164 format.
+      vehicleType:
+        type: string
+        description: The worker's vehicle type (CAR, MOTORCYCLE, BICYCLE, or TRUCK).
+  steps:
+  - stepId: createTeam
+    description: Create the team the new worker will belong to.
+    operationId: createTeam
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.teamName
+        workers: []
+        managers:
+        - $inputs.managerId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      teamId: $response.body#/id
+  - stepId: createWorker
+    description: Create the worker and assign them to the team just created.
+    operationId: createWorker
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.workerName
+        phone: $inputs.workerPhone
+        teams:
+        - $steps.createTeam.outputs.teamId
+        vehicle:
+          type: $inputs.vehicleType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      workerId: $response.body#/id
+  - stepId: confirmWorker
+    description: Read the worker back to confirm team membership and duty status.
+    operationId: getWorker
+    parameters:
+    - name: workerId
+      in: path
+      value: $steps.createWorker.outputs.workerId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      teams: $response.body#/teams
+      onDuty: $response.body#/onDuty
+      organization: $response.body#/organization
+  outputs:
+    teamId: $steps.createTeam.outputs.teamId
+    workerId: $steps.createWorker.outputs.workerId
+    teams: $steps.confirmWorker.outputs.teams

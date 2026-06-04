@@ -1,0 +1,109 @@
+arazzo: 1.0.1
+info:
+  title: Onfleet Fulfill Courier Order
+  summary: Quote a pickup-and-dropoff order, create it, then read back its status.
+  description: >-
+    Runs the Onfleet Connect courier order flow that pairs a pickup task with a
+    dropoff task. The workflow first requests a price quote for the order, then
+    creates the order with the same pickup and dropoff details, and finally reads
+    the order back by its short id to capture the final price, currency, and
+    status. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: ordersApi
+  url: ../openapi/onfleet-orders-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: fulfill-courier-order
+  summary: Quote an order, create it, and confirm its status.
+  description: >-
+    Quotes a pickup-and-dropoff order, creates it, and reads it back to confirm
+    price and status.
+  inputs:
+    type: object
+    required:
+    - client
+    - pickupAddress
+    - dropoffAddress
+    properties:
+      client:
+        type: string
+        description: The client organization id placing the order.
+      deliveryServiceId:
+        type: string
+        description: Optional delivery service id to route the order to.
+      pickupAddress:
+        type: string
+        description: A single-line pickup street address Onfleet will geocode.
+      dropoffAddress:
+        type: string
+        description: A single-line dropoff street address Onfleet will geocode.
+      completeBefore:
+        type: integer
+        description: Latest dropoff completion time in Unix milliseconds.
+  steps:
+  - stepId: quoteOrder
+    description: Request a price quote for the pickup-and-dropoff order.
+    operationId: quoteOrder
+    requestBody:
+      contentType: application/json
+      payload:
+        client: $inputs.client
+        deliveryServiceId: $inputs.deliveryServiceId
+        pickupTask:
+          pickupTask: true
+          destination:
+            address:
+              unparsed: $inputs.pickupAddress
+        dropoffTask:
+          destination:
+            address:
+              unparsed: $inputs.dropoffAddress
+          completeBefore: $inputs.completeBefore
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      price: $response.body#/price
+      currency: $response.body#/currency
+  - stepId: createOrder
+    description: Create the order using the quoted pickup and dropoff details.
+    operationId: createOrder
+    requestBody:
+      contentType: application/json
+      payload:
+        client: $inputs.client
+        deliveryServiceId: $inputs.deliveryServiceId
+        price: $steps.quoteOrder.outputs.price
+        currency: $steps.quoteOrder.outputs.currency
+        pickupTask:
+          pickupTask: true
+          destination:
+            address:
+              unparsed: $inputs.pickupAddress
+        dropoffTask:
+          destination:
+            address:
+              unparsed: $inputs.dropoffAddress
+          completeBefore: $inputs.completeBefore
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orderShortId: $response.body#/shortId
+  - stepId: confirmOrder
+    description: Read the order back by its short id to confirm its status.
+    operationId: getOrder
+    parameters:
+    - name: orderShortId
+      in: path
+      value: $steps.createOrder.outputs.orderShortId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      pickupTask: $response.body#/pickupTask
+      dropoffTask: $response.body#/dropoffTask
+  outputs:
+    orderShortId: $steps.createOrder.outputs.orderShortId
+    quotedPrice: $steps.quoteOrder.outputs.price
+    status: $steps.confirmOrder.outputs.status
