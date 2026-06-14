@@ -25,13 +25,21 @@ apis:
     type: JSONStructure
   - url: examples/onfleet-create-task-example.json
     type: Example
-  - url: capabilities/shared/tasks.yaml
-    type: NaftikoCapability
-  description: |
-    Create, list, fetch, update, clone, force-complete, and delete pickup/dropoff tasks. Tasks are the
-    atomic unit of work in Onfleet — each has a destination, recipient, completion window, optional
-    dependencies, and a state lifecycle (Unassigned → Assigned → Active → Completed). Supports
-    batch creation (up to 100 per request) and assignment to workers via the containers endpoint.
+  - url: graphql/onfleet-graphql.md
+    type: GraphQL
+  description: 'Create, list, fetch, update, clone, force-complete, and delete pickup/dropoff
+    tasks. Tasks are the
+
+    atomic unit of work in Onfleet — each has a destination, recipient, completion
+    window, optional
+
+    dependencies, and a state lifecycle (Unassigned → Assigned → Active → Completed).
+    Supports
+
+    batch creation (up to 100 per request) and assignment to workers via the containers
+    endpoint.
+
+    '
 - aid: onfleet:onfleet-workers-api
   name: Onfleet Workers API
   tags:
@@ -51,12 +59,15 @@ apis:
     type: JSONSchema
   - url: examples/onfleet-create-worker-example.json
     type: Example
-  - url: capabilities/shared/workers.yaml
-    type: NaftikoCapability
-  description: |
-    Manage drivers — create, list, update, delete, fetch a worker's assigned tasks, and pull a
-    delivery manifest for compliance reporting. Workers are bound to teams, have vehicle metadata
+  description: 'Manage drivers — create, list, update, delete, fetch a worker''s assigned
+    tasks, and pull a
+
+    delivery manifest for compliance reporting. Workers are bound to teams, have vehicle
+    metadata
+
     (CAR/MOTORCYCLE/BICYCLE/TRUCK), and report duty status and location.
+
+    '
 - aid: onfleet:onfleet-route-plans-api
   name: Onfleet Route Plans API
   tags:
@@ -74,13 +85,17 @@ apis:
     type: OpenAPI
   - url: json-schema/onfleet-route-plan-schema.json
     type: JSONSchema
-  - url: capabilities/shared/route-plans.yaml
-    type: NaftikoCapability
-  description: |
-    Create and manage route plans — ordered sequences of tasks assigned to a worker for a time window
-    — and kick off asynchronous route optimization jobs (task-based, vehicle-based, or auto-dispatch).
+  description: 'Create and manage route plans — ordered sequences of tasks assigned
+    to a worker for a time window
+
+    — and kick off asynchronous route optimization jobs (task-based, vehicle-based,
+    or auto-dispatch).
+
     Optimization endpoints are an Enterprise plan feature; results delivered via the
+
     routeOptimizationJobCompleted webhook.
+
+    '
 - aid: onfleet:onfleet-orders-api
   name: Onfleet Orders API
   tags:
@@ -94,12 +109,15 @@ apis:
     type: Documentation
   - url: openapi/onfleet-orders-api-openapi.yml
     type: OpenAPI
-  - url: capabilities/shared/orders.yaml
-    type: NaftikoCapability
-  description: |
-    Orders represent a pickup-dropoff task pair shared between a courier organization and its clients
-    on the Onfleet Connect network. Clients can quote, create, update, clone, cancel, or reject orders;
+  description: 'Orders represent a pickup-dropoff task pair shared between a courier
+    organization and its clients
+
+    on the Onfleet Connect network. Clients can quote, create, update, clone, cancel,
+    or reject orders;
+
     couriers can create orders on behalf of clients and respond to them.
+
+    '
 - aid: onfleet:onfleet-organizations-api
   name: Onfleet Organizations & Teams API
   tags:
@@ -114,10 +132,15 @@ apis:
     type: Documentation
   - url: openapi/onfleet-organizations-api-openapi.yml
     type: OpenAPI
-  description: |
-    Look up your own organization and connected delegatee organizations on Onfleet Connect, manage
-    administrators (Super and Standard, optionally read-only), create and list teams, and trigger
-    Team Auto-Dispatch — Onfleet's batch task-to-worker assignment engine (Beta).
+  description: 'Look up your own organization and connected delegatee organizations
+    on Onfleet Connect, manage
+
+    administrators (Super and Standard, optionally read-only), create and list teams,
+    and trigger
+
+    Team Auto-Dispatch — Onfleet''s batch task-to-worker assignment engine (Beta).
+
+    '
 - aid: onfleet:onfleet-recipients-api
   name: Onfleet Recipients API
   tags:
@@ -131,9 +154,12 @@ apis:
     type: OpenAPI
   - url: json-schema/onfleet-recipient-schema.json
     type: JSONSchema
-  description: |
-    Create and look up end customers (recipients) by ID, name, or E.164 phone number. Recipients carry
+  description: 'Create and look up end customers (recipients) by ID, name, or E.164
+    phone number. Recipients carry
+
     SMS notification preferences and metadata, and can be reused across tasks.
+
+    '
 - aid: onfleet:onfleet-destinations-api
   name: Onfleet Destinations API
   tags:
@@ -149,10 +175,14 @@ apis:
     type: OpenAPI
   - url: json-schema/onfleet-destination-schema.json
     type: JSONSchema
-  description: |
-    Manage geocoded physical addresses used as task pickup/dropoff locations. Accepts a parsed
+  description: 'Manage geocoded physical addresses used as task pickup/dropoff locations.
+    Accepts a parsed
+
     address structure or a single `unparsed` field; coordinates are returned as GeoJSON
+
     [longitude, latitude].
+
+    '
 - aid: onfleet:onfleet-webhooks-api
   name: Onfleet Webhooks API
   tags:
@@ -172,13 +202,18 @@ apis:
     type: AsyncAPI
   - url: examples/onfleet-webhook-task-completed-example.json
     type: Example
-  - url: capabilities/shared/webhooks.yaml
-    type: NaftikoCapability
-  description: |
-    Register HTTPS callbacks against 27 trigger types covering task lifecycle, worker duty/CRUD,
-    route plan state changes, SMS recipient events, and async job completions (auto-dispatch, task
-    batch create, route optimization). Payloads are signed with HMAC-SHA256 using the secret
+  description: 'Register HTTPS callbacks against 27 trigger types covering task lifecycle,
+    worker duty/CRUD,
+
+    route plan state changes, SMS recipient events, and async job completions (auto-dispatch,
+    task
+
+    batch create, route optimization). Payloads are signed with HMAC-SHA256 using
+    the secret
+
     obtained from /webhooks/secret.
+
+    '
 tags:
 - Last Mile Delivery
 - Logistics
@@ -196,18 +231,23 @@ kind: contract
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/onfleet/overview
 - type: ArazzoWorkflows
   url: arazzo/
   workflows:
   - url: arazzo/onfleet-assign-task-to-worker-workflow.yml
     name: Onfleet Assign Task to Worker
-    summary: Create a task and explicitly assign it to a worker's container, then verify.
+    summary: Create a task and explicitly assign it to a worker's container, then
+      verify.
   - url: arazzo/onfleet-auto-assign-task-workflow.yml
     name: Onfleet Auto-Assign Task
-    summary: Create a task with auto-assignment to a team, then confirm a worker was assigned.
+    summary: Create a task with auto-assignment to a team, then confirm a worker was
+      assigned.
   - url: arazzo/onfleet-batch-create-and-list-tasks-workflow.yml
     name: Onfleet Batch Create and List Tasks
-    summary: Submit a batch of tasks asynchronously, then list tasks to verify the load.
+    summary: Submit a batch of tasks asynchronously, then list tasks to verify the
+      load.
   - url: arazzo/onfleet-build-route-plan-workflow.yml
     name: Onfleet Build Route Plan
     summary: Create a route plan for a worker, append tasks to it, then read it back.
@@ -216,7 +256,8 @@ common:
     summary: Read a task, clone it for a redelivery, then force-complete the original.
   - url: arazzo/onfleet-dispatch-team-tasks-workflow.yml
     name: Onfleet Dispatch Team Tasks
-    summary: Survey unassigned tasks, trigger team auto-dispatch, then re-check what remains.
+    summary: Survey unassigned tasks, trigger team auto-dispatch, then re-check what
+      remains.
   - url: arazzo/onfleet-fulfill-courier-order-workflow.yml
     name: Onfleet Fulfill Courier Order
     summary: Quote a pickup-and-dropoff order, create it, then read back its status.
@@ -225,19 +266,23 @@ common:
     summary: Create a team, add a new worker to it, then confirm the worker's membership.
   - url: arazzo/onfleet-optimize-team-routes-workflow.yml
     name: Onfleet Optimize Team Routes
-    summary: Initialize and start a route optimization, poll its status, then apply the result.
+    summary: Initialize and start a route optimization, poll its status, then apply
+      the result.
   - url: arazzo/onfleet-provision-admin-and-team-workflow.yml
     name: Onfleet Provision Administrator and Team
-    summary: Create an administrator, create a team they manage, then confirm the team list.
+    summary: Create an administrator, create a team they manage, then confirm the
+      team list.
   - url: arazzo/onfleet-provision-delivery-task-workflow.yml
     name: Onfleet Provision Delivery Task
-    summary: Create a recipient and destination, then create a delivery task and confirm it.
+    summary: Create a recipient and destination, then create a delivery task and confirm
+      it.
   - url: arazzo/onfleet-register-task-webhook-workflow.yml
     name: Onfleet Register Task Webhook
     summary: Register a webhook, fetch the signing secret, then confirm it is listed.
   - url: arazzo/onfleet-upsert-recipient-and-create-task-workflow.yml
     name: Onfleet Upsert Recipient and Create Task
-    summary: Look up a recipient by phone, create one if missing, then create a task for them.
+    summary: Look up a recipient by phone, create one if missing, then create a task
+      for them.
 - type: Portal
   url: https://onfleet.com
 - type: Documentation
@@ -305,10 +350,6 @@ common:
   url: rate-limits/onfleet-rate-limits.yml
 - type: FinOps
   url: finops/onfleet-finops.yml
-- type: NaftikoCapability
-  url: capabilities/last-mile-delivery.yaml
-- type: NaftikoCapability
-  url: capabilities/dispatch-and-optimize.yaml
 - type: JSONLD
   url: json-ld/onfleet-context.jsonld
 - type: Vocabulary
@@ -317,21 +358,33 @@ common:
   url: rules/onfleet-rules.yml
 - type: Features
   data:
-  - REST API v2.7 over HTTPS with Basic Auth using the API key as the username and an empty password
+  - REST API v2.7 over HTTPS with Basic Auth using the API key as the username and
+    an empty password
   - Base URL https://onfleet.com/api/v2; JSON-only request and response bodies
-  - 24-character URL-safe resource IDs; GeoJSON [longitude, latitude] coordinates; Unix-millisecond timestamps; E.164 phone numbers
-  - Tasks API with create, batch create (100 per request), clone, force-complete, dependencies, custom fields, and metadata search
-  - Workers API with vehicle metadata (CAR / MOTORCYCLE / BICYCLE / TRUCK), capacity, additionalCapacities, and route delivery manifest
-  - Route Plans API for hub-to-hub routes plus asynchronous Route Optimization (task-based, vehicle-based, auto-dispatch) — Enterprise plan endpoints
-  - Orders API for pickup-dropoff pair workflows on the Onfleet Connect courier network (quote, create, update, clone, cancel, reject)
-  - Recipients and Destinations APIs with geocoding and reusable resource lookup by name/phone
+  - 24-character URL-safe resource IDs; GeoJSON [longitude, latitude] coordinates;
+    Unix-millisecond timestamps; E.164 phone numbers
+  - Tasks API with create, batch create (100 per request), clone, force-complete,
+    dependencies, custom fields, and metadata search
+  - Workers API with vehicle metadata (CAR / MOTORCYCLE / BICYCLE / TRUCK), capacity,
+    additionalCapacities, and route delivery manifest
+  - Route Plans API for hub-to-hub routes plus asynchronous Route Optimization (task-based,
+    vehicle-based, auto-dispatch) — Enterprise plan endpoints
+  - Orders API for pickup-dropoff pair workflows on the Onfleet Connect courier network
+    (quote, create, update, clone, cancel, reject)
+  - Recipients and Destinations APIs with geocoding and reusable resource lookup by
+    name/phone
   - Team Auto-Dispatch (Beta) for batched assignment of unassigned tasks to a team
-  - Webhooks API with 27 trigger types — full task lifecycle, worker duty/CRUD, route plan events, SMS opt-out, predictive delay, and async job completions
+  - Webhooks API with 27 trigger types — full task lifecycle, worker duty/CRUD, route
+    plan events, SMS opt-out, predictive delay, and async job completions
   - HMAC-SHA256 webhook signing via /webhooks/secret with X-Onfleet-Signature header
-  - lastId-based pagination on List Tasks (up to 64 per page); 70-second server timeout on long-running queries
-  - Official SDKs for Python, Node.js, PHP, Java, and Go; archived Ruby SDK; Postman collection
-  - AI-powered route optimization trained on 400M+ deliveries; predictive ETA and delay alerts
-  - Proof of delivery with photos, signatures, timestamps, barcode scanning, and ID verification (Scale+)
+  - lastId-based pagination on List Tasks (up to 64 per page); 70-second server timeout
+    on long-running queries
+  - Official SDKs for Python, Node.js, PHP, Java, and Go; archived Ruby SDK; Postman
+    collection
+  - AI-powered route optimization trained on 400M+ deliveries; predictive ETA and
+    delay alerts
+  - Proof of delivery with photos, signatures, timestamps, barcode scanning, and ID
+    verification (Scale+)
   - Branded customer tracking pages and two-way driver-customer chat
   - Driver mobile apps (iOS and Android) rated 4.7 stars on both stores
   - 150+ courier partners via Onfleet Connect
@@ -357,14 +410,28 @@ common:
 created: '2026-05-25T00:00:00.000Z'
 modified: '2026-05-25'
 position: Consuming
-description: |
-  Onfleet is an AI-powered last-mile delivery management platform that orchestrates fleet operations,
-  dispatch, route optimization, and customer experience across internal and outsourced delivery fleets.
-  The platform powers 400M+ deliveries for brands including Eaze, Total Wine & More, Pizza Hut, Kroger,
-  and Urbanstems across industries from prepared meals and grocery to cannabis, pharmacy, and
-  furniture. Onfleet exposes a comprehensive REST API v2.7 for tasks, workers, route plans, route
-  optimization, orders, recipients, destinations, organizations/teams, and webhooks — backed by
-  official SDKs in Python, Node.js, PHP, Java, and Go, plus the 150+ courier Onfleet Connect network.
+description: 'Onfleet is an AI-powered last-mile delivery management platform that
+  orchestrates fleet operations,
+
+  dispatch, route optimization, and customer experience across internal and outsourced
+  delivery fleets.
+
+  The platform powers 400M+ deliveries for brands including Eaze, Total Wine & More,
+  Pizza Hut, Kroger,
+
+  and Urbanstems across industries from prepared meals and grocery to cannabis, pharmacy,
+  and
+
+  furniture. Onfleet exposes a comprehensive REST API v2.7 for tasks, workers, route
+  plans, route
+
+  optimization, orders, recipients, destinations, organizations/teams, and webhooks
+  — backed by
+
+  official SDKs in Python, Node.js, PHP, Java, and Go, plus the 150+ courier Onfleet
+  Connect network.
+
+  '
 maintainers:
 - FN: Kin Lane
   email: info@apievangelist.com

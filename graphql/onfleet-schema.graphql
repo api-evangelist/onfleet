@@ -1,0 +1,949 @@
+"""
+Onfleet GraphQL Schema
+Conceptual schema derived from the Onfleet REST API v2.7
+https://docs.onfleet.com/reference/introduction
+"""
+
+# ─── Scalars ────────────────────────────────────────────────────────────────
+
+"""Unix timestamp in milliseconds"""
+scalar Timestamp
+
+"""E.164-formatted phone number"""
+scalar Phone
+
+"""24-character URL-safe Onfleet resource ID"""
+scalar OnfleetID
+
+"""GeoJSON coordinate pair [longitude, latitude]"""
+scalar GeoPoint
+
+# ─── Enums ──────────────────────────────────────────────────────────────────
+
+enum TaskState {
+  UNASSIGNED
+  ASSIGNED
+  ACTIVE
+  COMPLETED
+  FAILED
+}
+
+enum VehicleType {
+  CAR
+  MOTORCYCLE
+  BICYCLE
+  TRUCK
+}
+
+enum WorkerStatus {
+  ON_DUTY
+  OFF_DUTY
+}
+
+enum WebhookTrigger {
+  TASK_STARTED
+  TASK_ETA
+  TASK_ARRIVED
+  TASK_COMPLETED
+  TASK_FAILED
+  TASK_CREATED
+  TASK_UPDATED
+  TASK_DELETED
+  TASK_ASSIGNED
+  TASK_UNASSIGNED
+  TASK_CLONED
+  TASK_AUTO_ASSIGNED
+  TASK_BATCH_CREATED
+  WORKER_DUTY_CHANGE
+  WORKER_CREATED
+  WORKER_UPDATED
+  WORKER_DELETED
+  WORKER_LOCATION_UPDATE
+  ROUTE_PLAN_READY
+  ROUTE_PLAN_STARTED
+  ROUTE_PLAN_ENDED
+  ROUTE_PLAN_COMPLETED
+  ROUTE_OPTIMIZATION_JOB_COMPLETED
+  AUTO_DISPATCH_COMPLETED
+  SMS_RECIPIENT_OPT_OUT
+  PREDICTIVE_DELAY_DETECTED
+  ORDER_CREATED
+}
+
+enum OptimizationMode {
+  TASK_BASED
+  VEHICLE_BASED
+  AUTO_DISPATCH
+}
+
+enum OrderStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum AdministratorRole {
+  SUPER
+  STANDARD
+}
+
+# ─── Address & Geo ──────────────────────────────────────────────────────────
+
+"""Parsed address components for a delivery destination"""
+type DestinationAddress {
+  number: String
+  street: String
+  apartment: String
+  city: String
+  state: String
+  postalCode: String
+  country: String
+  unparsed: String
+}
+
+"""Geocoded geographic location for a destination"""
+type DestinationGeo {
+  type: String!
+  coordinates: GeoPoint!
+  wasGeocoded: Boolean!
+  distance: Float
+}
+
+"""Notes attached to a destination"""
+type DestinationNotes {
+  notes: String
+  notesLastUpdated: Timestamp
+}
+
+"""A geocoded physical address used as a task pickup or dropoff point"""
+type Destination {
+  id: OnfleetID!
+  timeCreated: Timestamp!
+  timeLastModified: Timestamp!
+  location: GeoPoint!
+  address: DestinationAddress!
+  geo: DestinationGeo
+  notes: String
+  metadata: [Metadata!]
+  externalId: String
+}
+
+# ─── Recipient ───────────────────────────────────────────────────────────────
+
+"""Name details for a recipient"""
+type RecipientName {
+  first: String
+  last: String
+  display: String
+}
+
+"""Phone information for a recipient"""
+type RecipientPhone {
+  number: Phone!
+  extension: String
+}
+
+"""Email information for a recipient"""
+type RecipientEmail {
+  address: String
+  confirmed: Boolean
+}
+
+"""SMS notification preferences for a recipient"""
+type RecipientNotes {
+  skipSMSNotifications: Boolean!
+  notes: String
+}
+
+"""Detailed recipient information"""
+type RecipientDetails {
+  name: RecipientName!
+  phone: RecipientPhone!
+  email: RecipientEmail
+  notes: RecipientNotes
+  hasAcceptedTOS: Boolean
+  metadata: [Metadata!]
+}
+
+"""An end customer who receives a delivery"""
+type Recipient {
+  id: OnfleetID!
+  timeCreated: Timestamp!
+  timeLastModified: Timestamp!
+  name: String!
+  phone: Phone!
+  notes: String
+  skipSMSNotifications: Boolean!
+  organization: OnfleetID!
+  metadata: [Metadata!]
+  externalId: String
+  details: RecipientDetails
+}
+
+# ─── Worker ──────────────────────────────────────────────────────────────────
+
+"""Vehicle assigned to a worker"""
+type WorkerVehicle {
+  id: OnfleetID!
+  type: VehicleType!
+  description: String
+  licensePlate: String
+  color: String
+  year: Int
+}
+
+"""Weight and volume capacity of a worker"""
+type WorkerCapacity {
+  capacityUnit: String
+  capacityFilled: Float
+  capacityRemaining: Float
+}
+
+"""Current GPS location of a worker"""
+type WorkerLocation {
+  coordinates: GeoPoint!
+  type: String!
+  accuracy: Float
+  bearing: Float
+  speed: Float
+  altitude: Float
+  timestamp: Timestamp!
+}
+
+"""Worker ETA for their next task"""
+type WorkerEta {
+  seconds: Int!
+  meters: Int!
+}
+
+"""Current on/off-duty status details"""
+type WorkerStatus {
+  onDuty: Boolean!
+  activeTask: OnfleetID
+  lastLocation: WorkerLocation
+}
+
+"""Detailed fields for a worker"""
+type WorkerDetails {
+  vehicle: WorkerVehicle
+  capacity: WorkerCapacity
+  additionalCapacities: [WorkerCapacity!]
+  teams: [OnfleetID!]!
+  organization: OnfleetID!
+  metadata: [Metadata!]
+  externalId: String
+}
+
+"""Analytics data for a worker"""
+type WorkerAnalytics {
+  workerId: OnfleetID!
+  tasksCompleted: Int!
+  tasksFailed: Int!
+  distanceTraveled: Float
+  activeTime: Int
+  idleTime: Int
+  onDutyTime: Int
+}
+
+"""A driver who fulfills delivery tasks"""
+type Worker {
+  id: OnfleetID!
+  timeCreated: Timestamp!
+  timeLastModified: Timestamp!
+  name: String!
+  phone: Phone!
+  onDuty: Boolean!
+  tasks: [OnfleetID!]!
+  vehicle: WorkerVehicle
+  location: WorkerLocation
+  imageUrl: String
+  organization: OnfleetID!
+  teams: [OnfleetID!]!
+  metadata: [Metadata!]
+  externalId: String
+  details: WorkerDetails
+  analytics: WorkerAnalytics
+  eta: WorkerEta
+  status: WorkerStatus
+}
+
+# ─── Shift ───────────────────────────────────────────────────────────────────
+
+"""Details about when a shift started"""
+type ShiftStart {
+  time: Timestamp!
+  location: GeoPoint
+}
+
+"""Details about when a shift ended"""
+type ShiftEnd {
+  time: Timestamp!
+  location: GeoPoint
+}
+
+"""Detailed information about a single shift"""
+type ShiftDetails {
+  start: ShiftStart!
+  end: ShiftEnd
+  duration: Int
+  distanceTraveled: Float
+  tasksCompleted: Int
+}
+
+"""A single duty period for a worker"""
+type Shift {
+  id: OnfleetID!
+  worker: OnfleetID!
+  organization: OnfleetID!
+  timeCreated: Timestamp!
+  details: ShiftDetails!
+}
+
+# ─── Team ────────────────────────────────────────────────────────────────────
+
+"""Hub location coordinates"""
+type HubLocation {
+  coordinates: GeoPoint!
+  type: String!
+}
+
+"""Details of a hub (staging area/depot)"""
+type HubDetails {
+  location: HubLocation!
+  address: DestinationAddress
+}
+
+"""A physical staging area or depot"""
+type Hub {
+  id: OnfleetID!
+  name: String!
+  location: GeoPoint!
+  address: DestinationAddress
+  team: OnfleetID!
+  details: HubDetails
+}
+
+"""Detailed fields for a team"""
+type TeamDetails {
+  hub: Hub
+  taskCompletionStrategy: String
+  workerEtaMode: String
+  enableSelfAssignment: Boolean
+}
+
+"""A named group of workers operated by an organization"""
+type Team {
+  id: OnfleetID!
+  timeCreated: Timestamp!
+  timeLastModified: Timestamp!
+  name: String!
+  workers: [OnfleetID!]!
+  managers: [OnfleetID!]!
+  hub: OnfleetID
+  organization: OnfleetID!
+  details: TeamDetails
+}
+
+# ─── Task ────────────────────────────────────────────────────────────────────
+
+"""Barcode records scanned for proof of delivery"""
+type TaskBarcodes {
+  required: [BarcodeRequirement!]
+  captured: [BarcodeCapture!]
+}
+
+"""A barcode field required for task completion"""
+type BarcodeRequirement {
+  blockCompletion: Boolean!
+  capture: Boolean!
+  type: String
+  value: String
+}
+
+"""A barcode that was actually scanned at task completion"""
+type BarcodeCapture {
+  symbology: String
+  value: String
+  wasRequested: Boolean!
+  time: Timestamp
+}
+
+"""Recipient signature captured at delivery"""
+type TaskSignature {
+  exists: Boolean!
+  signerName: String
+  signerIdentifier: String
+  location: GeoPoint
+  time: Timestamp
+  photoContentType: String
+}
+
+"""Delivery photo evidence"""
+type TaskPhoto {
+  exists: Boolean!
+  location: GeoPoint
+  time: Timestamp
+  photoContentType: String
+}
+
+"""Notes recorded for a task"""
+type TaskNotes {
+  notes: String
+  notesLastUpdated: Timestamp
+}
+
+"""Geofence settings around a task destination"""
+type TaskGeoFence {
+  type: String!
+  radius: Float
+  polygon: [GeoPoint!]
+}
+
+"""ETA information for a task"""
+type TaskEta {
+  seconds: Int!
+  meters: Int!
+  vehicleType: VehicleType
+}
+
+"""Completion details captured when a task is completed"""
+type TaskCompletionDetails {
+  success: Boolean!
+  time: Timestamp
+  firstLocation: GeoPoint
+  lastLocation: GeoPoint
+  unavailableAttachments: [String!]
+  notes: String
+  photo: TaskPhoto
+  signature: TaskSignature
+}
+
+"""Failure record when a task cannot be completed"""
+type TaskFailure {
+  reason: String
+  notes: String
+  time: Timestamp
+}
+
+"""Result of a timeout on a task"""
+type TimeoutTask {
+  taskId: OnfleetID!
+  time: Timestamp!
+  reason: String
+}
+
+"""State information for a task"""
+type TaskState {
+  state: TaskState!
+  assignedWorker: OnfleetID
+  team: OnfleetID
+}
+
+"""Detailed fields for a task"""
+type TaskDetails {
+  pickupTask: Boolean!
+  dependencies: [OnfleetID!]
+  trackingURL: String
+  eta: TaskEta
+  geoFence: TaskGeoFence
+  barcodes: TaskBarcodes
+  signature: TaskSignature
+  photo: TaskPhoto
+  notes: TaskNotes
+  completionDetails: TaskCompletionDetails
+  failure: TaskFailure
+  state: TaskState
+  metadata: [Metadata!]
+  externalId: String
+  customFields: [CustomField!]
+}
+
+"""The atomic unit of work — a single pickup or dropoff stop"""
+type Task {
+  id: OnfleetID!
+  timeCreated: Timestamp!
+  timeLastModified: Timestamp!
+  organization: OnfleetID!
+  shortId: String
+  worker: OnfleetID
+  merchant: OnfleetID
+  executor: OnfleetID
+  creator: OnfleetID!
+  dependencies: [OnfleetID!]!
+  state: TaskState!
+  completeAfter: Timestamp
+  completeBefore: Timestamp
+  pickupTask: Boolean!
+  notes: String
+  completionDetails: TaskCompletionDetails
+  feedback: [String!]
+  metadata: [Metadata!]
+  overrides: TaskOverrides
+  identity: TaskIdentity
+  appearance: TaskAppearance
+  container: TaskContainer
+  recipients: [Recipient!]
+  destination: Destination
+  trackingURL: String
+  eta: TaskEta
+  barcodes: TaskBarcodes
+  details: TaskDetails
+}
+
+"""Identity verification data for a task"""
+type TaskIdentity {
+  failedScanCount: Int
+  checksum: String
+}
+
+"""Visual overrides for how a task appears on the driver app"""
+type TaskAppearance {
+  triangleColor: Int
+}
+
+"""Override values that supersede organization defaults"""
+type TaskOverrides {
+  recipientName: String
+  recipientNotes: String
+  recipientSkipSMSNotifications: Boolean
+  useMerchantForProxy: Boolean
+}
+
+"""The container (worker, team, or organization) holding a task"""
+type TaskContainer {
+  type: String!
+  worker: OnfleetID
+  team: OnfleetID
+  organization: OnfleetID
+}
+
+# ─── Tracking ────────────────────────────────────────────────────────────────
+
+"""Branded customer-facing tracking URL metadata"""
+type TrackingURL {
+  url: String!
+  shortURL: String
+  expiresAt: Timestamp
+}
+
+"""Task details surfaced on the tracking page"""
+type TrackingTask {
+  id: OnfleetID!
+  shortId: String
+  state: TaskState!
+  eta: TaskEta
+  completionDetails: TaskCompletionDetails
+}
+
+"""Customer tracking page data"""
+type Tracking {
+  taskId: OnfleetID!
+  trackingURL: TrackingURL!
+  task: TrackingTask
+  workerLocation: WorkerLocation
+}
+
+# ─── Route & Optimization ────────────────────────────────────────────────────
+
+"""A single task entry in an ordered route"""
+type RouteTask {
+  taskId: OnfleetID!
+  position: Int!
+  eta: TaskEta
+}
+
+"""An ordered list of tasks assigned to a worker for a time window"""
+type RoutePlan {
+  id: OnfleetID!
+  timeCreated: Timestamp!
+  timeLastModified: Timestamp!
+  organization: OnfleetID!
+  worker: OnfleetID!
+  hub: OnfleetID
+  tasks: [RouteTask!]!
+  state: String!
+  startTime: Timestamp
+  endTime: Timestamp
+}
+
+"""Input and output summary for a route optimization job"""
+type RouteOptimization {
+  jobId: OnfleetID!
+  status: String!
+  mode: OptimizationMode!
+  startedAt: Timestamp
+  completedAt: Timestamp
+  taskCount: Int
+  workerCount: Int
+  errorMessage: String
+}
+
+"""A computed optimal ordering of tasks for a fleet"""
+type Route {
+  id: OnfleetID!
+  worker: OnfleetID!
+  tasks: [RouteTask!]!
+  totalDistance: Float
+  totalTime: Int
+  optimization: RouteOptimization
+}
+
+# ─── Trip ────────────────────────────────────────────────────────────────────
+
+"""High-level summary stats for a completed trip"""
+type TripSummary {
+  distance: Float!
+  duration: Int!
+  startTime: Timestamp!
+  endTime: Timestamp!
+}
+
+"""Detailed fields for a trip"""
+type TripDetails {
+  polyline: String
+  waypoints: [GeoPoint!]
+}
+
+"""A recorded path driven during task execution"""
+type Trip {
+  id: OnfleetID!
+  worker: OnfleetID!
+  tasks: [OnfleetID!]!
+  summary: TripSummary!
+  details: TripDetails
+}
+
+# ─── Organization ────────────────────────────────────────────────────────────
+
+"""An Onfleet organization account"""
+type Organization {
+  id: OnfleetID!
+  timeCreated: Timestamp!
+  timeLastModified: Timestamp!
+  name: String!
+  email: String
+  timezone: String
+  country: String
+  delegatees: [OnfleetID!]
+}
+
+"""An administrator user within an organization"""
+type Administrator {
+  id: OnfleetID!
+  timeCreated: Timestamp!
+  timeLastModified: Timestamp!
+  organization: OnfleetID!
+  name: String!
+  email: String!
+  phone: Phone
+  role: AdministratorRole!
+  isReadOnly: Boolean!
+  isActive: Boolean!
+  metadata: [Metadata!]
+}
+
+# ─── Order (Onfleet Connect) ─────────────────────────────────────────────────
+
+"""A pickup-dropoff pair shared on the Onfleet Connect courier network"""
+type Order {
+  id: OnfleetID!
+  timeCreated: Timestamp!
+  timeLastModified: Timestamp!
+  organization: OnfleetID!
+  executor: OnfleetID
+  status: OrderStatus!
+  pickupTask: Task
+  dropoffTask: Task
+  price: Float
+  currency: String
+  notes: String
+}
+
+# ─── Webhooks ────────────────────────────────────────────────────────────────
+
+"""A registered HTTPS callback endpoint"""
+type Webhook {
+  id: OnfleetID!
+  timeCreated: Timestamp!
+  timeLastModified: Timestamp!
+  name: String
+  url: String!
+  trigger: WebhookTrigger!
+  organization: OnfleetID!
+  isEnabled: Boolean!
+  count: Int
+  threshold: Int
+}
+
+"""A webhook payload delivered for a triggered event"""
+type WebhookEvent {
+  id: OnfleetID!
+  trigger: WebhookTrigger!
+  workerId: OnfleetID
+  taskId: OnfleetID
+  organizationId: OnfleetID!
+  time: Timestamp!
+  data: WebhookEventData
+}
+
+"""Polymorphic data attached to a webhook event"""
+type WebhookEventData {
+  task: Task
+  worker: Worker
+  order: Order
+  jobId: OnfleetID
+}
+
+# ─── API Key & Auth ──────────────────────────────────────────────────────────
+
+"""An Onfleet API key used for Basic Auth"""
+type APIKey {
+  id: OnfleetID!
+  name: String
+  organization: OnfleetID!
+  permissions: [String!]!
+  enabled: Boolean!
+  timeCreated: Timestamp!
+}
+
+"""Short-lived auth token"""
+type Token {
+  token: String!
+  expiresAt: Timestamp!
+}
+
+# ─── Shared Supporting Types ─────────────────────────────────────────────────
+
+"""A key-value metadata entry for extensible resource tagging"""
+type Metadata {
+  name: String!
+  type: String!
+  value: String!
+  visibility: [String!]
+  subtype: String
+}
+
+"""A custom field attached to a task"""
+type CustomField {
+  key: String!
+  value: String
+  displayName: String
+  type: String
+}
+
+# ─── Queries ─────────────────────────────────────────────────────────────────
+
+type Query {
+  # Organization
+  organization: Organization
+  delegateeOrganizations: [Organization!]
+
+  # Administrators
+  administrator(id: OnfleetID!): Administrator
+  administrators: [Administrator!]
+
+  # Workers
+  worker(id: OnfleetID!): Worker
+  workers(teams: [OnfleetID!], states: [WorkerStatus!]): [Worker!]
+  workerByLocation(longitude: Float!, latitude: Float!, radius: Float): [Worker!]
+  workerAnalytics(workerId: OnfleetID!, startTime: Timestamp!, endTime: Timestamp!): WorkerAnalytics
+  workerEta(workerId: OnfleetID!, taskId: OnfleetID!): WorkerEta
+
+  # Teams
+  team(id: OnfleetID!): Team
+  teams: [Team!]
+
+  # Hubs
+  hub(id: OnfleetID!): Hub
+  hubs: [Hub!]
+
+  # Tasks
+  task(id: OnfleetID!): Task
+  tasks(
+    from: Timestamp
+    to: Timestamp
+    state: [TaskState!]
+    worker: OnfleetID
+    lastId: OnfleetID
+  ): [Task!]
+  tasksByMetadata(name: String!, value: String!): [Task!]
+
+  # Destinations
+  destination(id: OnfleetID!): Destination
+
+  # Recipients
+  recipient(id: OnfleetID!): Recipient
+  recipientByName(name: String!): [Recipient!]
+  recipientByPhone(phone: Phone!): Recipient
+
+  # Route Plans
+  routePlan(id: OnfleetID!): RoutePlan
+  routePlans(workerId: OnfleetID): [RoutePlan!]
+
+  # Tracking
+  tracking(trackingId: String!): Tracking
+
+  # Orders
+  order(id: OnfleetID!): Order
+  orders(status: OrderStatus): [Order!]
+
+  # Webhooks
+  webhook(id: OnfleetID!): Webhook
+  webhooks: [Webhook!]
+  webhookSecret: String
+
+  # API Keys
+  apiKey(id: OnfleetID!): APIKey
+  apiKeys: [APIKey!]
+}
+
+# ─── Mutations ───────────────────────────────────────────────────────────────
+
+type Mutation {
+  # Workers
+  createWorker(name: String!, phone: Phone!, teams: [OnfleetID!]!, vehicle: VehicleInput): Worker
+  updateWorker(id: OnfleetID!, name: String, phone: Phone, teams: [OnfleetID!], vehicle: VehicleInput): Worker
+  deleteWorker(id: OnfleetID!): Boolean
+
+  # Teams
+  createTeam(name: String!, workers: [OnfleetID!], managers: [OnfleetID!], hub: OnfleetID): Team
+  updateTeam(id: OnfleetID!, name: String, workers: [OnfleetID!], managers: [OnfleetID!]): Team
+  deleteTeam(id: OnfleetID!): Boolean
+  autoDispatchTeam(teamId: OnfleetID!, dispatchConfig: AutoDispatchInput): AutoDispatchResult
+
+  # Hubs
+  createHub(name: String!, location: GeoPointInput!, address: AddressInput, teamId: OnfleetID): Hub
+  updateHub(id: OnfleetID!, name: String, location: GeoPointInput, address: AddressInput): Hub
+  deleteHub(id: OnfleetID!): Boolean
+
+  # Tasks
+  createTask(destination: DestinationInput!, recipients: [RecipientInput!], notes: String, pickupTask: Boolean, completeAfter: Timestamp, completeBefore: Timestamp, metadata: [MetadataInput!], customFields: [CustomFieldInput!]): Task
+  createTasks(tasks: [TaskInput!]!): BatchCreateResult
+  updateTask(id: OnfleetID!, notes: String, completeAfter: Timestamp, completeBefore: Timestamp, metadata: [MetadataInput!]): Task
+  deleteTask(id: OnfleetID!): Boolean
+  cloneTask(id: OnfleetID!): Task
+  forceCompleteTask(id: OnfleetID!, completionDetails: CompletionInput!): Task
+  assignTask(taskId: OnfleetID!, workerId: OnfleetID): Task
+
+  # Destinations
+  createDestination(address: AddressInput!, notes: String): Destination
+
+  # Recipients
+  createRecipient(name: String!, phone: Phone!, notes: String, skipSMSNotifications: Boolean, metadata: [MetadataInput!]): Recipient
+  updateRecipient(id: OnfleetID!, name: String, phone: Phone, notes: String, skipSMSNotifications: Boolean): Recipient
+
+  # Route Plans
+  createRoutePlan(workerId: OnfleetID!, tasks: [OnfleetID!]!, startTime: Timestamp, endTime: Timestamp): RoutePlan
+  updateRoutePlan(id: OnfleetID!, tasks: [OnfleetID!]): RoutePlan
+  deleteRoutePlan(id: OnfleetID!): Boolean
+  optimizeRoutes(mode: OptimizationMode!, teamId: OnfleetID, taskIds: [OnfleetID!]): RouteOptimization
+
+  # Orders
+  createOrder(pickupDestination: DestinationInput!, dropoffDestination: DestinationInput!, notes: String): Order
+  updateOrder(id: OnfleetID!, notes: String): Order
+  cancelOrder(id: OnfleetID!): Boolean
+  cloneOrder(id: OnfleetID!): Order
+
+  # Webhooks
+  createWebhook(url: String!, trigger: WebhookTrigger!, name: String, threshold: Int): Webhook
+  deleteWebhook(id: OnfleetID!): Boolean
+
+  # Administrators
+  createAdministrator(name: String!, email: String!, phone: Phone, role: AdministratorRole!, isReadOnly: Boolean): Administrator
+  updateAdministrator(id: OnfleetID!, name: String, email: String, phone: Phone, isReadOnly: Boolean): Administrator
+  deleteAdministrator(id: OnfleetID!): Boolean
+}
+
+# ─── Input Types ─────────────────────────────────────────────────────────────
+
+input VehicleInput {
+  type: VehicleType!
+  description: String
+  licensePlate: String
+  color: String
+  year: Int
+}
+
+input AddressInput {
+  number: String
+  street: String
+  apartment: String
+  city: String
+  state: String
+  postalCode: String
+  country: String
+  unparsed: String
+}
+
+input GeoPointInput {
+  longitude: Float!
+  latitude: Float!
+}
+
+input DestinationInput {
+  address: AddressInput!
+  notes: String
+  externalId: String
+}
+
+input RecipientInput {
+  name: String!
+  phone: Phone!
+  notes: String
+  skipSMSNotifications: Boolean
+}
+
+input TaskInput {
+  destination: DestinationInput!
+  recipients: [RecipientInput!]
+  notes: String
+  pickupTask: Boolean
+  completeAfter: Timestamp
+  completeBefore: Timestamp
+  metadata: [MetadataInput!]
+  customFields: [CustomFieldInput!]
+}
+
+input MetadataInput {
+  name: String!
+  type: String!
+  value: String!
+  visibility: [String!]
+  subtype: String
+}
+
+input CustomFieldInput {
+  key: String!
+  value: String
+}
+
+input CompletionInput {
+  success: Boolean!
+  notes: String
+}
+
+input AutoDispatchInput {
+  maxTasksPerRoute: Int
+  scheduleTimeWindow: [Timestamp!]
+  serviceTime: Int
+  taskTimeWindow: [Timestamp!]
+}
+
+# ─── Result Types ────────────────────────────────────────────────────────────
+
+"""Result of an asynchronous batch task creation"""
+type BatchCreateResult {
+  jobId: OnfleetID!
+  taskCount: Int!
+  status: String!
+}
+
+"""Result of a team auto-dispatch trigger"""
+type AutoDispatchResult {
+  jobId: OnfleetID!
+  status: String!
+  assignedTaskCount: Int
+}
