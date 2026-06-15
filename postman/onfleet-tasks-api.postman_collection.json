@@ -1,0 +1,1159 @@
+{
+  "info": {
+    "_postman_id": "c65cce3d-0c4f-4e39-9be4-0c622e0c34a5",
+    "name": "Onfleet Tasks API",
+    "description": "The Onfleet Tasks API manages delivery and pickup tasks across the Onfleet\nlast-mile delivery platform. Tasks are the atomic unit of work \u2014 each\nrepresents a single pickup or dropoff with a destination, recipient,\ncompletion window, and optional dependencies.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:13:26.000Z",
+    "updatedAt": "2026-06-05T15:13:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c65cce3d-0c4f-4e39-9be4-0c622e0c34a5"
+  },
+  "item": [
+    {
+      "name": "tasks",
+      "item": [
+        {
+          "name": "batch",
+          "item": [
+            {
+              "name": "Create Tasks In Batch",
+              "id": "952a97be-af87-4de5-94fc-8201a16ea9ab",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tasks\": [\n    {\n      \"merchant\": \"<string>\",\n      \"executor\": \"<string>\",\n      \"destination\": \"<string>\",\n      \"recipients\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"completeAfter\": \"<long>\",\n      \"completeBefore\": \"<long>\",\n      \"pickupTask\": \"<boolean>\",\n      \"dependencies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"notes\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"serviceTime\": \"<integer>\",\n      \"autoAssign\": {\n        \"mode\": \"distance\",\n        \"team\": \"<string>\",\n        \"considerDependencies\": \"<boolean>\",\n        \"excludedWorkerIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"maxAssignedTaskCount\": \"<integer>\"\n      },\n      \"container\": {},\n      \"metadata\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"boolean\",\n          \"value\": {},\n          \"visibility\": [\n            \"dashboard\",\n            \"api\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"object\",\n          \"value\": {},\n          \"visibility\": [\n            \"dashboard\",\n            \"worker\"\n          ]\n        }\n      ],\n      \"appearance\": {\n        \"triangleColor\": \"<string>\"\n      }\n    },\n    {\n      \"merchant\": \"<string>\",\n      \"executor\": \"<string>\",\n      \"destination\": \"<string>\",\n      \"recipients\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"completeAfter\": \"<long>\",\n      \"completeBefore\": \"<long>\",\n      \"pickupTask\": \"<boolean>\",\n      \"dependencies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"notes\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"serviceTime\": \"<integer>\",\n      \"autoAssign\": {\n        \"mode\": \"distance\",\n        \"team\": \"<string>\",\n        \"considerDependencies\": \"<boolean>\",\n        \"excludedWorkerIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"maxAssignedTaskCount\": \"<integer>\"\n      },\n      \"container\": {},\n      \"metadata\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"string\",\n          \"value\": {},\n          \"visibility\": [\n            \"dashboard\",\n            \"worker\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"number\",\n          \"value\": {},\n          \"visibility\": [\n            \"api\",\n            \"api\"\n          ]\n        }\n      ],\n      \"appearance\": {\n        \"triangleColor\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/batch",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tasks",
+                    "batch"
+                  ]
+                },
+                "description": "Asynchronously create up to 100 tasks per request; results are returned via the taskBatchCreateJobCompleted webhook."
+              },
+              "response": [
+                {
+                  "id": "f8534904-cee0-4a71-add2-22d9f8f923a7",
+                  "name": "Batch accepted",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tasks\": [\n    {\n      \"merchant\": \"<string>\",\n      \"executor\": \"<string>\",\n      \"destination\": \"<string>\",\n      \"recipients\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"completeAfter\": \"<long>\",\n      \"completeBefore\": \"<long>\",\n      \"pickupTask\": \"<boolean>\",\n      \"dependencies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"notes\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"serviceTime\": \"<integer>\",\n      \"autoAssign\": {\n        \"mode\": \"distance\",\n        \"team\": \"<string>\",\n        \"considerDependencies\": \"<boolean>\",\n        \"excludedWorkerIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"maxAssignedTaskCount\": \"<integer>\"\n      },\n      \"container\": {},\n      \"metadata\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"boolean\",\n          \"value\": {},\n          \"visibility\": [\n            \"dashboard\",\n            \"api\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"object\",\n          \"value\": {},\n          \"visibility\": [\n            \"dashboard\",\n            \"worker\"\n          ]\n        }\n      ],\n      \"appearance\": {\n        \"triangleColor\": \"<string>\"\n      }\n    },\n    {\n      \"merchant\": \"<string>\",\n      \"executor\": \"<string>\",\n      \"destination\": \"<string>\",\n      \"recipients\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"completeAfter\": \"<long>\",\n      \"completeBefore\": \"<long>\",\n      \"pickupTask\": \"<boolean>\",\n      \"dependencies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"notes\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"serviceTime\": \"<integer>\",\n      \"autoAssign\": {\n        \"mode\": \"distance\",\n        \"team\": \"<string>\",\n        \"considerDependencies\": \"<boolean>\",\n        \"excludedWorkerIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"maxAssignedTaskCount\": \"<integer>\"\n      },\n      \"container\": {},\n      \"metadata\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"string\",\n          \"value\": {},\n          \"visibility\": [\n            \"dashboard\",\n            \"worker\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"number\",\n          \"value\": {},\n          \"visibility\": [\n            \"api\",\n            \"api\"\n          ]\n        }\n      ],\n      \"appearance\": {\n        \"triangleColor\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/batch",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        "batch"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\",\n  \"jobId\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:13:27.000Z",
+                  "updatedAt": "2026-06-05T15:13:27.000Z",
+                  "uid": "35240-f8534904-cee0-4a71-add2-22d9f8f923a7"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:27.000Z",
+              "updatedAt": "2026-06-05T15:13:27.000Z",
+              "uid": "35240-952a97be-af87-4de5-94fc-8201a16ea9ab"
+            }
+          ],
+          "id": "953a4645-d77f-4339-9d33-5301d948da37",
+          "createdAt": "2026-06-05T15:13:27.000Z",
+          "updatedAt": "2026-06-05T15:13:27.000Z",
+          "uid": "35240-953a4645-d77f-4339-9d33-5301d948da37"
+        },
+        {
+          "name": "all",
+          "item": [
+            {
+              "name": "List Tasks",
+              "id": "bbc0fd95-653f-463f-b3ed-12e46a2056c3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/all?from=<long>&to=<long>&lastId=<string>&state=<string>&worker=<string>&completeBeforeBefore=<long>&completeAfterAfter=<long>&dependencies=<string>&containers=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tasks",
+                    "all"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Start of the search range in Unix milliseconds.",
+                      "key": "from",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "End of the search range in Unix milliseconds.",
+                      "key": "to",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Cursor returned from a previous call to walk pagination.",
+                      "key": "lastId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of task state values (0=Unassigned, 1=Assigned, 2=Active, 3=Completed).",
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "worker",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "completeBeforeBefore",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "completeAfterAfter",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "dependencies",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "containers",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Return a paginated collection of tasks; uses lastId-based pagination with up to 64 tasks per page."
+              },
+              "response": [
+                {
+                  "id": "eb15d864-930d-4da4-8098-0fef476663ba",
+                  "name": "Paginated tasks",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/all?from=<long>&to=<long>&lastId=<string>&state=<string>&worker=<string>&completeBeforeBefore=<long>&completeAfterAfter=<long>&dependencies=<string>&containers=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        "all"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Start of the search range in Unix milliseconds.",
+                          "key": "from",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "End of the search range in Unix milliseconds.",
+                          "key": "to",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Cursor returned from a previous call to walk pagination.",
+                          "key": "lastId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of task state values (0=Unassigned, 1=Assigned, 2=Active, 3=Completed).",
+                          "key": "state",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "worker",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "completeBeforeBefore",
+                          "value": "<long>"
+                        },
+                        {
+                          "key": "completeAfterAfter",
+                          "value": "<long>"
+                        },
+                        {
+                          "key": "dependencies",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "containers",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"lastId\": \"<string>\",\n  \"tasks\": [\n    {\n      \"id\": \"<string>\",\n      \"shortId\": \"<string>\",\n      \"organization\": \"<string>\",\n      \"timeCreated\": \"<long>\",\n      \"timeLastModified\": \"<long>\",\n      \"executor\": \"<string>\",\n      \"merchant\": \"<string>\",\n      \"creator\": \"<string>\",\n      \"worker\": \"<string>\",\n      \"destination\": {\n        \"id\": \"<string>\",\n        \"address\": {\n          \"unparsed\": \"<string>\",\n          \"number\": \"<string>\",\n          \"street\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\",\n          \"apartment\": \"<string>\"\n        },\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"notes\": \"<string>\",\n        \"warnings\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"recipients\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"notes\": \"<string>\",\n          \"skipSMSNotifications\": \"<boolean>\",\n          \"organization\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"notes\": \"<string>\",\n          \"skipSMSNotifications\": \"<boolean>\",\n          \"organization\": \"<string>\"\n        }\n      ],\n      \"completeAfter\": \"<long>\",\n      \"completeBefore\": \"<long>\",\n      \"pickupTask\": \"<boolean>\",\n      \"dependencies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"notes\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"serviceTime\": \"<integer>\",\n      \"state\": 1,\n      \"completionDetails\": {\n        \"success\": \"<boolean>\",\n        \"time\": \"<long>\",\n        \"notes\": \"<string>\",\n        \"photoUploadIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"signatureUploadId\": \"<string>\",\n        \"events\": [\n          {\n            \"name\": \"<string>\",\n            \"time\": \"<long>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"time\": \"<long>\"\n          }\n        ]\n      },\n      \"feedback\": [\n        {\n          \"time\": \"<long>\",\n          \"rating\": \"<integer>\",\n          \"comments\": \"<string>\"\n        },\n        {\n          \"time\": \"<long>\",\n          \"rating\": \"<integer>\",\n          \"comments\": \"<string>\"\n        }\n      ],\n      \"metadata\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"boolean\",\n          \"value\": {},\n          \"visibility\": [\n            \"api\",\n            \"api\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"number\",\n          \"value\": {},\n          \"visibility\": [\n            \"api\",\n            \"worker\"\n          ]\n        }\n      ],\n      \"trackingURL\": \"<uri>\",\n      \"trackingViewed\": \"<boolean>\",\n      \"eta\": \"<long>\",\n      \"delayTime\": \"<integer>\",\n      \"appearance\": {\n        \"triangleColor\": \"<string>\"\n      },\n      \"container\": {\n        \"type\": \"ORGANIZATION\",\n        \"organization\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"shortId\": \"<string>\",\n      \"organization\": \"<string>\",\n      \"timeCreated\": \"<long>\",\n      \"timeLastModified\": \"<long>\",\n      \"executor\": \"<string>\",\n      \"merchant\": \"<string>\",\n      \"creator\": \"<string>\",\n      \"worker\": \"<string>\",\n      \"destination\": {\n        \"id\": \"<string>\",\n        \"address\": {\n          \"unparsed\": \"<string>\",\n          \"number\": \"<string>\",\n          \"street\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\",\n          \"apartment\": \"<string>\"\n        },\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"notes\": \"<string>\",\n        \"warnings\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"recipients\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"notes\": \"<string>\",\n          \"skipSMSNotifications\": \"<boolean>\",\n          \"organization\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"notes\": \"<string>\",\n          \"skipSMSNotifications\": \"<boolean>\",\n          \"organization\": \"<string>\"\n        }\n      ],\n      \"completeAfter\": \"<long>\",\n      \"completeBefore\": \"<long>\",\n      \"pickupTask\": \"<boolean>\",\n      \"dependencies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"notes\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"serviceTime\": \"<integer>\",\n      \"state\": 0,\n      \"completionDetails\": {\n        \"success\": \"<boolean>\",\n        \"time\": \"<long>\",\n        \"notes\": \"<string>\",\n        \"photoUploadIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"signatureUploadId\": \"<string>\",\n        \"events\": [\n          {\n            \"name\": \"<string>\",\n            \"time\": \"<long>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"time\": \"<long>\"\n          }\n        ]\n      },\n      \"feedback\": [\n        {\n          \"time\": \"<long>\",\n          \"rating\": \"<integer>\",\n          \"comments\": \"<string>\"\n        },\n        {\n          \"time\": \"<long>\",\n          \"rating\": \"<integer>\",\n          \"comments\": \"<string>\"\n        }\n      ],\n      \"metadata\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"number\",\n          \"value\": {},\n          \"visibility\": [\n            \"worker\",\n            \"api\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"string\",\n          \"value\": {},\n          \"visibility\": [\n            \"dashboard\",\n            \"api\"\n          ]\n        }\n      ],\n      \"trackingURL\": \"<uri>\",\n      \"trackingViewed\": \"<boolean>\",\n      \"eta\": \"<long>\",\n      \"delayTime\": \"<integer>\",\n      \"appearance\": {\n        \"triangleColor\": \"<string>\"\n      },\n      \"container\": {\n        \"type\": \"WORKER\",\n        \"organization\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:13:27.000Z",
+                  "updatedAt": "2026-06-05T15:13:27.000Z",
+                  "uid": "35240-eb15d864-930d-4da4-8098-0fef476663ba"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:27.000Z",
+              "updatedAt": "2026-06-05T15:13:27.000Z",
+              "uid": "35240-bbc0fd95-653f-463f-b3ed-12e46a2056c3"
+            }
+          ],
+          "id": "7d6d7cf8-9ad7-44b5-8b4c-8eb3d2b1ce64",
+          "createdAt": "2026-06-05T15:13:27.000Z",
+          "updatedAt": "2026-06-05T15:13:27.000Z",
+          "uid": "35240-7d6d7cf8-9ad7-44b5-8b4c-8eb3d2b1ce64"
+        },
+        {
+          "name": "{taskId}",
+          "item": [
+            {
+              "name": "clone",
+              "item": [
+                {
+                  "name": "Clone Task",
+                  "id": "43202130-7e7b-461a-ae28-65ad22b5459f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:taskId/clone",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":taskId",
+                        "clone"
+                      ],
+                      "variable": [
+                        {
+                          "id": "90a8c53a-858c-4c19-bd42-ac45b030d0d1",
+                          "key": "taskId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "c4de3ea6-33cc-4f47-9ebb-29e357c3e4b6",
+                      "name": "Cloned task",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tasks/:taskId/clone",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tasks",
+                            ":taskId",
+                            "clone"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"shortId\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"executor\": \"<string>\",\n  \"merchant\": \"<string>\",\n  \"creator\": \"<string>\",\n  \"worker\": \"<string>\",\n  \"destination\": {\n    \"id\": \"<string>\",\n    \"address\": {\n      \"unparsed\": \"<string>\",\n      \"number\": \"<string>\",\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"apartment\": \"<string>\"\n    },\n    \"location\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"notes\": \"<string>\",\n    \"warnings\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"skipSMSNotifications\": \"<boolean>\",\n      \"organization\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"skipSMSNotifications\": \"<boolean>\",\n      \"organization\": \"<string>\"\n    }\n  ],\n  \"completeAfter\": \"<long>\",\n  \"completeBefore\": \"<long>\",\n  \"pickupTask\": \"<boolean>\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"notes\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"serviceTime\": \"<integer>\",\n  \"state\": 3,\n  \"completionDetails\": {\n    \"success\": \"<boolean>\",\n    \"time\": \"<long>\",\n    \"notes\": \"<string>\",\n    \"photoUploadIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"signatureUploadId\": \"<string>\",\n    \"events\": [\n      {\n        \"name\": \"<string>\",\n        \"time\": \"<long>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"time\": \"<long>\"\n      }\n    ]\n  },\n  \"feedback\": [\n    {\n      \"time\": \"<long>\",\n      \"rating\": \"<integer>\",\n      \"comments\": \"<string>\"\n    },\n    {\n      \"time\": \"<long>\",\n      \"rating\": \"<integer>\",\n      \"comments\": \"<string>\"\n    }\n  ],\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"array\",\n      \"value\": {},\n      \"visibility\": [\n        \"dashboard\",\n        \"dashboard\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"string\",\n      \"value\": {},\n      \"visibility\": [\n        \"worker\",\n        \"api\"\n      ]\n    }\n  ],\n  \"trackingURL\": \"<uri>\",\n  \"trackingViewed\": \"<boolean>\",\n  \"eta\": \"<long>\",\n  \"delayTime\": \"<integer>\",\n  \"appearance\": {\n    \"triangleColor\": \"<string>\"\n  },\n  \"container\": {\n    \"type\": \"TEAM\",\n    \"organization\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:13:27.000Z",
+                      "updatedAt": "2026-06-05T15:13:27.000Z",
+                      "uid": "35240-c4de3ea6-33cc-4f47-9ebb-29e357c3e4b6"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:27.000Z",
+                  "updatedAt": "2026-06-05T15:13:27.000Z",
+                  "uid": "35240-43202130-7e7b-461a-ae28-65ad22b5459f"
+                }
+              ],
+              "id": "4dc8ef9f-7676-46c4-9688-f976e222479d",
+              "createdAt": "2026-06-05T15:13:27.000Z",
+              "updatedAt": "2026-06-05T15:13:27.000Z",
+              "uid": "35240-4dc8ef9f-7676-46c4-9688-f976e222479d"
+            },
+            {
+              "name": "complete",
+              "item": [
+                {
+                  "name": "Force-Complete Task",
+                  "id": "72f38268-b4cd-4bdd-9564-c2b0772bc56c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"completionDetails\": {\n    \"success\": \"<boolean>\",\n    \"notes\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:taskId/complete",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":taskId",
+                        "complete"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7e1fccb2-3458-4833-9992-31e56de5b553",
+                          "key": "taskId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "dc5a1fee-5f34-4b7d-b1e1-5d36bb2c094d",
+                      "name": "Task completed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"completionDetails\": {\n    \"success\": \"<boolean>\",\n    \"notes\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tasks/:taskId/complete",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tasks",
+                            ":taskId",
+                            "complete"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:27.000Z",
+                      "updatedAt": "2026-06-05T15:13:27.000Z",
+                      "uid": "35240-dc5a1fee-5f34-4b7d-b1e1-5d36bb2c094d"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:27.000Z",
+                  "updatedAt": "2026-06-05T15:13:27.000Z",
+                  "uid": "35240-72f38268-b4cd-4bdd-9564-c2b0772bc56c"
+                }
+              ],
+              "id": "cad5fdf1-b449-4ef5-8f13-2674a6b49689",
+              "createdAt": "2026-06-05T15:13:27.000Z",
+              "updatedAt": "2026-06-05T15:13:27.000Z",
+              "uid": "35240-cad5fdf1-b449-4ef5-8f13-2674a6b49689"
+            },
+            {
+              "name": "Get Single Task",
+              "id": "9232b233-14ed-42cb-bdd8-485066fe27d1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/:taskId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4c58efc3-ac80-4faa-80c1-fa3c7c142dbc",
+                      "key": "taskId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "8dd7e551-281e-4656-8d76-5a460375ae70",
+                  "name": "Task",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "taskId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"shortId\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"executor\": \"<string>\",\n  \"merchant\": \"<string>\",\n  \"creator\": \"<string>\",\n  \"worker\": \"<string>\",\n  \"destination\": {\n    \"id\": \"<string>\",\n    \"address\": {\n      \"unparsed\": \"<string>\",\n      \"number\": \"<string>\",\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"apartment\": \"<string>\"\n    },\n    \"location\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"notes\": \"<string>\",\n    \"warnings\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"skipSMSNotifications\": \"<boolean>\",\n      \"organization\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"skipSMSNotifications\": \"<boolean>\",\n      \"organization\": \"<string>\"\n    }\n  ],\n  \"completeAfter\": \"<long>\",\n  \"completeBefore\": \"<long>\",\n  \"pickupTask\": \"<boolean>\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"notes\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"serviceTime\": \"<integer>\",\n  \"state\": 3,\n  \"completionDetails\": {\n    \"success\": \"<boolean>\",\n    \"time\": \"<long>\",\n    \"notes\": \"<string>\",\n    \"photoUploadIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"signatureUploadId\": \"<string>\",\n    \"events\": [\n      {\n        \"name\": \"<string>\",\n        \"time\": \"<long>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"time\": \"<long>\"\n      }\n    ]\n  },\n  \"feedback\": [\n    {\n      \"time\": \"<long>\",\n      \"rating\": \"<integer>\",\n      \"comments\": \"<string>\"\n    },\n    {\n      \"time\": \"<long>\",\n      \"rating\": \"<integer>\",\n      \"comments\": \"<string>\"\n    }\n  ],\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"array\",\n      \"value\": {},\n      \"visibility\": [\n        \"dashboard\",\n        \"dashboard\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"string\",\n      \"value\": {},\n      \"visibility\": [\n        \"worker\",\n        \"api\"\n      ]\n    }\n  ],\n  \"trackingURL\": \"<uri>\",\n  \"trackingViewed\": \"<boolean>\",\n  \"eta\": \"<long>\",\n  \"delayTime\": \"<integer>\",\n  \"appearance\": {\n    \"triangleColor\": \"<string>\"\n  },\n  \"container\": {\n    \"type\": \"TEAM\",\n    \"organization\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:13:27.000Z",
+                  "updatedAt": "2026-06-05T15:13:27.000Z",
+                  "uid": "35240-8dd7e551-281e-4656-8d76-5a460375ae70"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:27.000Z",
+              "updatedAt": "2026-06-05T15:13:27.000Z",
+              "uid": "35240-9232b233-14ed-42cb-bdd8-485066fe27d1"
+            },
+            {
+              "name": "Update Task",
+              "id": "b65a3d31-8974-4245-9c46-99652262f64a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notes\": \"<string>\",\n  \"completeAfter\": \"<long>\",\n  \"completeBefore\": \"<long>\",\n  \"pickupTask\": \"<boolean>\",\n  \"quantity\": \"<integer>\",\n  \"serviceTime\": \"<integer>\",\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"array\",\n      \"value\": {},\n      \"visibility\": [\n        \"worker\",\n        \"api\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"number\",\n      \"value\": {},\n      \"visibility\": [\n        \"worker\",\n        \"worker\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/:taskId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e8864f4b-5e98-4574-9ab2-41522adc1a6b",
+                      "key": "taskId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "4dda4ae9-902b-40a7-b2d4-6cbef1baa5a5",
+                  "name": "Updated task",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"notes\": \"<string>\",\n  \"completeAfter\": \"<long>\",\n  \"completeBefore\": \"<long>\",\n  \"pickupTask\": \"<boolean>\",\n  \"quantity\": \"<integer>\",\n  \"serviceTime\": \"<integer>\",\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"array\",\n      \"value\": {},\n      \"visibility\": [\n        \"worker\",\n        \"api\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"number\",\n      \"value\": {},\n      \"visibility\": [\n        \"worker\",\n        \"worker\"\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "taskId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"shortId\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"executor\": \"<string>\",\n  \"merchant\": \"<string>\",\n  \"creator\": \"<string>\",\n  \"worker\": \"<string>\",\n  \"destination\": {\n    \"id\": \"<string>\",\n    \"address\": {\n      \"unparsed\": \"<string>\",\n      \"number\": \"<string>\",\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"apartment\": \"<string>\"\n    },\n    \"location\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"notes\": \"<string>\",\n    \"warnings\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"skipSMSNotifications\": \"<boolean>\",\n      \"organization\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"skipSMSNotifications\": \"<boolean>\",\n      \"organization\": \"<string>\"\n    }\n  ],\n  \"completeAfter\": \"<long>\",\n  \"completeBefore\": \"<long>\",\n  \"pickupTask\": \"<boolean>\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"notes\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"serviceTime\": \"<integer>\",\n  \"state\": 3,\n  \"completionDetails\": {\n    \"success\": \"<boolean>\",\n    \"time\": \"<long>\",\n    \"notes\": \"<string>\",\n    \"photoUploadIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"signatureUploadId\": \"<string>\",\n    \"events\": [\n      {\n        \"name\": \"<string>\",\n        \"time\": \"<long>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"time\": \"<long>\"\n      }\n    ]\n  },\n  \"feedback\": [\n    {\n      \"time\": \"<long>\",\n      \"rating\": \"<integer>\",\n      \"comments\": \"<string>\"\n    },\n    {\n      \"time\": \"<long>\",\n      \"rating\": \"<integer>\",\n      \"comments\": \"<string>\"\n    }\n  ],\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"array\",\n      \"value\": {},\n      \"visibility\": [\n        \"dashboard\",\n        \"dashboard\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"string\",\n      \"value\": {},\n      \"visibility\": [\n        \"worker\",\n        \"api\"\n      ]\n    }\n  ],\n  \"trackingURL\": \"<uri>\",\n  \"trackingViewed\": \"<boolean>\",\n  \"eta\": \"<long>\",\n  \"delayTime\": \"<integer>\",\n  \"appearance\": {\n    \"triangleColor\": \"<string>\"\n  },\n  \"container\": {\n    \"type\": \"TEAM\",\n    \"organization\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:13:27.000Z",
+                  "updatedAt": "2026-06-05T15:13:27.000Z",
+                  "uid": "35240-4dda4ae9-902b-40a7-b2d4-6cbef1baa5a5"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:27.000Z",
+              "updatedAt": "2026-06-05T15:13:27.000Z",
+              "uid": "35240-b65a3d31-8974-4245-9c46-99652262f64a"
+            },
+            {
+              "name": "Delete Task",
+              "id": "b2748d4e-1831-4955-a3bc-1e585bd690e7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/:taskId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "89bbe2a5-c405-42d4-9fdb-59a207d8b9d0",
+                      "key": "taskId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "d02cd8c6-ebf3-4c02-ba1c-0b4b6e613e35",
+                  "name": "Task deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "taskId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:13:27.000Z",
+                  "updatedAt": "2026-06-05T15:13:27.000Z",
+                  "uid": "35240-d02cd8c6-ebf3-4c02-ba1c-0b4b6e613e35"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:27.000Z",
+              "updatedAt": "2026-06-05T15:13:27.000Z",
+              "uid": "35240-b2748d4e-1831-4955-a3bc-1e585bd690e7"
+            }
+          ],
+          "id": "c53b9a8a-59cb-4879-b255-810d56f22aee",
+          "createdAt": "2026-06-05T15:13:27.000Z",
+          "updatedAt": "2026-06-05T15:13:27.000Z",
+          "uid": "35240-c53b9a8a-59cb-4879-b255-810d56f22aee"
+        },
+        {
+          "name": "shortId",
+          "item": [
+            {
+              "name": "{shortId}",
+              "item": [
+                {
+                  "name": "Get Task By Short ID",
+                  "id": "3695d2f8-0d91-4e5e-a58c-299c69e15465",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/shortId/:shortId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        "shortId",
+                        ":shortId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5f6327f5-968e-4340-b709-d769d214f49e",
+                          "key": "shortId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "2946dd53-a2cb-45d9-be81-a8905da86e2d",
+                      "name": "Task",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tasks/shortId/:shortId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tasks",
+                            "shortId",
+                            ":shortId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "shortId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"shortId\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"executor\": \"<string>\",\n  \"merchant\": \"<string>\",\n  \"creator\": \"<string>\",\n  \"worker\": \"<string>\",\n  \"destination\": {\n    \"id\": \"<string>\",\n    \"address\": {\n      \"unparsed\": \"<string>\",\n      \"number\": \"<string>\",\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"apartment\": \"<string>\"\n    },\n    \"location\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"notes\": \"<string>\",\n    \"warnings\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"skipSMSNotifications\": \"<boolean>\",\n      \"organization\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"skipSMSNotifications\": \"<boolean>\",\n      \"organization\": \"<string>\"\n    }\n  ],\n  \"completeAfter\": \"<long>\",\n  \"completeBefore\": \"<long>\",\n  \"pickupTask\": \"<boolean>\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"notes\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"serviceTime\": \"<integer>\",\n  \"state\": 3,\n  \"completionDetails\": {\n    \"success\": \"<boolean>\",\n    \"time\": \"<long>\",\n    \"notes\": \"<string>\",\n    \"photoUploadIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"signatureUploadId\": \"<string>\",\n    \"events\": [\n      {\n        \"name\": \"<string>\",\n        \"time\": \"<long>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"time\": \"<long>\"\n      }\n    ]\n  },\n  \"feedback\": [\n    {\n      \"time\": \"<long>\",\n      \"rating\": \"<integer>\",\n      \"comments\": \"<string>\"\n    },\n    {\n      \"time\": \"<long>\",\n      \"rating\": \"<integer>\",\n      \"comments\": \"<string>\"\n    }\n  ],\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"array\",\n      \"value\": {},\n      \"visibility\": [\n        \"dashboard\",\n        \"dashboard\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"string\",\n      \"value\": {},\n      \"visibility\": [\n        \"worker\",\n        \"api\"\n      ]\n    }\n  ],\n  \"trackingURL\": \"<uri>\",\n  \"trackingViewed\": \"<boolean>\",\n  \"eta\": \"<long>\",\n  \"delayTime\": \"<integer>\",\n  \"appearance\": {\n    \"triangleColor\": \"<string>\"\n  },\n  \"container\": {\n    \"type\": \"TEAM\",\n    \"organization\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:13:27.000Z",
+                      "updatedAt": "2026-06-05T15:13:27.000Z",
+                      "uid": "35240-2946dd53-a2cb-45d9-be81-a8905da86e2d"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:27.000Z",
+                  "updatedAt": "2026-06-05T15:13:27.000Z",
+                  "uid": "35240-3695d2f8-0d91-4e5e-a58c-299c69e15465"
+                }
+              ],
+              "id": "499f62a0-9393-4f00-93f5-3e4eb3f8f13e",
+              "createdAt": "2026-06-05T15:13:27.000Z",
+              "updatedAt": "2026-06-05T15:13:27.000Z",
+              "uid": "35240-499f62a0-9393-4f00-93f5-3e4eb3f8f13e"
+            }
+          ],
+          "id": "da9ff4f5-472d-46af-a945-96368120d088",
+          "createdAt": "2026-06-05T15:13:27.000Z",
+          "updatedAt": "2026-06-05T15:13:27.000Z",
+          "uid": "35240-da9ff4f5-472d-46af-a945-96368120d088"
+        },
+        {
+          "name": "Create Task",
+          "id": "8b8a7b88-cb37-4ca5-ac9a-2ce6da5d84ad",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchant\": \"<string>\",\n  \"executor\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"completeAfter\": \"<long>\",\n  \"completeBefore\": \"<long>\",\n  \"pickupTask\": \"<boolean>\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"notes\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"serviceTime\": \"<integer>\",\n  \"autoAssign\": {\n    \"mode\": \"load\",\n    \"team\": \"<string>\",\n    \"considerDependencies\": \"<boolean>\",\n    \"excludedWorkerIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxAssignedTaskCount\": \"<integer>\"\n  },\n  \"container\": {},\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"array\",\n      \"value\": {},\n      \"visibility\": [\n        \"worker\",\n        \"dashboard\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"object\",\n      \"value\": {},\n      \"visibility\": [\n        \"dashboard\",\n        \"dashboard\"\n      ]\n    }\n  ],\n  \"appearance\": {\n    \"triangleColor\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks"
+              ]
+            },
+            "description": "Create a new pickup or dropoff task with a destination, recipient, and completion window."
+          },
+          "response": [
+            {
+              "id": "ee4717f2-7799-421b-8318-a8fc3857dfd8",
+              "name": "Task created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant\": \"<string>\",\n  \"executor\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"completeAfter\": \"<long>\",\n  \"completeBefore\": \"<long>\",\n  \"pickupTask\": \"<boolean>\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"notes\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"serviceTime\": \"<integer>\",\n  \"autoAssign\": {\n    \"mode\": \"load\",\n    \"team\": \"<string>\",\n    \"considerDependencies\": \"<boolean>\",\n    \"excludedWorkerIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxAssignedTaskCount\": \"<integer>\"\n  },\n  \"container\": {},\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"array\",\n      \"value\": {},\n      \"visibility\": [\n        \"worker\",\n        \"dashboard\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"object\",\n      \"value\": {},\n      \"visibility\": [\n        \"dashboard\",\n        \"dashboard\"\n      ]\n    }\n  ],\n  \"appearance\": {\n    \"triangleColor\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tasks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tasks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"shortId\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"executor\": \"<string>\",\n  \"merchant\": \"<string>\",\n  \"creator\": \"<string>\",\n  \"worker\": \"<string>\",\n  \"destination\": {\n    \"id\": \"<string>\",\n    \"address\": {\n      \"unparsed\": \"<string>\",\n      \"number\": \"<string>\",\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"apartment\": \"<string>\"\n    },\n    \"location\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"notes\": \"<string>\",\n    \"warnings\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"skipSMSNotifications\": \"<boolean>\",\n      \"organization\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"skipSMSNotifications\": \"<boolean>\",\n      \"organization\": \"<string>\"\n    }\n  ],\n  \"completeAfter\": \"<long>\",\n  \"completeBefore\": \"<long>\",\n  \"pickupTask\": \"<boolean>\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"notes\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"serviceTime\": \"<integer>\",\n  \"state\": 3,\n  \"completionDetails\": {\n    \"success\": \"<boolean>\",\n    \"time\": \"<long>\",\n    \"notes\": \"<string>\",\n    \"photoUploadIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"signatureUploadId\": \"<string>\",\n    \"events\": [\n      {\n        \"name\": \"<string>\",\n        \"time\": \"<long>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"time\": \"<long>\"\n      }\n    ]\n  },\n  \"feedback\": [\n    {\n      \"time\": \"<long>\",\n      \"rating\": \"<integer>\",\n      \"comments\": \"<string>\"\n    },\n    {\n      \"time\": \"<long>\",\n      \"rating\": \"<integer>\",\n      \"comments\": \"<string>\"\n    }\n  ],\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"array\",\n      \"value\": {},\n      \"visibility\": [\n        \"dashboard\",\n        \"dashboard\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"string\",\n      \"value\": {},\n      \"visibility\": [\n        \"worker\",\n        \"api\"\n      ]\n    }\n  ],\n  \"trackingURL\": \"<uri>\",\n  \"trackingViewed\": \"<boolean>\",\n  \"eta\": \"<long>\",\n  \"delayTime\": \"<integer>\",\n  \"appearance\": {\n    \"triangleColor\": \"<string>\"\n  },\n  \"container\": {\n    \"type\": \"TEAM\",\n    \"organization\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:13:27.000Z",
+              "updatedAt": "2026-06-05T15:13:27.000Z",
+              "uid": "35240-ee4717f2-7799-421b-8318-a8fc3857dfd8"
+            }
+          ],
+          "createdAt": "2026-06-05T15:13:27.000Z",
+          "updatedAt": "2026-06-05T15:13:27.000Z",
+          "uid": "35240-8b8a7b88-cb37-4ca5-ac9a-2ce6da5d84ad"
+        }
+      ],
+      "id": "eafbcc8b-dd03-4f35-82c5-c967cc1c7b07",
+      "createdAt": "2026-06-05T15:13:27.000Z",
+      "updatedAt": "2026-06-05T15:13:27.000Z",
+      "uid": "35240-eafbcc8b-dd03-4f35-82c5-c967cc1c7b07"
+    },
+    {
+      "name": "containers",
+      "item": [
+        {
+          "name": "workers",
+          "item": [
+            {
+              "name": "{workerId}",
+              "item": [
+                {
+                  "name": "Assign Tasks To Worker",
+                  "id": "8ddc42da-d03e-40cb-b6a4-405501ede045",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"considerDependencies\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/containers/workers/:workerId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "containers",
+                        "workers",
+                        ":workerId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d1f431cb-eefe-4b19-96a9-b4c0ecc6588a",
+                          "key": "workerId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Set the ordered list of task IDs assigned to a worker (replaces existing assignments unless type=APPEND)."
+                  },
+                  "response": [
+                    {
+                      "id": "c084c3d0-f2bd-497d-b651-74f4ca4374a4",
+                      "name": "Worker container updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"considerDependencies\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/containers/workers/:workerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "containers",
+                            "workers",
+                            ":workerId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:27.000Z",
+                      "updatedAt": "2026-06-05T15:13:27.000Z",
+                      "uid": "35240-c084c3d0-f2bd-497d-b651-74f4ca4374a4"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:27.000Z",
+                  "updatedAt": "2026-06-05T15:13:27.000Z",
+                  "uid": "35240-8ddc42da-d03e-40cb-b6a4-405501ede045"
+                }
+              ],
+              "id": "06c22897-5d28-4313-bcef-755f8f7b5cf1",
+              "createdAt": "2026-06-05T15:13:27.000Z",
+              "updatedAt": "2026-06-05T15:13:27.000Z",
+              "uid": "35240-06c22897-5d28-4313-bcef-755f8f7b5cf1"
+            }
+          ],
+          "id": "83f0b675-9b26-423b-8ed2-652878234444",
+          "createdAt": "2026-06-05T15:13:27.000Z",
+          "updatedAt": "2026-06-05T15:13:27.000Z",
+          "uid": "35240-83f0b675-9b26-423b-8ed2-652878234444"
+        }
+      ],
+      "id": "04d889cb-0211-4e6c-a442-f995f4aad38b",
+      "createdAt": "2026-06-05T15:13:27.000Z",
+      "updatedAt": "2026-06-05T15:13:27.000Z",
+      "uid": "35240-04d889cb-0211-4e6c-a442-f995f4aad38b"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://onfleet.com/api/v2"
+    }
+  ]
+}

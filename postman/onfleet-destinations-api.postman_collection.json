@@ -1,0 +1,240 @@
+{
+  "info": {
+    "_postman_id": "5d36cc63-f283-40ae-b8c7-b3bf5a302f0e",
+    "name": "Onfleet Destinations API",
+    "description": "The Destinations API manages physical addresses associated with tasks.\nDestinations include parsed address fields and a GeoJSON location, and can\nbe reused across tasks. Onfleet geocodes addresses on creation; you can\nalso supply an `unparsed` address.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:13:34.000Z",
+    "updatedAt": "2026-06-05T15:13:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5d36cc63-f283-40ae-b8c7-b3bf5a302f0e"
+  },
+  "item": [
+    {
+      "name": "destinations",
+      "item": [
+        {
+          "name": "{destinationId}",
+          "item": [
+            {
+              "name": "Get Destination",
+              "id": "bd96b1f1-73a8-4a57-98b6-9e118e4a0a05",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/destinations/:destinationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "destinations",
+                    ":destinationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "732b6061-8e8b-40c9-90ad-fd3f1735fd4f",
+                      "key": "destinationId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "936267cf-94e2-48c9-90fa-b90cf710a8de",
+                  "name": "Destination",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/destinations/:destinationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "destinations",
+                        ":destinationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "destinationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"address\": {\n    \"unparsed\": \"<string>\",\n    \"number\": \"<string>\",\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"apartment\": \"<string>\"\n  },\n  \"location\": [\n    \"<number>\",\n    \"<number>\"\n  ],\n  \"notes\": \"<string>\",\n  \"warnings\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-06-05T15:13:34.000Z",
+                  "updatedAt": "2026-06-05T15:13:34.000Z",
+                  "uid": "35240-936267cf-94e2-48c9-90fa-b90cf710a8de"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:34.000Z",
+              "updatedAt": "2026-06-05T15:13:34.000Z",
+              "uid": "35240-bd96b1f1-73a8-4a57-98b6-9e118e4a0a05"
+            }
+          ],
+          "id": "d14b7920-10cc-433a-8a0a-d4f630515760",
+          "createdAt": "2026-06-05T15:13:34.000Z",
+          "updatedAt": "2026-06-05T15:13:34.000Z",
+          "uid": "35240-d14b7920-10cc-433a-8a0a-d4f630515760"
+        },
+        {
+          "name": "Create Destination",
+          "id": "81f146c8-bdcc-4407-8916-c7c94b8a09ae",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": {\n    \"unparsed\": \"<string>\",\n    \"number\": \"<string>\",\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"apartment\": \"<string>\"\n  },\n  \"location\": [\n    \"<number>\",\n    \"<number>\"\n  ],\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/destinations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "destinations"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8fd4acc5-8679-4af7-8dff-343aafbd15cd",
+              "name": "Destination created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"unparsed\": \"<string>\",\n    \"number\": \"<string>\",\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"apartment\": \"<string>\"\n  },\n  \"location\": [\n    \"<number>\",\n    \"<number>\"\n  ],\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/destinations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "destinations"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"address\": {\n    \"unparsed\": \"<string>\",\n    \"number\": \"<string>\",\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"apartment\": \"<string>\"\n  },\n  \"location\": [\n    \"<number>\",\n    \"<number>\"\n  ],\n  \"notes\": \"<string>\",\n  \"warnings\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-06-05T15:13:34.000Z",
+              "updatedAt": "2026-06-05T15:13:34.000Z",
+              "uid": "35240-8fd4acc5-8679-4af7-8dff-343aafbd15cd"
+            }
+          ],
+          "createdAt": "2026-06-05T15:13:34.000Z",
+          "updatedAt": "2026-06-05T15:13:34.000Z",
+          "uid": "35240-81f146c8-bdcc-4407-8916-c7c94b8a09ae"
+        }
+      ],
+      "id": "2297852f-f511-4cab-9639-967921b804c9",
+      "createdAt": "2026-06-05T15:13:34.000Z",
+      "updatedAt": "2026-06-05T15:13:34.000Z",
+      "uid": "35240-2297852f-f511-4cab-9639-967921b804c9"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://onfleet.com/api/v2"
+    }
+  ]
+}

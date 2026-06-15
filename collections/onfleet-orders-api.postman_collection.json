@@ -1,0 +1,729 @@
+{
+  "item": [
+    {
+      "id": "eaf5097c-3611-4325-bb26-c20975fd1a2b",
+      "name": "Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2a0e343b-1965-4ff7-99fa-229074a98f57",
+          "name": "Create Order",
+          "request": {
+            "name": "Create Order",
+            "description": {},
+            "url": {
+              "path": [
+                "taskOrders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client\": \"<string>\",\n  \"deliveryServiceId\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"pickupTask\": {\n    \"value\": \"reference onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate not found in the OpenAPI spec\"\n  },\n  \"dropoffTask\": {\n    \"value\": \"reference onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate not found in the OpenAPI spec\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e1f3485c-ba33-4e8d-b9a2-5892efaf96a0",
+              "name": "Order created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOrders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client\": \"<string>\",\n  \"deliveryServiceId\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"pickupTask\": {\n    \"value\": \"reference onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate not found in the OpenAPI spec\"\n  },\n  \"dropoffTask\": {\n    \"value\": \"reference onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"shortId\": \"string\",\n  \"organization\": \"string\",\n  \"client\": \"string\",\n  \"timeCreated\": 6253,\n  \"deliveryServiceId\": \"string\",\n  \"price\": 9160.94106930977,\n  \"currency\": \"string\",\n  \"status\": \"CREATED\",\n  \"pickupTask\": \"string\",\n  \"dropoffTask\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef534f70-7b71-4ca7-aa37-0355caecdd72",
+          "name": "Get Order",
+          "request": {
+            "name": "Get Order",
+            "description": {},
+            "url": {
+              "path": [
+                "taskOrders",
+                ":orderShortId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderShortId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad491103-82c0-43f3-bea8-b0e64e270625",
+              "name": "Order",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOrders",
+                    ":orderShortId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderShortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"shortId\": \"string\",\n  \"organization\": \"string\",\n  \"client\": \"string\",\n  \"timeCreated\": 6253,\n  \"deliveryServiceId\": \"string\",\n  \"price\": 9160.94106930977,\n  \"currency\": \"string\",\n  \"status\": \"CREATED\",\n  \"pickupTask\": \"string\",\n  \"dropoffTask\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "044db89d-4ec0-45d6-8152-3da134e6e028",
+          "name": "Update Order",
+          "request": {
+            "name": "Update Order",
+            "description": {},
+            "url": {
+              "path": [
+                "taskOrders",
+                ":orderShortId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderShortId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"pickupTask\": \"<object>\",\n  \"dropoffTask\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dfd7ca3b-7483-4a3e-a21c-5632375a98cd",
+              "name": "Updated order",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOrders",
+                    ":orderShortId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderShortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"pickupTask\": \"<object>\",\n  \"dropoffTask\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"shortId\": \"string\",\n  \"organization\": \"string\",\n  \"client\": \"string\",\n  \"timeCreated\": 6253,\n  \"deliveryServiceId\": \"string\",\n  \"price\": 9160.94106930977,\n  \"currency\": \"string\",\n  \"status\": \"CREATED\",\n  \"pickupTask\": \"string\",\n  \"dropoffTask\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc36884c-d348-47fe-ba12-8cc589e3585b",
+          "name": "Cancel Order",
+          "request": {
+            "name": "Cancel Order",
+            "description": {},
+            "url": {
+              "path": [
+                "taskOrders",
+                ":orderShortId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderShortId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1380dc17-b22e-4f52-980c-d2351221c36c",
+              "name": "Cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOrders",
+                    ":orderShortId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderShortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf46bce3-1b29-4974-8d30-adec4c51d95a",
+          "name": "Reject Order",
+          "request": {
+            "name": "Reject Order",
+            "description": {},
+            "url": {
+              "path": [
+                "taskOrders",
+                ":orderShortId",
+                "reject"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderShortId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c62066f6-8fd6-4223-a212-ef326ee4351b",
+              "name": "Rejected",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOrders",
+                    ":orderShortId",
+                    "reject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderShortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "900bd17e-c628-41e9-9f77-a2a707b191f2",
+          "name": "Clone Orders",
+          "request": {
+            "name": "Clone Orders",
+            "description": {},
+            "url": {
+              "path": [
+                "taskOrders",
+                "clone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "68e76ad0-5ab0-4b26-a949-1735018aca9b",
+              "name": "Cloned orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOrders",
+                    "clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aba4a02a-1ca1-43dd-9331-97042d5d08aa",
+          "name": "Quote Order",
+          "request": {
+            "name": "Quote Order",
+            "description": {},
+            "url": {
+              "path": [
+                "taskOrders",
+                "quote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client\": \"<string>\",\n  \"deliveryServiceId\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"pickupTask\": {\n    \"value\": \"reference onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate not found in the OpenAPI spec\"\n  },\n  \"dropoffTask\": {\n    \"value\": \"reference onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate not found in the OpenAPI spec\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "063504fd-b564-4ba9-b94e-8220b2d65eda",
+              "name": "Price quote",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOrders",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client\": \"<string>\",\n  \"deliveryServiceId\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"pickupTask\": {\n    \"value\": \"reference onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate not found in the OpenAPI spec\"\n  },\n  \"dropoffTask\": {\n    \"value\": \"reference onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate not found in the OpenAPI spec\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"price\": 9841.071483064337,\n  \"currency\": \"string\",\n  \"estimatedDeliveryTime\": 4977\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://onfleet.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e779877e-fd9d-4bbc-bb21-273949f054a6",
+    "name": "Onfleet Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Orders represent a delivery workflow composed of a pair of tasks — a pickup\nand a corresponding dropoff — used by courier organizations and their\nclients in the Onfleet Connect network. The Orders API lets you quote,\ncreate, update, clone, cancel, and reject orders programmatically.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1144 @@
+{
+  "info": {
+    "_postman_id": "1d95fa60-b44c-4585-8a01-a9d8b917d6c3",
+    "name": "Onfleet Route Plans API",
+    "description": "The Onfleet Route Plans API manages reusable routes \u2014 ordered sequences of\ntasks assigned to a worker for a given time window. Use these endpoints to\ncreate, update, fetch, add tasks to, and delete route plans, plus run\nasynchronous route optimization across an organization or team.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:13:29.000Z",
+    "updatedAt": "2026-06-05T15:13:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1d95fa60-b44c-4585-8a01-a9d8b917d6c3"
+  },
+  "item": [
+    {
+      "name": "routePlans",
+      "item": [
+        {
+          "name": "{routePlanId}",
+          "item": [
+            {
+              "name": "tasks",
+              "item": [
+                {
+                  "name": "Add Tasks To Route Plan",
+                  "id": "8c7ae710-8bd8-4d5d-8bbf-ca9c94a2ea90",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/routePlans/:routePlanId/tasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routePlans",
+                        ":routePlanId",
+                        "tasks"
+                      ],
+                      "variable": [
+                        {
+                          "id": "40903014-d432-4bef-87f5-8ceae1bfb171",
+                          "key": "routePlanId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "8e84ca98-5276-4aa5-97c5-ff04443415cb",
+                      "name": "Updated route plan",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/routePlans/:routePlanId/tasks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routePlans",
+                            ":routePlanId",
+                            "tasks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "routePlanId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"team\": \"<string>\",\n  \"worker\": \"<string>\",\n  \"vehicleType\": \"<string>\",\n  \"startAt\": \"HUB\",\n  \"endAt\": \"WORKER_ADDRESS\",\n  \"startingHubId\": \"<string>\",\n  \"endingHubId\": \"<string>\",\n  \"color\": \"<string>\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"state\": \"ACTIVE\"\n}",
+                      "createdAt": "2026-06-05T15:13:30.000Z",
+                      "updatedAt": "2026-06-05T15:13:30.000Z",
+                      "uid": "35240-8e84ca98-5276-4aa5-97c5-ff04443415cb"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:30.000Z",
+                  "updatedAt": "2026-06-05T15:13:30.000Z",
+                  "uid": "35240-8c7ae710-8bd8-4d5d-8bbf-ca9c94a2ea90"
+                }
+              ],
+              "id": "b6942631-7810-447e-ae60-1eb349a661c7",
+              "createdAt": "2026-06-05T15:13:30.000Z",
+              "updatedAt": "2026-06-05T15:13:30.000Z",
+              "uid": "35240-b6942631-7810-447e-ae60-1eb349a661c7"
+            },
+            {
+              "name": "Get Route Plan By ID",
+              "id": "06b6671c-ed42-4829-97ca-c1c39facd806",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/routePlans/:routePlanId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "routePlans",
+                    ":routePlanId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fb46020a-318c-42a1-ab07-9fbe994b4665",
+                      "key": "routePlanId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "af67b4cd-8ede-4524-94ac-d969cd6ef79c",
+                  "name": "Route plan",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/routePlans/:routePlanId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routePlans",
+                        ":routePlanId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "routePlanId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"team\": \"<string>\",\n  \"worker\": \"<string>\",\n  \"vehicleType\": \"<string>\",\n  \"startAt\": \"HUB\",\n  \"endAt\": \"WORKER_ADDRESS\",\n  \"startingHubId\": \"<string>\",\n  \"endingHubId\": \"<string>\",\n  \"color\": \"<string>\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"state\": \"ACTIVE\"\n}",
+                  "createdAt": "2026-06-05T15:13:30.000Z",
+                  "updatedAt": "2026-06-05T15:13:30.000Z",
+                  "uid": "35240-af67b4cd-8ede-4524-94ac-d969cd6ef79c"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:30.000Z",
+              "updatedAt": "2026-06-05T15:13:30.000Z",
+              "uid": "35240-06b6671c-ed42-4829-97ca-c1c39facd806"
+            },
+            {
+              "name": "Update Route Plan",
+              "id": "bc282a08-f850-4a16-a47e-205af0f85f21",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startTime\": \"<long>\",\n  \"worker\": \"<string>\",\n  \"endTime\": \"<long>\",\n  \"team\": \"<string>\",\n  \"vehicleType\": \"CAR\",\n  \"startAt\": \"WORKER_ADDRESS\",\n  \"endAt\": \"WORKER_ADDRESS\",\n  \"startingHubId\": \"<string>\",\n  \"endingHubId\": \"<string>\",\n  \"color\": \"<string>\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/routePlans/:routePlanId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "routePlans",
+                    ":routePlanId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "666c614f-fabf-486a-b046-8c9eb8be407f",
+                      "key": "routePlanId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "27619a58-8e9b-44ce-94b8-c6d6de6b4dd8",
+                  "name": "Updated route plan",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"startTime\": \"<long>\",\n  \"worker\": \"<string>\",\n  \"endTime\": \"<long>\",\n  \"team\": \"<string>\",\n  \"vehicleType\": \"CAR\",\n  \"startAt\": \"WORKER_ADDRESS\",\n  \"endAt\": \"WORKER_ADDRESS\",\n  \"startingHubId\": \"<string>\",\n  \"endingHubId\": \"<string>\",\n  \"color\": \"<string>\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/routePlans/:routePlanId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routePlans",
+                        ":routePlanId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "routePlanId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"team\": \"<string>\",\n  \"worker\": \"<string>\",\n  \"vehicleType\": \"<string>\",\n  \"startAt\": \"HUB\",\n  \"endAt\": \"WORKER_ADDRESS\",\n  \"startingHubId\": \"<string>\",\n  \"endingHubId\": \"<string>\",\n  \"color\": \"<string>\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"state\": \"ACTIVE\"\n}",
+                  "createdAt": "2026-06-05T15:13:30.000Z",
+                  "updatedAt": "2026-06-05T15:13:30.000Z",
+                  "uid": "35240-27619a58-8e9b-44ce-94b8-c6d6de6b4dd8"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:30.000Z",
+              "updatedAt": "2026-06-05T15:13:30.000Z",
+              "uid": "35240-bc282a08-f850-4a16-a47e-205af0f85f21"
+            },
+            {
+              "name": "Delete Route Plan",
+              "id": "0dceddb7-0f64-4c77-a4bf-b4a307d560ca",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/routePlans/:routePlanId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "routePlans",
+                    ":routePlanId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "91f087c2-9a15-4ce8-84e5-771378f81632",
+                      "key": "routePlanId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "630e233d-d3fd-4036-a1e6-2c0693610466",
+                  "name": "Deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/routePlans/:routePlanId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routePlans",
+                        ":routePlanId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "routePlanId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:13:30.000Z",
+                  "updatedAt": "2026-06-05T15:13:30.000Z",
+                  "uid": "35240-630e233d-d3fd-4036-a1e6-2c0693610466"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:30.000Z",
+              "updatedAt": "2026-06-05T15:13:30.000Z",
+              "uid": "35240-0dceddb7-0f64-4c77-a4bf-b4a307d560ca"
+            }
+          ],
+          "id": "74702c65-ffc1-4b8d-a21d-e81fa452e7da",
+          "createdAt": "2026-06-05T15:13:30.000Z",
+          "updatedAt": "2026-06-05T15:13:30.000Z",
+          "uid": "35240-74702c65-ffc1-4b8d-a21d-e81fa452e7da"
+        },
+        {
+          "name": "List Route Plans",
+          "id": "89061954-c692-4dea-8c16-17525ed282d8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/routePlans?from=<long>&to=<long>&teams=<string>&workers=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "routePlans"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "from",
+                  "value": "<long>"
+                },
+                {
+                  "key": "to",
+                  "value": "<long>"
+                },
+                {
+                  "key": "teams",
+                  "value": "<string>"
+                },
+                {
+                  "key": "workers",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e5837ec6-d04c-4feb-a10f-fd98f613f083",
+              "name": "Route plans",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/routePlans?from=<long>&to=<long>&teams=<string>&workers=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "routePlans"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "from",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "teams",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "workers",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"routePlans\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"organization\": \"<string>\",\n      \"timeCreated\": \"<long>\",\n      \"timeLastModified\": \"<long>\",\n      \"startTime\": \"<long>\",\n      \"endTime\": \"<long>\",\n      \"team\": \"<string>\",\n      \"worker\": \"<string>\",\n      \"vehicleType\": \"<string>\",\n      \"startAt\": \"HUB\",\n      \"endAt\": \"ANYWHERE\",\n      \"startingHubId\": \"<string>\",\n      \"endingHubId\": \"<string>\",\n      \"color\": \"<string>\",\n      \"tasks\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"state\": \"COMPLETED\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"organization\": \"<string>\",\n      \"timeCreated\": \"<long>\",\n      \"timeLastModified\": \"<long>\",\n      \"startTime\": \"<long>\",\n      \"endTime\": \"<long>\",\n      \"team\": \"<string>\",\n      \"worker\": \"<string>\",\n      \"vehicleType\": \"<string>\",\n      \"startAt\": \"WORKER_ADDRESS\",\n      \"endAt\": \"ANYWHERE\",\n      \"startingHubId\": \"<string>\",\n      \"endingHubId\": \"<string>\",\n      \"color\": \"<string>\",\n      \"tasks\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"state\": \"DRAFT\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:13:30.000Z",
+              "updatedAt": "2026-06-05T15:13:30.000Z",
+              "uid": "35240-e5837ec6-d04c-4feb-a10f-fd98f613f083"
+            }
+          ],
+          "createdAt": "2026-06-05T15:13:30.000Z",
+          "updatedAt": "2026-06-05T15:13:30.000Z",
+          "uid": "35240-89061954-c692-4dea-8c16-17525ed282d8"
+        },
+        {
+          "name": "Create Route Plan",
+          "id": "ffb700b5-93b3-4d8c-bdba-da573b8e07ce",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"startTime\": \"<long>\",\n  \"worker\": \"<string>\",\n  \"endTime\": \"<long>\",\n  \"team\": \"<string>\",\n  \"vehicleType\": \"CAR\",\n  \"startAt\": \"WORKER_ADDRESS\",\n  \"endAt\": \"WORKER_ADDRESS\",\n  \"startingHubId\": \"<string>\",\n  \"endingHubId\": \"<string>\",\n  \"color\": \"<string>\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/routePlans",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "routePlans"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7329e2ff-af9a-4f1d-90bf-267b52699559",
+              "name": "Route plan created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startTime\": \"<long>\",\n  \"worker\": \"<string>\",\n  \"endTime\": \"<long>\",\n  \"team\": \"<string>\",\n  \"vehicleType\": \"CAR\",\n  \"startAt\": \"WORKER_ADDRESS\",\n  \"endAt\": \"WORKER_ADDRESS\",\n  \"startingHubId\": \"<string>\",\n  \"endingHubId\": \"<string>\",\n  \"color\": \"<string>\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/routePlans",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "routePlans"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"team\": \"<string>\",\n  \"worker\": \"<string>\",\n  \"vehicleType\": \"<string>\",\n  \"startAt\": \"HUB\",\n  \"endAt\": \"WORKER_ADDRESS\",\n  \"startingHubId\": \"<string>\",\n  \"endingHubId\": \"<string>\",\n  \"color\": \"<string>\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"state\": \"ACTIVE\"\n}",
+              "createdAt": "2026-06-05T15:13:30.000Z",
+              "updatedAt": "2026-06-05T15:13:30.000Z",
+              "uid": "35240-7329e2ff-af9a-4f1d-90bf-267b52699559"
+            }
+          ],
+          "createdAt": "2026-06-05T15:13:30.000Z",
+          "updatedAt": "2026-06-05T15:13:30.000Z",
+          "uid": "35240-ffb700b5-93b3-4d8c-bdba-da573b8e07ce"
+        }
+      ],
+      "id": "0991f26a-4822-4ce9-b670-97b69adea579",
+      "createdAt": "2026-06-05T15:13:30.000Z",
+      "updatedAt": "2026-06-05T15:13:30.000Z",
+      "uid": "35240-0991f26a-4822-4ce9-b670-97b69adea579"
+    },
+    {
+      "name": "optimizations",
+      "item": [
+        {
+          "name": "scheduled",
+          "item": [
+            {
+              "name": "Initialize Route Optimization",
+              "id": "edf8c261-b3b7-4e9a-ad1e-72fe70778c7c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"AUTO_DISPATCH\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"workers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"team\": \"<string>\",\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"considerDependencies\": \"<boolean>\",\n  \"balance\": {\n    \"byTaskCount\": \"<boolean>\",\n    \"byWorkload\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/optimizations/scheduled",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "optimizations",
+                    "scheduled"
+                  ]
+                },
+                "description": "Start an asynchronous route optimization job for a team or set of workers; result delivered via the routeOptimizationJobCompleted webhook. Enterprise-only."
+              },
+              "response": [
+                {
+                  "id": "1541120a-bcf6-4771-b5ac-29aa4974940f",
+                  "name": "Optimization queued",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"AUTO_DISPATCH\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"workers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"team\": \"<string>\",\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"considerDependencies\": \"<boolean>\",\n  \"balance\": {\n    \"byTaskCount\": \"<boolean>\",\n    \"byWorkload\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/optimizations/scheduled",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "optimizations",
+                        "scheduled"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"optimizationId\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:13:30.000Z",
+                  "updatedAt": "2026-06-05T15:13:30.000Z",
+                  "uid": "35240-1541120a-bcf6-4771-b5ac-29aa4974940f"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:30.000Z",
+              "updatedAt": "2026-06-05T15:13:30.000Z",
+              "uid": "35240-edf8c261-b3b7-4e9a-ad1e-72fe70778c7c"
+            }
+          ],
+          "id": "5469b800-538d-44c5-8af0-a94d29951574",
+          "createdAt": "2026-06-05T15:13:30.000Z",
+          "updatedAt": "2026-06-05T15:13:30.000Z",
+          "uid": "35240-5469b800-538d-44c5-8af0-a94d29951574"
+        },
+        {
+          "name": "{optimizationId}",
+          "item": [
+            {
+              "name": "start",
+              "item": [
+                {
+                  "name": "Start Route Optimization",
+                  "id": "aaea2b9b-75e5-40bc-9fef-67a1a5ac514f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/optimizations/:optimizationId/start",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "optimizations",
+                        ":optimizationId",
+                        "start"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6087e070-1a97-475a-b45f-9e70f56a9d6d",
+                          "key": "optimizationId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "e7e455c0-9bfd-4cd2-a0fc-6d7045a7d9c3",
+                      "name": "Started",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/optimizations/:optimizationId/start",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "optimizations",
+                            ":optimizationId",
+                            "start"
+                          ],
+                          "variable": [
+                            {
+                              "key": "optimizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:30.000Z",
+                      "updatedAt": "2026-06-05T15:13:30.000Z",
+                      "uid": "35240-e7e455c0-9bfd-4cd2-a0fc-6d7045a7d9c3"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:30.000Z",
+                  "updatedAt": "2026-06-05T15:13:30.000Z",
+                  "uid": "35240-aaea2b9b-75e5-40bc-9fef-67a1a5ac514f"
+                }
+              ],
+              "id": "7b10c884-0fb5-407f-917d-6d742e3363c9",
+              "createdAt": "2026-06-05T15:13:30.000Z",
+              "updatedAt": "2026-06-05T15:13:30.000Z",
+              "uid": "35240-7b10c884-0fb5-407f-917d-6d742e3363c9"
+            },
+            {
+              "name": "status",
+              "item": [
+                {
+                  "name": "Get Optimization Status",
+                  "id": "e3bb0fff-f77b-4b1d-87ce-d7c2ebd37f82",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/optimizations/:optimizationId/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "optimizations",
+                        ":optimizationId",
+                        "status"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2ad1162a-f6e2-4092-bba4-000c547f0536",
+                          "key": "optimizationId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "4a577887-c03b-440d-8fd8-06ee3c2492fc",
+                      "name": "Status",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/optimizations/:optimizationId/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "optimizations",
+                            ":optimizationId",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "key": "optimizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"optimizationId\": \"<string>\",\n  \"status\": \"IN_PROGRESS\",\n  \"progress\": \"<number>\"\n}",
+                      "createdAt": "2026-06-05T15:13:30.000Z",
+                      "updatedAt": "2026-06-05T15:13:30.000Z",
+                      "uid": "35240-4a577887-c03b-440d-8fd8-06ee3c2492fc"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:30.000Z",
+                  "updatedAt": "2026-06-05T15:13:30.000Z",
+                  "uid": "35240-e3bb0fff-f77b-4b1d-87ce-d7c2ebd37f82"
+                }
+              ],
+              "id": "63427fd7-c27b-4b76-8dfa-77eef69bbc38",
+              "createdAt": "2026-06-05T15:13:30.000Z",
+              "updatedAt": "2026-06-05T15:13:30.000Z",
+              "uid": "35240-63427fd7-c27b-4b76-8dfa-77eef69bbc38"
+            },
+            {
+              "name": "apply",
+              "item": [
+                {
+                  "name": "Apply Optimization Results",
+                  "id": "1053fc46-42b1-4de6-8f14-74b05145b567",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/optimizations/:optimizationId/apply",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "optimizations",
+                        ":optimizationId",
+                        "apply"
+                      ],
+                      "variable": [
+                        {
+                          "id": "35e84460-a1bb-4d76-af52-fd31ac49776c",
+                          "key": "optimizationId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "1840655a-8c7d-4131-9477-6da86a40b44a",
+                      "name": "Applied",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/optimizations/:optimizationId/apply",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "optimizations",
+                            ":optimizationId",
+                            "apply"
+                          ],
+                          "variable": [
+                            {
+                              "key": "optimizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:30.000Z",
+                      "updatedAt": "2026-06-05T15:13:30.000Z",
+                      "uid": "35240-1840655a-8c7d-4131-9477-6da86a40b44a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:30.000Z",
+                  "updatedAt": "2026-06-05T15:13:30.000Z",
+                  "uid": "35240-1053fc46-42b1-4de6-8f14-74b05145b567"
+                }
+              ],
+              "id": "9d0f6313-447c-4a13-a260-0872eb461e22",
+              "createdAt": "2026-06-05T15:13:30.000Z",
+              "updatedAt": "2026-06-05T15:13:30.000Z",
+              "uid": "35240-9d0f6313-447c-4a13-a260-0872eb461e22"
+            },
+            {
+              "name": "abort",
+              "item": [
+                {
+                  "name": "Abort Optimization",
+                  "id": "fd7ba133-2ae5-4c64-b840-c207e25e1743",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/optimizations/:optimizationId/abort",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "optimizations",
+                        ":optimizationId",
+                        "abort"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f4b642c2-bdab-4ece-9061-825f0d2f8f56",
+                          "key": "optimizationId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "63cfd928-20a3-4c36-a76e-5b9dada20542",
+                      "name": "Aborted",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/optimizations/:optimizationId/abort",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "optimizations",
+                            ":optimizationId",
+                            "abort"
+                          ],
+                          "variable": [
+                            {
+                              "key": "optimizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:30.000Z",
+                      "updatedAt": "2026-06-05T15:13:30.000Z",
+                      "uid": "35240-63cfd928-20a3-4c36-a76e-5b9dada20542"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:30.000Z",
+                  "updatedAt": "2026-06-05T15:13:30.000Z",
+                  "uid": "35240-fd7ba133-2ae5-4c64-b840-c207e25e1743"
+                }
+              ],
+              "id": "03748518-8697-4011-be04-6a62ed957535",
+              "createdAt": "2026-06-05T15:13:30.000Z",
+              "updatedAt": "2026-06-05T15:13:30.000Z",
+              "uid": "35240-03748518-8697-4011-be04-6a62ed957535"
+            }
+          ],
+          "id": "69705dbb-b22a-43b8-872f-41fc38716ec0",
+          "createdAt": "2026-06-05T15:13:30.000Z",
+          "updatedAt": "2026-06-05T15:13:30.000Z",
+          "uid": "35240-69705dbb-b22a-43b8-872f-41fc38716ec0"
+        }
+      ],
+      "id": "7173a02f-f565-403e-8856-a2b2f62b2536",
+      "createdAt": "2026-06-05T15:13:30.000Z",
+      "updatedAt": "2026-06-05T15:13:30.000Z",
+      "uid": "35240-7173a02f-f565-403e-8856-a2b2f62b2536"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://onfleet.com/api/v2"
+    }
+  ]
+}

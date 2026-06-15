@@ -1,0 +1,255 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Onfleet Tasks API",
+    "version": "2.7"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://onfleet.com/api/v2/tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new pickup or dropoff task with a destination, recipient, and completion window."
+        },
+        {
+          "info": {
+            "name": "Create Tasks In Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://onfleet.com/api/v2/tasks/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Asynchronously create up to 100 tasks per request; results are returned via the taskBatchCreateJobCompleted webhook."
+        },
+        {
+          "info": {
+            "name": "List Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://onfleet.com/api/v2/tasks/all",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start of the search range in Unix milliseconds."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End of the search range in Unix milliseconds."
+              },
+              {
+                "name": "lastId",
+                "value": "",
+                "type": "query",
+                "description": "Cursor returned from a previous call to walk pagination."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of task state values (0=Unassigned, 1=Assigned, 2=Active, 3=Completed)."
+              },
+              {
+                "name": "worker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "completeBeforeBefore",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "completeAfterAfter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dependencies",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "containers",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return a paginated collection of tasks; uses lastId-based pagination with up to 64 tasks per page."
+        },
+        {
+          "info": {
+            "name": "Get Single Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://onfleet.com/api/v2/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Single Task"
+        },
+        {
+          "info": {
+            "name": "Update Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://onfleet.com/api/v2/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Task"
+        },
+        {
+          "info": {
+            "name": "Delete Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://onfleet.com/api/v2/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Task"
+        },
+        {
+          "info": {
+            "name": "Get Task By Short ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://onfleet.com/api/v2/tasks/shortId/:shortId",
+            "params": [
+              {
+                "name": "shortId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Task By Short ID"
+        },
+        {
+          "info": {
+            "name": "Clone Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://onfleet.com/api/v2/tasks/:taskId/clone",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Clone Task"
+        },
+        {
+          "info": {
+            "name": "Force-Complete Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://onfleet.com/api/v2/tasks/:taskId/complete",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Force-Complete Task"
+        },
+        {
+          "info": {
+            "name": "Assign Tasks To Worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://onfleet.com/api/v2/containers/workers/:workerId",
+            "params": [
+              {
+                "name": "workerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set the ordered list of task IDs assigned to a worker (replaces existing assignments unless type=APPEND)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,770 @@
+{
+  "info": {
+    "_postman_id": "dad733cf-81e7-44c8-84a9-9a417ba9dc23",
+    "name": "Onfleet Workers API",
+    "description": "The Onfleet Workers API manages drivers (workers) \u2014 the on-the-ground\noperators who execute tasks. Endpoints cover creation, listing, deletion,\nduty status, location lookup, and route delivery manifests for compliance.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:13:27.000Z",
+    "updatedAt": "2026-06-05T15:13:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-dad733cf-81e7-44c8-84a9-9a417ba9dc23"
+  },
+  "item": [
+    {
+      "name": "workers",
+      "item": [
+        {
+          "name": "{workerId}",
+          "item": [
+            {
+              "name": "tasks",
+              "item": [
+                {
+                  "name": "List Worker's Assigned Tasks",
+                  "id": "a6954b66-1126-4347-bc31-886af269b755",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workers/:workerId/tasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workers",
+                        ":workerId",
+                        "tasks"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7f68ddc8-becc-462b-a676-b0b0803febc6",
+                          "key": "workerId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "504ea6d4-22d9-4ef8-b8d4-ed17d7057ae6",
+                      "name": "Tasks",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workers/:workerId/tasks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workers",
+                            ":workerId",
+                            "tasks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                      "createdAt": "2026-06-05T15:13:28.000Z",
+                      "updatedAt": "2026-06-05T15:13:28.000Z",
+                      "uid": "35240-504ea6d4-22d9-4ef8-b8d4-ed17d7057ae6"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:28.000Z",
+                  "updatedAt": "2026-06-05T15:13:28.000Z",
+                  "uid": "35240-a6954b66-1126-4347-bc31-886af269b755"
+                }
+              ],
+              "id": "82eac49e-bb3d-4551-be5d-43adfb791bcc",
+              "createdAt": "2026-06-05T15:13:28.000Z",
+              "updatedAt": "2026-06-05T15:13:28.000Z",
+              "uid": "35240-82eac49e-bb3d-4551-be5d-43adfb791bcc"
+            },
+            {
+              "name": "deliveryManifest",
+              "item": [
+                {
+                  "name": "Get Worker's Route Delivery Manifest",
+                  "id": "3ca0b3ab-8146-4fc0-bb04-01baf98598cd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workers/:workerId/deliveryManifest?googleApiKey=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workers",
+                        ":workerId",
+                        "deliveryManifest"
+                      ],
+                      "query": [
+                        {
+                          "key": "googleApiKey",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "8397e33b-5d55-4f84-a7a2-b13976f3f6e5",
+                          "key": "workerId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "ad30ebcd-3f11-41d0-838b-ac816dfa6498",
+                      "name": "Manifest",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workers/:workerId/deliveryManifest?googleApiKey=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workers",
+                            ":workerId",
+                            "deliveryManifest"
+                          ],
+                          "query": [
+                            {
+                              "key": "googleApiKey",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-06-05T15:13:28.000Z",
+                      "updatedAt": "2026-06-05T15:13:28.000Z",
+                      "uid": "35240-ad30ebcd-3f11-41d0-838b-ac816dfa6498"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:28.000Z",
+                  "updatedAt": "2026-06-05T15:13:28.000Z",
+                  "uid": "35240-3ca0b3ab-8146-4fc0-bb04-01baf98598cd"
+                }
+              ],
+              "id": "0e2a4bf1-f364-48ee-a25e-b2395db04c0b",
+              "createdAt": "2026-06-05T15:13:28.000Z",
+              "updatedAt": "2026-06-05T15:13:28.000Z",
+              "uid": "35240-0e2a4bf1-f364-48ee-a25e-b2395db04c0b"
+            },
+            {
+              "name": "Get Single Worker",
+              "id": "0574fed6-37d1-4a22-8774-5cffe28fab69",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workers/:workerId?filter=<string>&analytics=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workers",
+                    ":workerId"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "analytics",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "ccd0f1ec-f6d1-4c72-ad9d-24c49f2aeb05",
+                      "key": "workerId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "6b9e867f-df79-412e-88de-26c986caec81",
+                  "name": "Worker",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workers/:workerId?filter=<string>&analytics=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workers",
+                        ":workerId"
+                      ],
+                      "query": [
+                        {
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "analytics",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "workerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"organization\": \"<string>\",\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"activeTask\": \"<string>\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"onDuty\": \"<boolean>\",\n  \"timeLastSeen\": \"<long>\",\n  \"capacity\": \"<number>\",\n  \"userData\": {\n    \"platform\": \"<string>\",\n    \"appVersion\": \"<string>\",\n    \"deviceDescription\": \"<string>\"\n  },\n  \"accountStatus\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vehicle\": {\n    \"type\": \"BICYCLE\",\n    \"description\": \"<string>\",\n    \"licensePlate\": \"<string>\",\n    \"color\": \"<string>\"\n  },\n  \"location\": [\n    \"<number>\",\n    \"<number>\"\n  ]\n}",
+                  "createdAt": "2026-06-05T15:13:28.000Z",
+                  "updatedAt": "2026-06-05T15:13:28.000Z",
+                  "uid": "35240-6b9e867f-df79-412e-88de-26c986caec81"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:28.000Z",
+              "updatedAt": "2026-06-05T15:13:28.000Z",
+              "uid": "35240-0574fed6-37d1-4a22-8774-5cffe28fab69"
+            },
+            {
+              "name": "Update Worker",
+              "id": "cee15e8e-24e3-47eb-90b6-419276cd2342",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vehicle\": {\n    \"type\": \"CAR\",\n    \"description\": \"<string>\",\n    \"licensePlate\": \"<string>\",\n    \"color\": \"<string>\"\n  },\n  \"capacity\": \"<number>\",\n  \"displayName\": \"<string>\",\n  \"additionalCapacities\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workers/:workerId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workers",
+                    ":workerId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "cb8e2067-43c2-43fb-b6bc-8f6032fde018",
+                      "key": "workerId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "1f5f6824-d67b-4613-b1e9-64789dddc187",
+                  "name": "Updated worker",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vehicle\": {\n    \"type\": \"CAR\",\n    \"description\": \"<string>\",\n    \"licensePlate\": \"<string>\",\n    \"color\": \"<string>\"\n  },\n  \"capacity\": \"<number>\",\n  \"displayName\": \"<string>\",\n  \"additionalCapacities\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workers/:workerId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workers",
+                        ":workerId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"organization\": \"<string>\",\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"activeTask\": \"<string>\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"onDuty\": \"<boolean>\",\n  \"timeLastSeen\": \"<long>\",\n  \"capacity\": \"<number>\",\n  \"userData\": {\n    \"platform\": \"<string>\",\n    \"appVersion\": \"<string>\",\n    \"deviceDescription\": \"<string>\"\n  },\n  \"accountStatus\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vehicle\": {\n    \"type\": \"BICYCLE\",\n    \"description\": \"<string>\",\n    \"licensePlate\": \"<string>\",\n    \"color\": \"<string>\"\n  },\n  \"location\": [\n    \"<number>\",\n    \"<number>\"\n  ]\n}",
+                  "createdAt": "2026-06-05T15:13:28.000Z",
+                  "updatedAt": "2026-06-05T15:13:28.000Z",
+                  "uid": "35240-1f5f6824-d67b-4613-b1e9-64789dddc187"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:28.000Z",
+              "updatedAt": "2026-06-05T15:13:28.000Z",
+              "uid": "35240-cee15e8e-24e3-47eb-90b6-419276cd2342"
+            },
+            {
+              "name": "Delete Worker",
+              "id": "6447b7e6-ac9f-4488-9189-8a794327fb4c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/workers/:workerId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workers",
+                    ":workerId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2152d6c4-c6e8-4d2f-8b9d-802450da5377",
+                      "key": "workerId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "7602f04c-9deb-4d47-acf4-17502af75043",
+                  "name": "Worker deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workers/:workerId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workers",
+                        ":workerId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:13:28.000Z",
+                  "updatedAt": "2026-06-05T15:13:28.000Z",
+                  "uid": "35240-7602f04c-9deb-4d47-acf4-17502af75043"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:28.000Z",
+              "updatedAt": "2026-06-05T15:13:28.000Z",
+              "uid": "35240-6447b7e6-ac9f-4488-9189-8a794327fb4c"
+            }
+          ],
+          "id": "cc4e2af1-e587-44ba-b913-fed22d422138",
+          "createdAt": "2026-06-05T15:13:28.000Z",
+          "updatedAt": "2026-06-05T15:13:28.000Z",
+          "uid": "35240-cc4e2af1-e587-44ba-b913-fed22d422138"
+        },
+        {
+          "name": "List Workers",
+          "id": "bd0b2261-190c-4295-8b5f-dc0d6bb0f408",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workers?filter=<string>&teams=<string>&states=<string>&phones=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "workers"
+              ],
+              "query": [
+                {
+                  "description": "Comma-separated list of fields to return.",
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Comma-separated list of team IDs.",
+                  "key": "teams",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Comma-separated list of worker states (0=Offline, 1=On-duty Idle, 2=On-duty Active).",
+                  "key": "states",
+                  "value": "<string>"
+                },
+                {
+                  "key": "phones",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "89a4ab9c-5af3-4b6f-a6c7-7da7aee88455",
+              "name": "Workers",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workers?filter=<string>&teams=<string>&states=<string>&phones=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workers"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to return.",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of team IDs.",
+                      "key": "teams",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of worker states (0=Offline, 1=On-duty Idle, 2=On-duty Active).",
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phones",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"timeCreated\": \"<long>\",\n    \"timeLastModified\": \"<long>\",\n    \"organization\": \"<string>\",\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"activeTask\": \"<string>\",\n    \"tasks\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"onDuty\": \"<boolean>\",\n    \"timeLastSeen\": \"<long>\",\n    \"capacity\": \"<number>\",\n    \"userData\": {\n      \"platform\": \"<string>\",\n      \"appVersion\": \"<string>\",\n      \"deviceDescription\": \"<string>\"\n    },\n    \"accountStatus\": \"<string>\",\n    \"teams\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"vehicle\": {\n      \"type\": \"BICYCLE\",\n      \"description\": \"<string>\",\n      \"licensePlate\": \"<string>\",\n      \"color\": \"<string>\"\n    },\n    \"location\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"timeCreated\": \"<long>\",\n    \"timeLastModified\": \"<long>\",\n    \"organization\": \"<string>\",\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"activeTask\": \"<string>\",\n    \"tasks\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"onDuty\": \"<boolean>\",\n    \"timeLastSeen\": \"<long>\",\n    \"capacity\": \"<number>\",\n    \"userData\": {\n      \"platform\": \"<string>\",\n      \"appVersion\": \"<string>\",\n      \"deviceDescription\": \"<string>\"\n    },\n    \"accountStatus\": \"<string>\",\n    \"teams\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"vehicle\": {\n      \"type\": \"TRUCK\",\n      \"description\": \"<string>\",\n      \"licensePlate\": \"<string>\",\n      \"color\": \"<string>\"\n    },\n    \"location\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:13:28.000Z",
+              "updatedAt": "2026-06-05T15:13:28.000Z",
+              "uid": "35240-89a4ab9c-5af3-4b6f-a6c7-7da7aee88455"
+            }
+          ],
+          "createdAt": "2026-06-05T15:13:28.000Z",
+          "updatedAt": "2026-06-05T15:13:28.000Z",
+          "uid": "35240-bd0b2261-190c-4295-8b5f-dc0d6bb0f408"
+        },
+        {
+          "name": "Create Worker",
+          "id": "5bacd32c-4893-4ba5-b3e3-90d69db6fd89",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vehicle\": {\n    \"type\": \"CAR\",\n    \"description\": \"<string>\",\n    \"licensePlate\": \"<string>\",\n    \"color\": \"<string>\"\n  },\n  \"capacity\": \"<number>\",\n  \"displayName\": \"<string>\",\n  \"additionalCapacities\": {}\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/workers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "workers"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c6bb5bf1-f83c-46d5-9c38-d3adf11c98f3",
+              "name": "Worker created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vehicle\": {\n    \"type\": \"CAR\",\n    \"description\": \"<string>\",\n    \"licensePlate\": \"<string>\",\n    \"color\": \"<string>\"\n  },\n  \"capacity\": \"<number>\",\n  \"displayName\": \"<string>\",\n  \"additionalCapacities\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workers"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"organization\": \"<string>\",\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"activeTask\": \"<string>\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"onDuty\": \"<boolean>\",\n  \"timeLastSeen\": \"<long>\",\n  \"capacity\": \"<number>\",\n  \"userData\": {\n    \"platform\": \"<string>\",\n    \"appVersion\": \"<string>\",\n    \"deviceDescription\": \"<string>\"\n  },\n  \"accountStatus\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vehicle\": {\n    \"type\": \"BICYCLE\",\n    \"description\": \"<string>\",\n    \"licensePlate\": \"<string>\",\n    \"color\": \"<string>\"\n  },\n  \"location\": [\n    \"<number>\",\n    \"<number>\"\n  ]\n}",
+              "createdAt": "2026-06-05T15:13:28.000Z",
+              "updatedAt": "2026-06-05T15:13:28.000Z",
+              "uid": "35240-c6bb5bf1-f83c-46d5-9c38-d3adf11c98f3"
+            }
+          ],
+          "createdAt": "2026-06-05T15:13:28.000Z",
+          "updatedAt": "2026-06-05T15:13:28.000Z",
+          "uid": "35240-5bacd32c-4893-4ba5-b3e3-90d69db6fd89"
+        }
+      ],
+      "id": "2516b9fb-ea17-4573-9b23-2b0d85784db4",
+      "createdAt": "2026-06-05T15:13:28.000Z",
+      "updatedAt": "2026-06-05T15:13:28.000Z",
+      "uid": "35240-2516b9fb-ea17-4573-9b23-2b0d85784db4"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://onfleet.com/api/v2"
+    }
+  ]
+}

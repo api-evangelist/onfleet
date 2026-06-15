@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Onfleet Recipients API",
+    "version": "2.7"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recipients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://onfleet.com/api/v2/recipients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Recipient"
+        },
+        {
+          "info": {
+            "name": "Get Recipient By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://onfleet.com/api/v2/recipients/:recipientId",
+            "params": [
+              {
+                "name": "recipientId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Recipient By ID"
+        },
+        {
+          "info": {
+            "name": "Update Recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://onfleet.com/api/v2/recipients/:recipientId",
+            "params": [
+              {
+                "name": "recipientId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Recipient"
+        },
+        {
+          "info": {
+            "name": "Get Recipient By Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://onfleet.com/api/v2/recipients/name/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Recipient By Name"
+        },
+        {
+          "info": {
+            "name": "Get Recipient By Phone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://onfleet.com/api/v2/recipients/phone/:phone",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "E.164 formatted phone number."
+              }
+            ]
+          },
+          "docs": "Get Recipient By Phone"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

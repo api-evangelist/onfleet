@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Onfleet Orders API",
+    "version": "2.7"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://onfleet.com/api/v2/taskOrders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Order"
+        },
+        {
+          "info": {
+            "name": "Get Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://onfleet.com/api/v2/taskOrders/:orderShortId",
+            "params": [
+              {
+                "name": "orderShortId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Order"
+        },
+        {
+          "info": {
+            "name": "Update Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://onfleet.com/api/v2/taskOrders/:orderShortId",
+            "params": [
+              {
+                "name": "orderShortId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Order"
+        },
+        {
+          "info": {
+            "name": "Cancel Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://onfleet.com/api/v2/taskOrders/:orderShortId/cancel",
+            "params": [
+              {
+                "name": "orderShortId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel Order"
+        },
+        {
+          "info": {
+            "name": "Reject Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://onfleet.com/api/v2/taskOrders/:orderShortId/reject",
+            "params": [
+              {
+                "name": "orderShortId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reject Order"
+        },
+        {
+          "info": {
+            "name": "Clone Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://onfleet.com/api/v2/taskOrders/clone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clone Orders"
+        },
+        {
+          "info": {
+            "name": "Quote Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://onfleet.com/api/v2/taskOrders/quote",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Quote Order"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

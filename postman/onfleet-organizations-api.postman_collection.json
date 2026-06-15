@@ -1,0 +1,706 @@
+{
+  "info": {
+    "_postman_id": "a3e2c61d-8093-46cb-a91b-976cf0632489",
+    "name": "Onfleet Organizations API",
+    "description": "The Organizations API exposes information about your Onfleet\norganization and connected delegatee organizations in the Onfleet Connect\ncourier network. Use it to retrieve your own organization details and look\nup delegatees you've connected with for cross-organization deliveries.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:13:31.000Z",
+    "updatedAt": "2026-06-05T15:13:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a3e2c61d-8093-46cb-a91b-976cf0632489"
+  },
+  "item": [
+    {
+      "name": "organization",
+      "item": [
+        {
+          "name": "Get Own Organization Details",
+          "id": "68f3b94a-d0ce-44bd-aedb-3b54ab42bb0b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/organization",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organization"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ecb0fc89-8368-4285-8615-c15b906208ec",
+              "name": "Organization",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/organization",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organization"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"country\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"image\": \"<string>\",\n  \"delegatees\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-06-05T15:13:32.000Z",
+              "updatedAt": "2026-06-05T15:13:32.000Z",
+              "uid": "35240-ecb0fc89-8368-4285-8615-c15b906208ec"
+            }
+          ],
+          "createdAt": "2026-06-05T15:13:32.000Z",
+          "updatedAt": "2026-06-05T15:13:32.000Z",
+          "uid": "35240-68f3b94a-d0ce-44bd-aedb-3b54ab42bb0b"
+        }
+      ],
+      "id": "7855f8dd-f238-4ad6-907e-8dd8474eac83",
+      "createdAt": "2026-06-05T15:13:32.000Z",
+      "updatedAt": "2026-06-05T15:13:32.000Z",
+      "uid": "35240-7855f8dd-f238-4ad6-907e-8dd8474eac83"
+    },
+    {
+      "name": "organizations",
+      "item": [
+        {
+          "name": "{organizationId}",
+          "item": [
+            {
+              "name": "Get Delegatee Organization Details",
+              "id": "4a76d5c5-986e-4df8-b715-300dcafc18da",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/organizations/:organizationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    ":organizationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "26511ece-2ab9-41f4-8aa1-8a388556a11d",
+                      "key": "organizationId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "2776b45a-5346-41bc-bd88-d0f5e1509943",
+                  "name": "Organization",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:organizationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":organizationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "organizationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"country\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"image\": \"<string>\",\n  \"delegatees\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-06-05T15:13:32.000Z",
+                  "updatedAt": "2026-06-05T15:13:32.000Z",
+                  "uid": "35240-2776b45a-5346-41bc-bd88-d0f5e1509943"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:32.000Z",
+              "updatedAt": "2026-06-05T15:13:32.000Z",
+              "uid": "35240-4a76d5c5-986e-4df8-b715-300dcafc18da"
+            }
+          ],
+          "id": "abecdcc8-a8b0-4bdf-b0d3-e17612986681",
+          "createdAt": "2026-06-05T15:13:32.000Z",
+          "updatedAt": "2026-06-05T15:13:32.000Z",
+          "uid": "35240-abecdcc8-a8b0-4bdf-b0d3-e17612986681"
+        }
+      ],
+      "id": "97f4de0c-cf9d-40dd-9c5e-128e68ff5933",
+      "createdAt": "2026-06-05T15:13:32.000Z",
+      "updatedAt": "2026-06-05T15:13:32.000Z",
+      "uid": "35240-97f4de0c-cf9d-40dd-9c5e-128e68ff5933"
+    },
+    {
+      "name": "admins",
+      "item": [
+        {
+          "name": "List Administrators",
+          "id": "8f2dbf4d-58f9-4179-8699-e2bcbae67e2f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admins",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admins"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3a1b36bc-1097-45c6-919f-f699cb0760bf",
+              "name": "Administrators",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/admins",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admins"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"timeCreated\": \"<long>\",\n    \"organization\": \"<string>\",\n    \"email\": \"<email>\",\n    \"name\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"isAccountOwner\": \"<boolean>\",\n    \"isReadOnly\": \"<boolean>\",\n    \"isActive\": \"<boolean>\",\n    \"type\": \"standard\",\n    \"teams\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"timeCreated\": \"<long>\",\n    \"organization\": \"<string>\",\n    \"email\": \"<email>\",\n    \"name\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"isAccountOwner\": \"<boolean>\",\n    \"isReadOnly\": \"<boolean>\",\n    \"isActive\": \"<boolean>\",\n    \"type\": \"super\",\n    \"teams\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:13:32.000Z",
+              "updatedAt": "2026-06-05T15:13:32.000Z",
+              "uid": "35240-3a1b36bc-1097-45c6-919f-f699cb0760bf"
+            }
+          ],
+          "createdAt": "2026-06-05T15:13:32.000Z",
+          "updatedAt": "2026-06-05T15:13:32.000Z",
+          "uid": "35240-8f2dbf4d-58f9-4179-8699-e2bcbae67e2f"
+        },
+        {
+          "name": "Create Administrator",
+          "id": "5776f84f-5aef-4f93-9ab9-136e19801f43",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"isReadOnly\": \"<boolean>\",\n  \"type\": \"standard\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admins",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admins"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e9c8dece-ff21-4e4e-8b40-2081afc4d16c",
+              "name": "Administrator created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"isReadOnly\": \"<boolean>\",\n  \"type\": \"standard\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admins",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admins"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"organization\": \"<string>\",\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"isAccountOwner\": \"<boolean>\",\n  \"isReadOnly\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"type\": \"standard\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-06-05T15:13:32.000Z",
+              "updatedAt": "2026-06-05T15:13:32.000Z",
+              "uid": "35240-e9c8dece-ff21-4e4e-8b40-2081afc4d16c"
+            }
+          ],
+          "createdAt": "2026-06-05T15:13:32.000Z",
+          "updatedAt": "2026-06-05T15:13:32.000Z",
+          "uid": "35240-5776f84f-5aef-4f93-9ab9-136e19801f43"
+        }
+      ],
+      "id": "d3bb7253-ab2e-4793-b384-5cebf2b10790",
+      "createdAt": "2026-06-05T15:13:32.000Z",
+      "updatedAt": "2026-06-05T15:13:32.000Z",
+      "uid": "35240-d3bb7253-ab2e-4793-b384-5cebf2b10790"
+    },
+    {
+      "name": "teams",
+      "item": [
+        {
+          "name": "dispatch",
+          "item": [
+            {
+              "name": "{teamId}",
+              "item": [
+                {
+                  "name": "Team Auto-Dispatch",
+                  "id": "7ae8f271-6b7d-4337-bbcb-7b044715b5e1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"maxAllowedDelay\": \"<integer>\",\n  \"maxTasksPerRoute\": \"<integer>\",\n  \"taskTimeWindow\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"scheduleTimeWindow\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"serviceTime\": \"<integer>\",\n  \"routeEnd\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/teams/dispatch/:teamId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "teams",
+                        "dispatch",
+                        ":teamId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "947f6c03-1567-4130-9fa0-b1c49021d290",
+                          "key": "teamId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Trigger Team Auto-Dispatch to assign open unassigned tasks to team workers using Onfleet's batching and routing engine (Beta)."
+                  },
+                  "response": [
+                    {
+                      "id": "bcf9adf9-a0e8-4cc4-a196-b8c11bc16dd6",
+                      "name": "Auto-dispatch queued",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"maxAllowedDelay\": \"<integer>\",\n  \"maxTasksPerRoute\": \"<integer>\",\n  \"taskTimeWindow\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"scheduleTimeWindow\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"serviceTime\": \"<integer>\",\n  \"routeEnd\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/teams/dispatch/:teamId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "teams",
+                            "dispatch",
+                            ":teamId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "teamId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:13:32.000Z",
+                      "updatedAt": "2026-06-05T15:13:32.000Z",
+                      "uid": "35240-bcf9adf9-a0e8-4cc4-a196-b8c11bc16dd6"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:32.000Z",
+                  "updatedAt": "2026-06-05T15:13:32.000Z",
+                  "uid": "35240-7ae8f271-6b7d-4337-bbcb-7b044715b5e1"
+                }
+              ],
+              "id": "7b127e25-3edd-493c-84b7-16f834324d59",
+              "createdAt": "2026-06-05T15:13:32.000Z",
+              "updatedAt": "2026-06-05T15:13:32.000Z",
+              "uid": "35240-7b127e25-3edd-493c-84b7-16f834324d59"
+            }
+          ],
+          "id": "21ed8584-dd9d-4d9c-88de-c6b19d8bc10c",
+          "createdAt": "2026-06-05T15:13:32.000Z",
+          "updatedAt": "2026-06-05T15:13:32.000Z",
+          "uid": "35240-21ed8584-dd9d-4d9c-88de-c6b19d8bc10c"
+        },
+        {
+          "name": "List Teams",
+          "id": "c3984fc4-eed2-489d-a3a8-ceaa992d3884",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teams",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teams"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5746b5c5-0b95-4bb8-92bb-7c5ff4e7fb1e",
+              "name": "Teams",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/teams",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "teams"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"timeCreated\": \"<long>\",\n    \"name\": \"<string>\",\n    \"workers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"managers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"hub\": \"<string>\",\n    \"enableSelfAssignment\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"timeCreated\": \"<long>\",\n    \"name\": \"<string>\",\n    \"workers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"managers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"hub\": \"<string>\",\n    \"enableSelfAssignment\": \"<boolean>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:13:32.000Z",
+              "updatedAt": "2026-06-05T15:13:32.000Z",
+              "uid": "35240-5746b5c5-0b95-4bb8-92bb-7c5ff4e7fb1e"
+            }
+          ],
+          "createdAt": "2026-06-05T15:13:32.000Z",
+          "updatedAt": "2026-06-05T15:13:32.000Z",
+          "uid": "35240-c3984fc4-eed2-489d-a3a8-ceaa992d3884"
+        },
+        {
+          "name": "Create Team",
+          "id": "d95b3959-1218-4e79-bfde-4c83672621d7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"workers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"managers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hub\": \"<string>\",\n  \"enableSelfAssignment\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/teams",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teams"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8075008c-3e5b-4c6b-b27b-4138ecc52c0e",
+              "name": "Team created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"workers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"managers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hub\": \"<string>\",\n  \"enableSelfAssignment\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/teams",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "teams"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"name\": \"<string>\",\n  \"workers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"managers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hub\": \"<string>\",\n  \"enableSelfAssignment\": \"<boolean>\"\n}",
+              "createdAt": "2026-06-05T15:13:32.000Z",
+              "updatedAt": "2026-06-05T15:13:32.000Z",
+              "uid": "35240-8075008c-3e5b-4c6b-b27b-4138ecc52c0e"
+            }
+          ],
+          "createdAt": "2026-06-05T15:13:32.000Z",
+          "updatedAt": "2026-06-05T15:13:32.000Z",
+          "uid": "35240-d95b3959-1218-4e79-bfde-4c83672621d7"
+        }
+      ],
+      "id": "39b66e52-37d2-4a68-a773-93962411d1bf",
+      "createdAt": "2026-06-05T15:13:32.000Z",
+      "updatedAt": "2026-06-05T15:13:32.000Z",
+      "uid": "35240-39b66e52-37d2-4a68-a773-93962411d1bf"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://onfleet.com/api/v2"
+    }
+  ]
+}

@@ -1,0 +1,666 @@
+{
+  "item": [
+    {
+      "id": "25eb1c67-570e-46bb-bb88-a16011b66b4a",
+      "name": "Organizations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "837d3bf0-1834-45b4-9abb-f952e7c42f2a",
+          "name": "Get Own Organization Details",
+          "request": {
+            "name": "Get Own Organization Details",
+            "description": {},
+            "url": {
+              "path": [
+                "organization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28c0a7f0-ea5e-4a7f-a08d-cf1f768d2a1d",
+              "name": "Organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 4672,\n  \"timeLastModified\": 7128,\n  \"name\": \"string\",\n  \"email\": \"3M4aI@lGlVwkmrysTxJUlsmifXOrf.le\",\n  \"country\": \"string\",\n  \"timezone\": \"string\",\n  \"image\": \"string\",\n  \"delegatees\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44705518-0001-43f1-8790-f217664ce78c",
+          "name": "Get Delegatee Organization Details",
+          "request": {
+            "name": "Get Delegatee Organization Details",
+            "description": {},
+            "url": {
+              "path": [
+                "organizations",
+                ":organizationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "295bf872-3833-48f1-9946-d9c7d921b58e",
+              "name": "Organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 4062,\n  \"timeLastModified\": 9617,\n  \"name\": \"string\",\n  \"email\": \"EpZrfSk@OcWleOFgaXLTapitqpgyS.ty\",\n  \"country\": \"string\",\n  \"timezone\": \"string\",\n  \"image\": \"string\",\n  \"delegatees\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac1d7bfd-569a-445e-b29e-311a32d211a2",
+          "name": "List Administrators",
+          "request": {
+            "name": "List Administrators",
+            "description": {},
+            "url": {
+              "path": [
+                "admins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3a00e01-9dcf-4ab9-b7d7-4f53c5e5b630",
+              "name": "Administrators",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 6730,\n    \"organization\": \"string\",\n    \"email\": \"gmSolu1vvwuU@QusGNYocRU.jpq\",\n    \"name\": \"string\",\n    \"phone\": \"string\",\n    \"isAccountOwner\": false,\n    \"isReadOnly\": true,\n    \"isActive\": false,\n    \"type\": \"standard\",\n    \"teams\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 8595,\n    \"organization\": \"string\",\n    \"email\": \"bUxZemtm@qYpOqFi.znzd\",\n    \"name\": \"string\",\n    \"phone\": \"string\",\n    \"isAccountOwner\": true,\n    \"isReadOnly\": false,\n    \"isActive\": false,\n    \"type\": \"super\",\n    \"teams\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e7f9e1d-e771-4274-8c87-8173ffb44bef",
+          "name": "Create Administrator",
+          "request": {
+            "name": "Create Administrator",
+            "description": {},
+            "url": {
+              "path": [
+                "admins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"isReadOnly\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"metadata\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a5ecfd79-33c3-493d-aed9-8aa21f47e780",
+              "name": "Administrator created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"isReadOnly\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"metadata\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 5406,\n  \"organization\": \"string\",\n  \"email\": \"nzkPSEvrcDF@fwnmoGyWCrTnom.hlm\",\n  \"name\": \"string\",\n  \"phone\": \"string\",\n  \"isAccountOwner\": true,\n  \"isReadOnly\": true,\n  \"isActive\": false,\n  \"type\": \"super\",\n  \"teams\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aea48d94-7f74-49c2-9066-f6019a9426ba",
+          "name": "List Teams",
+          "request": {
+            "name": "List Teams",
+            "description": {},
+            "url": {
+              "path": [
+                "teams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6297a85b-88b7-43b3-9c95-6d866470dc2f",
+              "name": "Teams",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 8377,\n    \"name\": \"string\",\n    \"workers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"managers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"hub\": \"string\",\n    \"enableSelfAssignment\": true\n  },\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 7976,\n    \"name\": \"string\",\n    \"workers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"managers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"hub\": \"string\",\n    \"enableSelfAssignment\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96630e19-bd58-4441-8020-0bb12384e058",
+          "name": "Create Team",
+          "request": {
+            "name": "Create Team",
+            "description": {},
+            "url": {
+              "path": [
+                "teams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"workers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"managers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hub\": \"<string>\",\n  \"enableSelfAssignment\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "60f9566d-56dd-4081-9dd6-fa60b57ef30f",
+              "name": "Team created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"workers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"managers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hub\": \"<string>\",\n  \"enableSelfAssignment\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 7376,\n  \"name\": \"string\",\n  \"workers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"managers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"hub\": \"string\",\n  \"enableSelfAssignment\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81c67c1f-ab2b-452a-a8cf-cfef07860c8e",
+          "name": "Team Auto-Dispatch",
+          "request": {
+            "name": "Team Auto-Dispatch",
+            "description": {
+              "content": "Trigger Team Auto-Dispatch to assign open unassigned tasks to team workers using Onfleet's batching and routing engine (Beta).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                "dispatch",
+                ":teamId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"maxAllowedDelay\": \"<integer>\",\n  \"maxTasksPerRoute\": \"<integer>\",\n  \"taskTimeWindow\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"scheduleTimeWindow\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"serviceTime\": \"<integer>\",\n  \"routeEnd\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67efcea9-4e1b-44d1-8354-b339ca7bdbe7",
+              "name": "Auto-dispatch queued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    "dispatch",
+                    ":teamId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"maxAllowedDelay\": \"<integer>\",\n  \"maxTasksPerRoute\": \"<integer>\",\n  \"taskTimeWindow\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"scheduleTimeWindow\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"serviceTime\": \"<integer>\",\n  \"routeEnd\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://onfleet.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "057b3934-5d1c-41b7-90bf-228978cc40ab",
+    "name": "Onfleet Organizations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Organizations API exposes information about your Onfleet\norganization and connected delegatee organizations in the Onfleet Connect\ncourier network. Use it to retrieve your own organization details and look\nup delegatees you've connected with for cross-organization deliveries.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",
+      "type": "text/plain"
+    }
+  }
+}

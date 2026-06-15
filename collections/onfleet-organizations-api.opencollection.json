@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Onfleet Organizations API",
+    "version": "2.7"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Own Organization Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://onfleet.com/api/v2/organization"
+          },
+          "docs": "Get Own Organization Details"
+        },
+        {
+          "info": {
+            "name": "Get Delegatee Organization Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://onfleet.com/api/v2/organizations/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Delegatee Organization Details"
+        },
+        {
+          "info": {
+            "name": "List Administrators",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://onfleet.com/api/v2/admins"
+          },
+          "docs": "List Administrators"
+        },
+        {
+          "info": {
+            "name": "Create Administrator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://onfleet.com/api/v2/admins",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Administrator"
+        },
+        {
+          "info": {
+            "name": "List Teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://onfleet.com/api/v2/teams"
+          },
+          "docs": "List Teams"
+        },
+        {
+          "info": {
+            "name": "Create Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://onfleet.com/api/v2/teams",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Team"
+        },
+        {
+          "info": {
+            "name": "Team Auto-Dispatch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://onfleet.com/api/v2/teams/dispatch/:teamId",
+            "params": [
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger Team Auto-Dispatch to assign open unassigned tasks to team workers using Onfleet's batching and routing engine (Beta)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,569 @@
+{
+  "info": {
+    "_postman_id": "718cc0a0-3811-44fb-9589-ee33b3204dc0",
+    "name": "Onfleet Recipients API",
+    "description": "The Onfleet Recipients API manages the end customers who receive a\ndelivery \u2014 the person notified via SMS, shown on tracking pages, and\nassociated with a task. Recipients are reusable resources keyed by name\nand E.164 phone number.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:13:33.000Z",
+    "updatedAt": "2026-06-05T15:13:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-718cc0a0-3811-44fb-9589-ee33b3204dc0"
+  },
+  "item": [
+    {
+      "name": "recipients",
+      "item": [
+        {
+          "name": "{recipientId}",
+          "item": [
+            {
+              "name": "Get Recipient By ID",
+              "id": "3f37609f-c5cc-4042-b230-d59918a9364c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/recipients/:recipientId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recipients",
+                    ":recipientId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e3d31933-1b64-40e4-8d65-1b1411d5de81",
+                      "key": "recipientId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "3df9d145-ddec-4325-a809-505239a797b5",
+                  "name": "Recipient",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recipients/:recipientId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recipients",
+                        ":recipientId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recipientId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"skipSMSNotifications\": \"<boolean>\"\n}",
+                  "createdAt": "2026-06-05T15:13:33.000Z",
+                  "updatedAt": "2026-06-05T15:13:33.000Z",
+                  "uid": "35240-3df9d145-ddec-4325-a809-505239a797b5"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:33.000Z",
+              "updatedAt": "2026-06-05T15:13:33.000Z",
+              "uid": "35240-3f37609f-c5cc-4042-b230-d59918a9364c"
+            },
+            {
+              "name": "Update Recipient",
+              "id": "ec7628c2-bcea-4703-b73f-34b158789d9a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"skipSMSNotifications\": \"<boolean>\",\n  \"useRecipientLanguage\": \"<boolean>\",\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/recipients/:recipientId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recipients",
+                    ":recipientId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "115bf739-8a6f-4456-b70a-cc10542f1a81",
+                      "key": "recipientId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "14d68734-cd3f-41c8-9571-28c11fcc65cc",
+                  "name": "Updated recipient",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"skipSMSNotifications\": \"<boolean>\",\n  \"useRecipientLanguage\": \"<boolean>\",\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": {}\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/recipients/:recipientId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recipients",
+                        ":recipientId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recipientId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"skipSMSNotifications\": \"<boolean>\"\n}",
+                  "createdAt": "2026-06-05T15:13:33.000Z",
+                  "updatedAt": "2026-06-05T15:13:33.000Z",
+                  "uid": "35240-14d68734-cd3f-41c8-9571-28c11fcc65cc"
+                }
+              ],
+              "createdAt": "2026-06-05T15:13:33.000Z",
+              "updatedAt": "2026-06-05T15:13:33.000Z",
+              "uid": "35240-ec7628c2-bcea-4703-b73f-34b158789d9a"
+            }
+          ],
+          "id": "4479d0e8-639c-451c-a1f5-40e71646dbba",
+          "createdAt": "2026-06-05T15:13:33.000Z",
+          "updatedAt": "2026-06-05T15:13:33.000Z",
+          "uid": "35240-4479d0e8-639c-451c-a1f5-40e71646dbba"
+        },
+        {
+          "name": "name",
+          "item": [
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "Get Recipient By Name",
+                  "id": "3af4bdaf-5b1c-46dc-a77c-1893c87894b1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recipients/name/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recipients",
+                        "name",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9d5ae6c1-12b0-42b8-bdf9-a9a51b4f9b16",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "47079322-418d-488b-8d9d-2d15f0803d62",
+                      "name": "Recipient",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/recipients/name/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "recipients",
+                            "name",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"skipSMSNotifications\": \"<boolean>\"\n}",
+                      "createdAt": "2026-06-05T15:13:33.000Z",
+                      "updatedAt": "2026-06-05T15:13:33.000Z",
+                      "uid": "35240-47079322-418d-488b-8d9d-2d15f0803d62"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:33.000Z",
+                  "updatedAt": "2026-06-05T15:13:33.000Z",
+                  "uid": "35240-3af4bdaf-5b1c-46dc-a77c-1893c87894b1"
+                }
+              ],
+              "id": "fd8537c2-edf8-4047-91cb-925df48b45c7",
+              "createdAt": "2026-06-05T15:13:33.000Z",
+              "updatedAt": "2026-06-05T15:13:33.000Z",
+              "uid": "35240-fd8537c2-edf8-4047-91cb-925df48b45c7"
+            }
+          ],
+          "id": "c465cfe5-df70-4650-939e-b88545c3623e",
+          "createdAt": "2026-06-05T15:13:33.000Z",
+          "updatedAt": "2026-06-05T15:13:33.000Z",
+          "uid": "35240-c465cfe5-df70-4650-939e-b88545c3623e"
+        },
+        {
+          "name": "phone",
+          "item": [
+            {
+              "name": "{phone}",
+              "item": [
+                {
+                  "name": "Get Recipient By Phone",
+                  "id": "aca5941c-52fc-4318-893c-a87f4dda34c9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recipients/phone/:phone",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recipients",
+                        "phone",
+                        ":phone"
+                      ],
+                      "variable": [
+                        {
+                          "id": "603b806f-5967-42b2-8746-98ebc627e9cf",
+                          "key": "phone",
+                          "value": "<string>",
+                          "description": "(Required) E.164 formatted phone number."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "4d5dd843-0824-432a-8aa3-a454b44bfa98",
+                      "name": "Recipient",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/recipients/phone/:phone",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "recipients",
+                            "phone",
+                            ":phone"
+                          ],
+                          "variable": [
+                            {
+                              "key": "phone"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"skipSMSNotifications\": \"<boolean>\"\n}",
+                      "createdAt": "2026-06-05T15:13:33.000Z",
+                      "updatedAt": "2026-06-05T15:13:33.000Z",
+                      "uid": "35240-4d5dd843-0824-432a-8aa3-a454b44bfa98"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:13:33.000Z",
+                  "updatedAt": "2026-06-05T15:13:33.000Z",
+                  "uid": "35240-aca5941c-52fc-4318-893c-a87f4dda34c9"
+                }
+              ],
+              "id": "0e1ca869-aba8-4153-b9be-4dd670581aca",
+              "createdAt": "2026-06-05T15:13:33.000Z",
+              "updatedAt": "2026-06-05T15:13:33.000Z",
+              "uid": "35240-0e1ca869-aba8-4153-b9be-4dd670581aca"
+            }
+          ],
+          "id": "2adf3bbf-8d1e-4a7b-8b7b-8d21432ac65b",
+          "createdAt": "2026-06-05T15:13:33.000Z",
+          "updatedAt": "2026-06-05T15:13:33.000Z",
+          "uid": "35240-2adf3bbf-8d1e-4a7b-8b7b-8d21432ac65b"
+        },
+        {
+          "name": "Create Recipient",
+          "id": "8dc81024-8832-4de9-aa2d-2592f29bd0f2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"skipSMSNotifications\": \"<boolean>\",\n  \"useRecipientLanguage\": \"<boolean>\",\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": {}\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/recipients",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "recipients"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0bd0380d-2c04-47e9-9aa1-5edd9ffe0a11",
+              "name": "Recipient created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"skipSMSNotifications\": \"<boolean>\",\n  \"useRecipientLanguage\": \"<boolean>\",\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/recipients",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recipients"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"timeCreated\": \"<long>\",\n  \"timeLastModified\": \"<long>\",\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"skipSMSNotifications\": \"<boolean>\"\n}",
+              "createdAt": "2026-06-05T15:13:33.000Z",
+              "updatedAt": "2026-06-05T15:13:33.000Z",
+              "uid": "35240-0bd0380d-2c04-47e9-9aa1-5edd9ffe0a11"
+            }
+          ],
+          "createdAt": "2026-06-05T15:13:33.000Z",
+          "updatedAt": "2026-06-05T15:13:33.000Z",
+          "uid": "35240-8dc81024-8832-4de9-aa2d-2592f29bd0f2"
+        }
+      ],
+      "id": "8de7e0cf-5f5f-453d-b51c-ebe8848cac17",
+      "createdAt": "2026-06-05T15:13:33.000Z",
+      "updatedAt": "2026-06-05T15:13:33.000Z",
+      "uid": "35240-8de7e0cf-5f5f-453d-b51c-ebe8848cac17"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://onfleet.com/api/v2"
+    }
+  ]
+}
