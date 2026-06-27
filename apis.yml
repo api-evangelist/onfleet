@@ -24,7 +24,7 @@ apis:
   - url: json-structure/onfleet-task-structure.json
     type: JSONStructure
   - url: examples/onfleet-create-task-example.json
-    type: Example
+    type: Examples
   - url: graphql/onfleet-graphql.md
     type: GraphQL
   description: 'Create, list, fetch, update, clone, force-complete, and delete pickup/dropoff
@@ -58,7 +58,7 @@ apis:
   - url: json-schema/onfleet-worker-schema.json
     type: JSONSchema
   - url: examples/onfleet-create-worker-example.json
-    type: Example
+    type: Examples
   description: 'Manage drivers — create, list, update, delete, fetch a worker''s assigned
     tasks, and pull a
 
@@ -201,7 +201,7 @@ apis:
   - url: asyncapi/onfleet-webhooks-asyncapi.yml
     type: AsyncAPI
   - url: examples/onfleet-webhook-task-completed-example.json
-    type: Example
+    type: Examples
   description: 'Register HTTPS callbacks against 27 trigger types covering task lifecycle,
     worker duty/CRUD,
 
@@ -233,56 +233,45 @@ access: 3rd-Party
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/onfleet/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/onfleet-assign-task-to-worker-workflow.yml
-    name: Onfleet Assign Task to Worker
-    summary: Create a task and explicitly assign it to a worker's container, then
-      verify.
-  - url: arazzo/onfleet-auto-assign-task-workflow.yml
-    name: Onfleet Auto-Assign Task
-    summary: Create a task with auto-assignment to a team, then confirm a worker was
-      assigned.
-  - url: arazzo/onfleet-batch-create-and-list-tasks-workflow.yml
-    name: Onfleet Batch Create and List Tasks
-    summary: Submit a batch of tasks asynchronously, then list tasks to verify the
-      load.
-  - url: arazzo/onfleet-build-route-plan-workflow.yml
-    name: Onfleet Build Route Plan
-    summary: Create a route plan for a worker, append tasks to it, then read it back.
-  - url: arazzo/onfleet-clone-and-complete-task-workflow.yml
-    name: Onfleet Clone and Force-Complete Task
-    summary: Read a task, clone it for a redelivery, then force-complete the original.
-  - url: arazzo/onfleet-dispatch-team-tasks-workflow.yml
-    name: Onfleet Dispatch Team Tasks
-    summary: Survey unassigned tasks, trigger team auto-dispatch, then re-check what
-      remains.
-  - url: arazzo/onfleet-fulfill-courier-order-workflow.yml
-    name: Onfleet Fulfill Courier Order
-    summary: Quote a pickup-and-dropoff order, create it, then read back its status.
-  - url: arazzo/onfleet-onboard-worker-to-team-workflow.yml
-    name: Onfleet Onboard Worker to Team
-    summary: Create a team, add a new worker to it, then confirm the worker's membership.
-  - url: arazzo/onfleet-optimize-team-routes-workflow.yml
-    name: Onfleet Optimize Team Routes
-    summary: Initialize and start a route optimization, poll its status, then apply
-      the result.
-  - url: arazzo/onfleet-provision-admin-and-team-workflow.yml
-    name: Onfleet Provision Administrator and Team
-    summary: Create an administrator, create a team they manage, then confirm the
-      team list.
-  - url: arazzo/onfleet-provision-delivery-task-workflow.yml
-    name: Onfleet Provision Delivery Task
-    summary: Create a recipient and destination, then create a delivery task and confirm
-      it.
-  - url: arazzo/onfleet-register-task-webhook-workflow.yml
-    name: Onfleet Register Task Webhook
-    summary: Register a webhook, fetch the signing secret, then confirm it is listed.
-  - url: arazzo/onfleet-upsert-recipient-and-create-task-workflow.yml
-    name: Onfleet Upsert Recipient and Create Task
-    summary: Look up a recipient by phone, create one if missing, then create a task
-      for them.
+- type: Arazzo
+  url: arazzo/onfleet-assign-task-to-worker-workflow.yml
+  name: Onfleet Assign Task to Worker
+- type: Arazzo
+  url: arazzo/onfleet-auto-assign-task-workflow.yml
+  name: Onfleet Auto-Assign Task
+- type: Arazzo
+  url: arazzo/onfleet-batch-create-and-list-tasks-workflow.yml
+  name: Onfleet Batch Create and List Tasks
+- type: Arazzo
+  url: arazzo/onfleet-build-route-plan-workflow.yml
+  name: Onfleet Build Route Plan
+- type: Arazzo
+  url: arazzo/onfleet-clone-and-complete-task-workflow.yml
+  name: Onfleet Clone and Force-Complete Task
+- type: Arazzo
+  url: arazzo/onfleet-dispatch-team-tasks-workflow.yml
+  name: Onfleet Dispatch Team Tasks
+- type: Arazzo
+  url: arazzo/onfleet-fulfill-courier-order-workflow.yml
+  name: Onfleet Fulfill Courier Order
+- type: Arazzo
+  url: arazzo/onfleet-onboard-worker-to-team-workflow.yml
+  name: Onfleet Onboard Worker to Team
+- type: Arazzo
+  url: arazzo/onfleet-optimize-team-routes-workflow.yml
+  name: Onfleet Optimize Team Routes
+- type: Arazzo
+  url: arazzo/onfleet-provision-admin-and-team-workflow.yml
+  name: Onfleet Provision Administrator and Team
+- type: Arazzo
+  url: arazzo/onfleet-provision-delivery-task-workflow.yml
+  name: Onfleet Provision Delivery Task
+- type: Arazzo
+  url: arazzo/onfleet-register-task-webhook-workflow.yml
+  name: Onfleet Register Task Webhook
+- type: Arazzo
+  url: arazzo/onfleet-upsert-recipient-and-create-task-workflow.yml
+  name: Onfleet Upsert Recipient and Create Task
 - type: Portal
   url: https://onfleet.com
 - type: Documentation
@@ -308,7 +297,7 @@ common:
   url: https://status.onfleet.com
 - type: Blog
   url: https://onfleet.com/blog
-- type: SignUp
+- type: Signup
   url: https://onfleet.com/signup
 - type: Pricing
   url: https://onfleet.com/pricing
@@ -320,22 +309,22 @@ common:
   url: https://onfleet.com/support
 - type: GitHubOrganization
   url: https://github.com/onfleet
-- type: SDK
+- type: SDKs
   name: Python (pyonfleet)
   url: https://github.com/onfleet/pyonfleet
-- type: SDK
+- type: SDKs
   name: Node.js (node-onfleet)
   url: https://github.com/onfleet/node-onfleet
-- type: SDK
+- type: SDKs
   name: PHP (php-onfleet)
   url: https://github.com/onfleet/php-onfleet
-- type: SDK
+- type: SDKs
   name: Java (java-onfleet)
   url: https://github.com/onfleet/java-onfleet
-- type: SDK
+- type: SDKs
   name: Go (gonfleet)
   url: https://github.com/onfleet/gonfleet
-- type: SDK
+- type: SDKs
   name: Ruby (ruby-onfleet, archived)
   url: https://github.com/onfleet/ruby-onfleet
 - type: CodeExamples
