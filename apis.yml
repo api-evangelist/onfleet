@@ -231,6 +231,14 @@ kind: contract
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+- type: TrustCenter
+  url: security/onfleet-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/onfleet-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/onfleet-domain-security.yml
+- type: Authentication
+  url: authentication/onfleet-authentication.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/onfleet/overview
 - type: Arazzo

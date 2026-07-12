@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/onfleet-destinations-api-openapi.yml, openapi/onfleet-orders-api-openapi.yml,
+  openapi/onfleet-organizations-api-openapi.yml, openapi/onfleet-recipients-api-openapi.yml,
+  openapi/onfleet-route-plans-api-openapi.yml, openapi/onfleet-tasks-api-openapi.yml, openapi/onfleet-webhooks-api-openapi.yml,
+  openapi/onfleet-workers-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/onfleet-destinations-api-openapi.yml
+  - openapi/onfleet-orders-api-openapi.yml
+  - openapi/onfleet-organizations-api-openapi.yml
+  - openapi/onfleet-recipients-api-openapi.yml
+  - openapi/onfleet-route-plans-api-openapi.yml
+  - openapi/onfleet-tasks-api-openapi.yml
+  - openapi/onfleet-webhooks-api-openapi.yml
+  - openapi/onfleet-workers-api-openapi.yml

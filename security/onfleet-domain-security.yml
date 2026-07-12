@@ -1,0 +1,28 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: onfleet.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan  7 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: docs.onfleet.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  3 15:15:35 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: onfleet.com
+  dnssec: false
+  caa:
+  - 0 issue "pki.goog"
+  - 0 issue "sectigo.com"
+  - 0 iodef "mailto:devops+caa@onfleet.com"
+  - 0 issue "amazon.com"
+  - 0 issue "letsencrypt.org"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
