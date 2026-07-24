@@ -1,11 +1,15 @@
 openapi: 3.0.3
 info:
-  title: Onfleet Orders API
-  description: |
-    Orders represent a delivery workflow composed of a pair of tasks — a pickup
-    and a corresponding dropoff — used by courier organizations and their
-    clients in the Onfleet Connect network. The Orders API lets you quote,
-    create, update, clone, cancel, and reject orders programmatically.
+  title: Onfleet Destinations Orders API
+  description: 'The Destinations API manages physical addresses associated with tasks.
+
+    Destinations include parsed address fields and a GeoJSON location, and can
+
+    be reused across tasks. Onfleet geocodes addresses on creation; you can
+
+    also supply an `unparsed` address.
+
+    '
   version: '2.7'
   contact:
     name: Onfleet Support
@@ -14,37 +18,42 @@ info:
     name: Onfleet Terms of Service
     url: https://onfleet.com/legal
 servers:
-  - url: https://onfleet.com/api/v2
-    description: Production
+- url: https://onfleet.com/api/v2
+  description: Production
 security:
-  - basicAuth: []
+- basicAuth: []
 tags:
-  - name: Orders
+- name: Orders
 paths:
   /taskOrders:
     post:
-      tags: [Orders]
+      tags:
+      - Orders
       summary: Create Order
       operationId: createOrder
       requestBody:
         required: true
         content:
           application/json:
-            schema: {$ref: '#/components/schemas/OrderCreate'}
+            schema:
+              $ref: '#/components/schemas/OrderCreate'
       responses:
         '200':
           description: Order created
           content:
             application/json:
-              schema: {$ref: '#/components/schemas/Order'}
+              schema:
+                $ref: '#/components/schemas/Order'
   /taskOrders/{orderShortId}:
     parameters:
-      - name: orderShortId
-        in: path
-        required: true
-        schema: {type: string}
+    - name: orderShortId
+      in: path
+      required: true
+      schema:
+        type: string
     get:
-      tags: [Orders]
+      tags:
+      - Orders
       summary: Get Order
       operationId: getOrder
       responses:
@@ -52,58 +61,68 @@ paths:
           description: Order
           content:
             application/json:
-              schema: {$ref: '#/components/schemas/Order'}
+              schema:
+                $ref: '#/components/schemas/Order'
     put:
-      tags: [Orders]
+      tags:
+      - Orders
       summary: Update Order
       operationId: updateOrder
       requestBody:
         required: true
         content:
           application/json:
-            schema: {$ref: '#/components/schemas/OrderUpdate'}
+            schema:
+              $ref: '#/components/schemas/OrderUpdate'
       responses:
         '200':
           description: Updated order
           content:
             application/json:
-              schema: {$ref: '#/components/schemas/Order'}
+              schema:
+                $ref: '#/components/schemas/Order'
   /taskOrders/{orderShortId}/cancel:
     post:
-      tags: [Orders]
+      tags:
+      - Orders
       summary: Cancel Order
       operationId: cancelOrder
       parameters:
-        - name: orderShortId
-          in: path
-          required: true
-          schema: {type: string}
+      - name: orderShortId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Cancelled
   /taskOrders/{orderShortId}/reject:
     post:
-      tags: [Orders]
+      tags:
+      - Orders
       summary: Reject Order
       operationId: rejectOrder
       parameters:
-        - name: orderShortId
-          in: path
-          required: true
-          schema: {type: string}
+      - name: orderShortId
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                reason: {type: string}
+                reason:
+                  type: string
       responses:
         '200':
           description: Rejected
   /taskOrders/clone:
     post:
-      tags: [Orders]
+      tags:
+      - Orders
       summary: Clone Orders
       operationId: cloneOrders
       requestBody:
@@ -115,20 +134,23 @@ paths:
               properties:
                 orderIds:
                   type: array
-                  items: {type: string}
+                  items:
+                    type: string
       responses:
         '200':
           description: Cloned orders
   /taskOrders/quote:
     post:
-      tags: [Orders]
+      tags:
+      - Orders
       summary: Quote Order
       operationId: quoteOrder
       requestBody:
         required: true
         content:
           application/json:
-            schema: {$ref: '#/components/schemas/OrderCreate'}
+            schema:
+              $ref: '#/components/schemas/OrderCreate'
       responses:
         '200':
           description: Price quote
@@ -137,44 +159,79 @@ paths:
               schema:
                 type: object
                 properties:
-                  price: {type: number}
-                  currency: {type: string}
-                  estimatedDeliveryTime: {type: integer, format: int64}
+                  price:
+                    type: number
+                  currency:
+                    type: string
+                  estimatedDeliveryTime:
+                    type: integer
+                    format: int64
 components:
+  schemas:
+    OrderCreate:
+      type: object
+      properties:
+        client:
+          type: string
+        deliveryServiceId:
+          type: string
+        price:
+          type: number
+        currency:
+          type: string
+        pickupTask:
+          $ref: onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate
+        dropoffTask:
+          $ref: onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate
+    OrderUpdate:
+      type: object
+      properties:
+        price:
+          type: number
+        currency:
+          type: string
+        pickupTask:
+          type: object
+        dropoffTask:
+          type: object
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        shortId:
+          type: string
+        organization:
+          type: string
+        client:
+          type: string
+        timeCreated:
+          type: integer
+          format: int64
+        deliveryServiceId:
+          type: string
+          nullable: true
+        price:
+          type: number
+          nullable: true
+        currency:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum:
+          - QUOTED
+          - CREATED
+          - ASSIGNED
+          - IN_PROGRESS
+          - COMPLETED
+          - CANCELLED
+          - REJECTED
+        pickupTask:
+          type: string
+        dropoffTask:
+          type: string
   securitySchemes:
     basicAuth:
       type: http
       scheme: basic
-  schemas:
-    Order:
-      type: object
-      properties:
-        id: {type: string}
-        shortId: {type: string}
-        organization: {type: string}
-        client: {type: string}
-        timeCreated: {type: integer, format: int64}
-        deliveryServiceId: {type: string, nullable: true}
-        price: {type: number, nullable: true}
-        currency: {type: string, nullable: true}
-        status: {type: string, enum: [QUOTED, CREATED, ASSIGNED, IN_PROGRESS, COMPLETED, CANCELLED, REJECTED]}
-        pickupTask: {type: string}
-        dropoffTask: {type: string}
-    OrderCreate:
-      type: object
-      properties:
-        client: {type: string}
-        deliveryServiceId: {type: string}
-        price: {type: number}
-        currency: {type: string}
-        pickupTask:
-          $ref: 'onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate'
-        dropoffTask:
-          $ref: 'onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate'
-    OrderUpdate:
-      type: object
-      properties:
-        price: {type: number}
-        currency: {type: string}
-        pickupTask: {type: object}
-        dropoffTask: {type: object}

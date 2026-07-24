@@ -1,10 +1,15 @@
 openapi: 3.0.3
 info:
-  title: Onfleet Workers API
-  description: |
-    The Onfleet Workers API manages drivers (workers) — the on-the-ground
-    operators who execute tasks. Endpoints cover creation, listing, deletion,
-    duty status, location lookup, and route delivery manifests for compliance.
+  title: Onfleet Destinations Workers API
+  description: 'The Destinations API manages physical addresses associated with tasks.
+
+    Destinations include parsed address fields and a GeoJSON location, and can
+
+    be reused across tasks. Onfleet geocodes addresses on creation; you can
+
+    also supply an `unparsed` address.
+
+    '
   version: '2.7'
   contact:
     name: Onfleet Support
@@ -13,34 +18,39 @@ info:
     name: Onfleet Terms of Service
     url: https://onfleet.com/legal
 servers:
-  - url: https://onfleet.com/api/v2
-    description: Production
+- url: https://onfleet.com/api/v2
+  description: Production
 security:
-  - basicAuth: []
+- basicAuth: []
 tags:
-  - name: Workers
+- name: Workers
 paths:
   /workers:
     get:
-      tags: [Workers]
+      tags:
+      - Workers
       summary: List Workers
       operationId: listWorkers
       parameters:
-        - name: filter
-          in: query
-          schema: {type: string}
-          description: Comma-separated list of fields to return.
-        - name: teams
-          in: query
-          schema: {type: string}
-          description: Comma-separated list of team IDs.
-        - name: states
-          in: query
-          schema: {type: string}
-          description: Comma-separated list of worker states (0=Offline, 1=On-duty Idle, 2=On-duty Active).
-        - name: phones
-          in: query
-          schema: {type: string}
+      - name: filter
+        in: query
+        schema:
+          type: string
+        description: Comma-separated list of fields to return.
+      - name: teams
+        in: query
+        schema:
+          type: string
+        description: Comma-separated list of team IDs.
+      - name: states
+        in: query
+        schema:
+          type: string
+        description: Comma-separated list of worker states (0=Offline, 1=On-duty Idle, 2=On-duty Active).
+      - name: phones
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Workers
@@ -48,62 +58,75 @@ paths:
             application/json:
               schema:
                 type: array
-                items: {$ref: '#/components/schemas/Worker'}
+                items:
+                  $ref: '#/components/schemas/Worker'
     post:
-      tags: [Workers]
+      tags:
+      - Workers
       summary: Create Worker
       operationId: createWorker
       requestBody:
         required: true
         content:
           application/json:
-            schema: {$ref: '#/components/schemas/WorkerCreate'}
+            schema:
+              $ref: '#/components/schemas/WorkerCreate'
       responses:
         '200':
           description: Worker created
           content:
             application/json:
-              schema: {$ref: '#/components/schemas/Worker'}
+              schema:
+                $ref: '#/components/schemas/Worker'
   /workers/{workerId}:
     parameters:
-      - name: workerId
-        in: path
-        required: true
-        schema: {type: string}
+    - name: workerId
+      in: path
+      required: true
+      schema:
+        type: string
     get:
-      tags: [Workers]
+      tags:
+      - Workers
       summary: Get Single Worker
       operationId: getWorker
       parameters:
-        - name: filter
-          in: query
-          schema: {type: string}
-        - name: analytics
-          in: query
-          schema: {type: boolean}
+      - name: filter
+        in: query
+        schema:
+          type: string
+      - name: analytics
+        in: query
+        schema:
+          type: boolean
       responses:
         '200':
           description: Worker
           content:
             application/json:
-              schema: {$ref: '#/components/schemas/Worker'}
+              schema:
+                $ref: '#/components/schemas/Worker'
     put:
-      tags: [Workers]
+      tags:
+      - Workers
       summary: Update Worker
       operationId: updateWorker
       requestBody:
         required: true
         content:
           application/json:
-            schema: {$ref: '#/components/schemas/WorkerCreate'}
+            schema:
+              $ref: '#/components/schemas/WorkerCreate'
       responses:
         '200':
           description: Updated worker
           content:
             application/json:
-              schema: {$ref: '#/components/schemas/Worker'}
+              schema:
+                $ref: '#/components/schemas/Worker'
     delete:
-      tags: [Workers]
+      tags:
+      - Workers
       summary: Delete Worker
       operationId: deleteWorker
       responses:
@@ -111,14 +134,16 @@ paths:
           description: Worker deleted
   /workers/{workerId}/tasks:
     get:
-      tags: [Workers]
+      tags:
+      - Workers
       summary: List Worker's Assigned Tasks
       operationId: listWorkerAssignedTasks
       parameters:
-        - name: workerId
-          in: path
-          required: true
-          schema: {type: string}
+      - name: workerId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Tasks
@@ -130,83 +155,133 @@ paths:
                   type: string
   /workers/{workerId}/deliveryManifest:
     get:
-      tags: [Workers]
+      tags:
+      - Workers
       summary: Get Worker's Route Delivery Manifest
       operationId: getDeliveryManifest
       parameters:
-        - name: workerId
-          in: path
-          required: true
-          schema: {type: string}
-        - name: googleApiKey
-          in: query
-          schema: {type: string}
+      - name: workerId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: googleApiKey
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Manifest
           content:
             application/json:
-              schema: {type: object}
+              schema:
+                type: object
 components:
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
   schemas:
     Worker:
       type: object
       properties:
-        id: {type: string}
-        timeCreated: {type: integer, format: int64}
-        timeLastModified: {type: integer, format: int64}
-        organization: {type: string}
-        name: {type: string}
-        displayName: {type: string, nullable: true}
-        phone: {type: string}
-        activeTask: {type: string, nullable: true}
+        id:
+          type: string
+        timeCreated:
+          type: integer
+          format: int64
+        timeLastModified:
+          type: integer
+          format: int64
+        organization:
+          type: string
+        name:
+          type: string
+        displayName:
+          type: string
+          nullable: true
+        phone:
+          type: string
+        activeTask:
+          type: string
+          nullable: true
         tasks:
           type: array
-          items: {type: string}
-        onDuty: {type: boolean}
-        timeLastSeen: {type: integer, format: int64, nullable: true}
-        capacity: {type: number, nullable: true}
+          items:
+            type: string
+        onDuty:
+          type: boolean
+        timeLastSeen:
+          type: integer
+          format: int64
+          nullable: true
+        capacity:
+          type: number
+          nullable: true
         userData:
           type: object
           properties:
-            platform: {type: string}
-            appVersion: {type: string}
-            deviceDescription: {type: string}
-        accountStatus: {type: string}
+            platform:
+              type: string
+            appVersion:
+              type: string
+            deviceDescription:
+              type: string
+        accountStatus:
+          type: string
         metadata:
           type: array
           items:
             type: object
         teams:
           type: array
-          items: {type: string}
-        vehicle: {$ref: '#/components/schemas/Vehicle'}
+          items:
+            type: string
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
         location:
           type: array
-          items: {type: number}
+          items:
+            type: number
           description: GeoJSON [longitude, latitude].
     WorkerCreate:
       type: object
-      required: [name, phone, teams]
+      required:
+      - name
+      - phone
+      - teams
       properties:
-        name: {type: string}
-        phone: {type: string}
+        name:
+          type: string
+        phone:
+          type: string
         teams:
           type: array
-          items: {type: string}
-        vehicle: {$ref: '#/components/schemas/Vehicle'}
-        capacity: {type: number}
-        displayName: {type: string}
-        additionalCapacities: {type: object}
+          items:
+            type: string
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
+        capacity:
+          type: number
+        displayName:
+          type: string
+        additionalCapacities:
+          type: object
     Vehicle:
       type: object
-      required: [type]
+      required:
+      - type
       properties:
-        type: {type: string, enum: [CAR, MOTORCYCLE, BICYCLE, TRUCK]}
-        description: {type: string}
-        licensePlate: {type: string}
-        color: {type: string}
+        type:
+          type: string
+          enum:
+          - CAR
+          - MOTORCYCLE
+          - BICYCLE
+          - TRUCK
+        description:
+          type: string
+        licensePlate:
+          type: string
+        color:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

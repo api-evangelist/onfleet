@@ -1,0 +1,169 @@
+openapi: 3.0.3
+info:
+  title: Onfleet Destinations Route Optimization API
+  description: 'The Destinations API manages physical addresses associated with tasks.
+
+    Destinations include parsed address fields and a GeoJSON location, and can
+
+    be reused across tasks. Onfleet geocodes addresses on creation; you can
+
+    also supply an `unparsed` address.
+
+    '
+  version: '2.7'
+  contact:
+    name: Onfleet Support
+    email: support@onfleet.com
+  license:
+    name: Onfleet Terms of Service
+    url: https://onfleet.com/legal
+servers:
+- url: https://onfleet.com/api/v2
+  description: Production
+security:
+- basicAuth: []
+tags:
+- name: Route Optimization
+paths:
+  /optimizations/scheduled:
+    post:
+      tags:
+      - Route Optimization
+      summary: Initialize Route Optimization
+      description: Start an asynchronous route optimization job for a team or set of workers; result delivered via the routeOptimizationJobCompleted webhook. Enterprise-only.
+      operationId: initializeOptimization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OptimizationRequest'
+      responses:
+        '200':
+          description: Optimization queued
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  optimizationId:
+                    type: string
+                  status:
+                    type: string
+  /optimizations/{optimizationId}/start:
+    post:
+      tags:
+      - Route Optimization
+      summary: Start Route Optimization
+      operationId: startOptimization
+      parameters:
+      - name: optimizationId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Started
+  /optimizations/{optimizationId}/status:
+    get:
+      tags:
+      - Route Optimization
+      summary: Get Optimization Status
+      operationId: getOptimizationStatus
+      parameters:
+      - name: optimizationId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  optimizationId:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                    - PENDING
+                    - IN_PROGRESS
+                    - COMPLETED
+                    - FAILED
+                    - ABORTED
+                  progress:
+                    type: number
+  /optimizations/{optimizationId}/apply:
+    post:
+      tags:
+      - Route Optimization
+      summary: Apply Optimization Results
+      operationId: applyOptimization
+      parameters:
+      - name: optimizationId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Applied
+  /optimizations/{optimizationId}/abort:
+    post:
+      tags:
+      - Route Optimization
+      summary: Abort Optimization
+      operationId: abortOptimization
+      parameters:
+      - name: optimizationId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Aborted
+components:
+  schemas:
+    OptimizationRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - TASK_BASED
+          - VEHICLE_BASED
+          - AUTO_DISPATCH
+        tasks:
+          type: array
+          items:
+            type: string
+        workers:
+          type: array
+          items:
+            type: string
+        team:
+          type: string
+        startTime:
+          type: integer
+          format: int64
+        endTime:
+          type: integer
+          format: int64
+        considerDependencies:
+          type: boolean
+        balance:
+          type: object
+          properties:
+            byTaskCount:
+              type: boolean
+            byWorkload:
+              type: boolean
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

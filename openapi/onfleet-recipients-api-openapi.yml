@@ -1,11 +1,15 @@
 openapi: 3.0.3
 info:
-  title: Onfleet Recipients API
-  description: |
-    The Onfleet Recipients API manages the end customers who receive a
-    delivery — the person notified via SMS, shown on tracking pages, and
-    associated with a task. Recipients are reusable resources keyed by name
-    and E.164 phone number.
+  title: Onfleet Destinations Recipients API
+  description: 'The Destinations API manages physical addresses associated with tasks.
+
+    Destinations include parsed address fields and a GeoJSON location, and can
+
+    be reused across tasks. Onfleet geocodes addresses on creation; you can
+
+    also supply an `unparsed` address.
+
+    '
   version: '2.7'
   contact:
     name: Onfleet Support
@@ -14,37 +18,42 @@ info:
     name: Onfleet Terms of Service
     url: https://onfleet.com/legal
 servers:
-  - url: https://onfleet.com/api/v2
-    description: Production
+- url: https://onfleet.com/api/v2
+  description: Production
 security:
-  - basicAuth: []
+- basicAuth: []
 tags:
-  - name: Recipients
+- name: Recipients
 paths:
   /recipients:
     post:
-      tags: [Recipients]
+      tags:
+      - Recipients
       summary: Create Recipient
       operationId: createRecipient
       requestBody:
         required: true
         content:
           application/json:
-            schema: {$ref: '#/components/schemas/RecipientCreate'}
+            schema:
+              $ref: '#/components/schemas/RecipientCreate'
       responses:
         '200':
           description: Recipient created
           content:
             application/json:
-              schema: {$ref: '#/components/schemas/Recipient'}
+              schema:
+                $ref: '#/components/schemas/Recipient'
   /recipients/{recipientId}:
     parameters:
-      - name: recipientId
-        in: path
-        required: true
-        schema: {type: string}
+    - name: recipientId
+      in: path
+      required: true
+      schema:
+        type: string
     get:
-      tags: [Recipients]
+      tags:
+      - Recipients
       summary: Get Recipient By ID
       operationId: getRecipient
       responses:
@@ -52,90 +61,123 @@ paths:
           description: Recipient
           content:
             application/json:
-              schema: {$ref: '#/components/schemas/Recipient'}
+              schema:
+                $ref: '#/components/schemas/Recipient'
     put:
-      tags: [Recipients]
+      tags:
+      - Recipients
       summary: Update Recipient
       operationId: updateRecipient
       requestBody:
         required: true
         content:
           application/json:
-            schema: {$ref: '#/components/schemas/RecipientCreate'}
+            schema:
+              $ref: '#/components/schemas/RecipientCreate'
       responses:
         '200':
           description: Updated recipient
           content:
             application/json:
-              schema: {$ref: '#/components/schemas/Recipient'}
+              schema:
+                $ref: '#/components/schemas/Recipient'
   /recipients/name/{name}:
     get:
-      tags: [Recipients]
+      tags:
+      - Recipients
       summary: Get Recipient By Name
       operationId: getRecipientByName
       parameters:
-        - name: name
-          in: path
-          required: true
-          schema: {type: string}
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Recipient
           content:
             application/json:
-              schema: {$ref: '#/components/schemas/Recipient'}
+              schema:
+                $ref: '#/components/schemas/Recipient'
   /recipients/phone/{phone}:
     get:
-      tags: [Recipients]
+      tags:
+      - Recipients
       summary: Get Recipient By Phone
       operationId: getRecipientByPhone
       parameters:
-        - name: phone
-          in: path
-          required: true
-          schema: {type: string}
-          description: E.164 formatted phone number.
+      - name: phone
+        in: path
+        required: true
+        schema:
+          type: string
+        description: E.164 formatted phone number.
       responses:
         '200':
           description: Recipient
           content:
             application/json:
-              schema: {$ref: '#/components/schemas/Recipient'}
+              schema:
+                $ref: '#/components/schemas/Recipient'
 components:
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
   schemas:
     Recipient:
       type: object
       properties:
-        id: {type: string}
-        organization: {type: string}
-        timeCreated: {type: integer, format: int64}
-        timeLastModified: {type: integer, format: int64}
-        name: {type: string}
-        phone: {type: string}
-        notes: {type: string}
-        skipSMSNotifications: {type: boolean}
-        metadata:
-          type: array
-          items: {type: object}
-    RecipientCreate:
-      type: object
-      required: [name, phone]
-      properties:
-        name: {type: string}
-        phone: {type: string}
-        notes: {type: string}
-        skipSMSNotifications: {type: boolean}
-        useRecipientLanguage: {type: boolean}
+        id:
+          type: string
+        organization:
+          type: string
+        timeCreated:
+          type: integer
+          format: int64
+        timeLastModified:
+          type: integer
+          format: int64
+        name:
+          type: string
+        phone:
+          type: string
+        notes:
+          type: string
+        skipSMSNotifications:
+          type: boolean
         metadata:
           type: array
           items:
             type: object
-            required: [name, type, value]
+    RecipientCreate:
+      type: object
+      required:
+      - name
+      - phone
+      properties:
+        name:
+          type: string
+        phone:
+          type: string
+        notes:
+          type: string
+        skipSMSNotifications:
+          type: boolean
+        useRecipientLanguage:
+          type: boolean
+        metadata:
+          type: array
+          items:
+            type: object
+            required:
+            - name
+            - type
+            - value
             properties:
-              name: {type: string}
-              type: {type: string}
+              name:
+                type: string
+              type:
+                type: string
               value: {}
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
