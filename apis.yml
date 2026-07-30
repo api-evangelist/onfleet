@@ -27,19 +27,14 @@ apis:
     type: Examples
   - url: graphql/onfleet-graphql.md
     type: GraphQL
-  description: 'Create, list, fetch, update, clone, force-complete, and delete pickup/dropoff
-    tasks. Tasks are the
+  description: >
+    Create, list, fetch, update, clone, force-complete, and delete pickup/dropoff tasks. Tasks are the
 
-    atomic unit of work in Onfleet — each has a destination, recipient, completion
-    window, optional
+    atomic unit of work in Onfleet — each has a destination, recipient, completion window, optional
 
-    dependencies, and a state lifecycle (Unassigned → Assigned → Active → Completed).
-    Supports
+    dependencies, and a state lifecycle (Unassigned → Assigned → Active → Completed). Supports
 
-    batch creation (up to 100 per request) and assignment to workers via the containers
-    endpoint.
-
-    '
+    batch creation (up to 100 per request) and assignment to workers via the containers endpoint.
 - aid: onfleet:onfleet-workers-api
   name: Onfleet Workers API
   tags:
@@ -59,15 +54,12 @@ apis:
     type: JSONSchema
   - url: examples/onfleet-create-worker-example.json
     type: Examples
-  description: 'Manage drivers — create, list, update, delete, fetch a worker''s assigned
-    tasks, and pull a
+  description: >
+    Manage drivers — create, list, update, delete, fetch a worker's assigned tasks, and pull a
 
-    delivery manifest for compliance reporting. Workers are bound to teams, have vehicle
-    metadata
+    delivery manifest for compliance reporting. Workers are bound to teams, have vehicle metadata
 
     (CAR/MOTORCYCLE/BICYCLE/TRUCK), and report duty status and location.
-
-    '
 - aid: onfleet:onfleet-route-plans-api
   name: Onfleet Route Plans API
   tags:
@@ -85,17 +77,14 @@ apis:
     type: OpenAPI
   - url: json-schema/onfleet-route-plan-schema.json
     type: JSONSchema
-  description: 'Create and manage route plans — ordered sequences of tasks assigned
-    to a worker for a time window
+  description: >
+    Create and manage route plans — ordered sequences of tasks assigned to a worker for a time window
 
-    — and kick off asynchronous route optimization jobs (task-based, vehicle-based,
-    or auto-dispatch).
+    — and kick off asynchronous route optimization jobs (task-based, vehicle-based, or auto-dispatch).
 
     Optimization endpoints are an Enterprise plan feature; results delivered via the
 
     routeOptimizationJobCompleted webhook.
-
-    '
 - aid: onfleet:onfleet-orders-api
   name: Onfleet Orders API
   tags:
@@ -109,15 +98,12 @@ apis:
     type: Documentation
   - url: openapi/onfleet-orders-api-openapi.yml
     type: OpenAPI
-  description: 'Orders represent a pickup-dropoff task pair shared between a courier
-    organization and its clients
+  description: >
+    Orders represent a pickup-dropoff task pair shared between a courier organization and its clients
 
-    on the Onfleet Connect network. Clients can quote, create, update, clone, cancel,
-    or reject orders;
+    on the Onfleet Connect network. Clients can quote, create, update, clone, cancel, or reject orders;
 
     couriers can create orders on behalf of clients and respond to them.
-
-    '
 - aid: onfleet:onfleet-organizations-api
   name: Onfleet Organizations & Teams API
   tags:
@@ -132,15 +118,12 @@ apis:
     type: Documentation
   - url: openapi/onfleet-organizations-api-openapi.yml
     type: OpenAPI
-  description: 'Look up your own organization and connected delegatee organizations
-    on Onfleet Connect, manage
+  description: >
+    Look up your own organization and connected delegatee organizations on Onfleet Connect, manage
 
-    administrators (Super and Standard, optionally read-only), create and list teams,
-    and trigger
+    administrators (Super and Standard, optionally read-only), create and list teams, and trigger
 
-    Team Auto-Dispatch — Onfleet''s batch task-to-worker assignment engine (Beta).
-
-    '
+    Team Auto-Dispatch — Onfleet's batch task-to-worker assignment engine (Beta).
 - aid: onfleet:onfleet-recipients-api
   name: Onfleet Recipients API
   tags:
@@ -154,12 +137,10 @@ apis:
     type: OpenAPI
   - url: json-schema/onfleet-recipient-schema.json
     type: JSONSchema
-  description: 'Create and look up end customers (recipients) by ID, name, or E.164
-    phone number. Recipients carry
+  description: >
+    Create and look up end customers (recipients) by ID, name, or E.164 phone number. Recipients carry
 
     SMS notification preferences and metadata, and can be reused across tasks.
-
-    '
 - aid: onfleet:onfleet-destinations-api
   name: Onfleet Destinations API
   tags:
@@ -175,14 +156,12 @@ apis:
     type: OpenAPI
   - url: json-schema/onfleet-destination-schema.json
     type: JSONSchema
-  description: 'Manage geocoded physical addresses used as task pickup/dropoff locations.
-    Accepts a parsed
+  description: >
+    Manage geocoded physical addresses used as task pickup/dropoff locations. Accepts a parsed
 
     address structure or a single `unparsed` field; coordinates are returned as GeoJSON
 
     [longitude, latitude].
-
-    '
 - aid: onfleet:onfleet-webhooks-api
   name: Onfleet Webhooks API
   tags:
@@ -202,18 +181,24 @@ apis:
     type: AsyncAPI
   - url: examples/onfleet-webhook-task-completed-example.json
     type: Examples
-  description: 'Register HTTPS callbacks against 27 trigger types covering task lifecycle,
-    worker duty/CRUD,
+  description: >
+    Register HTTPS callbacks against 27 trigger types covering task lifecycle, worker duty/CRUD,
 
-    route plan state changes, SMS recipient events, and async job completions (auto-dispatch,
-    task
+    route plan state changes, SMS recipient events, and async job completions (auto-dispatch, task
 
-    batch create, route optimization). Payloads are signed with HMAC-SHA256 using
-    the secret
+    batch create, route optimization). Payloads are signed with HMAC-SHA256 using the secret
 
     obtained from /webhooks/secret.
-
-    '
+- aid: onfleet:onfleet-route-optimization-api
+  name: Onfleet Route Optimization API
+  description: The Route Optimization API from Onfleet — 5 operation(s) for route optimization.
+  humanURL: https://docs.onfleet.com/reference/tasks
+  baseURL: https://onfleet.com/api/v2
+  tags:
+  - Route Optimization
+  properties:
+  - type: OpenAPI
+    url: openapi/onfleet-route-optimization-api-openapi.yml
 tags:
 - Last Mile Delivery
 - Logistics
@@ -228,7 +213,20 @@ tags:
 - AI
 - SaaS
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/onfleet.png
 access: 3rd-Party
 common:
 - type: AgenticAccess
