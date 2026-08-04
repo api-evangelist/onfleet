@@ -1,0 +1,30 @@
+{
+  "provider": "onfleet",
+  "sources": [
+    "onfleet-destinations-api-openapi.yml",
+    "onfleet-orders-api-openapi.yml",
+    "onfleet-organizations-api-openapi.yml",
+    "onfleet-recipients-api-openapi.yml",
+    "onfleet-route-optimization-api-openapi.yml",
+    "onfleet-route-plans-api-openapi.yml",
+    "onfleet-tasks-api-openapi.yml",
+    "onfleet-webhooks-api-openapi.yml",
+    "onfleet-workers-api-openapi.yml"
+  ],
+  "outputs": [
+    "onfleet-destinations-api-openapi.yml",
+    "onfleet-orders-api-openapi.yml",
+    "onfleet-organizations-api-openapi.yml",
+    "onfleet-recipients-api-openapi.yml",
+    "onfleet-route-optimization-api-openapi.yml",
+    "onfleet-route-plans-api-openapi.yml",
+    "onfleet-tasks-api-openapi.yml",
+    "onfleet-webhooks-api-openapi.yml",
+    "onfleet-workers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
