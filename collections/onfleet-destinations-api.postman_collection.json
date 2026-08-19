@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "ded19d0e-f80c-402b-a6fb-2c3acb0d3cfe",
+      "id": "2ebd7732-b82d-4f3a-bae2-38b31371fc11",
       "name": "Destinations",
       "description": {
         "content": "",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "0fa5affe-b582-4317-948a-24ca433b4410",
+          "id": "ce5587bc-849d-4b4a-9faa-f0594b516270",
           "name": "Create Destination",
           "request": {
             "name": "Create Destination",
@@ -48,7 +48,7 @@
           },
           "response": [
             {
-              "id": "adf235cc-3495-4e28-a583-bab3f4b1d47e",
+              "id": "60b9dc10-ae3c-45ce-8c4f-7a9ac4e6b920",
               "name": "Destination created",
               "originalRequest": {
                 "url": {
@@ -94,7 +94,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 6841,\n  \"timeLastModified\": 8875,\n  \"address\": {\n    \"unparsed\": \"<string>\",\n    \"number\": \"<string>\",\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"apartment\": \"<string>\"\n  },\n  \"location\": [\n    6664.892231840254,\n    6517.4641499808195\n  ],\n  \"notes\": \"string\",\n  \"warnings\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 3696,\n  \"timeLastModified\": 3291,\n  \"address\": {\n    \"unparsed\": \"<string>\",\n    \"number\": \"<string>\",\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"apartment\": \"<string>\"\n  },\n  \"location\": [\n    3356.933686288092,\n    5958.368494534585\n  ],\n  \"notes\": \"string\",\n  \"warnings\": [\n    \"string\",\n    \"string\"\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -105,7 +105,7 @@
           }
         },
         {
-          "id": "4aa0324e-4c12-46d7-aa91-ed3ec9582b86",
+          "id": "0c904822-ad26-4963-9429-58fdbb5d4292",
           "name": "Get Destination",
           "request": {
             "name": "Get Destination",
@@ -140,7 +140,7 @@
           },
           "response": [
             {
-              "id": "74c704c6-c15e-45fe-8001-bf75caa18919",
+              "id": "a9f9cb85-fca2-40f8-813d-f36ef4fb4b08",
               "name": "Destination",
               "originalRequest": {
                 "url": {
@@ -187,7 +187,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 4459,\n  \"timeLastModified\": 3086,\n  \"address\": {\n    \"unparsed\": \"<string>\",\n    \"number\": \"<string>\",\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"apartment\": \"<string>\"\n  },\n  \"location\": [\n    405.29520532521013,\n    5735.076788953782\n  ],\n  \"notes\": \"string\",\n  \"warnings\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 4790,\n  \"timeLastModified\": 8639,\n  \"address\": {\n    \"unparsed\": \"<string>\",\n    \"number\": \"<string>\",\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"apartment\": \"<string>\"\n  },\n  \"location\": [\n    6983.10316908136,\n    4224.123890987939\n  ],\n  \"notes\": \"string\",\n  \"warnings\": [\n    \"string\",\n    \"string\"\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -223,7 +223,7 @@
     ]
   },
   "info": {
-    "_postman_id": "783a7137-f045-4df7-86de-bfa1aceb0f08",
+    "_postman_id": "adba307a-60e3-4318-8970-c0bc7edac862",
     "name": "Onfleet Destinations API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {

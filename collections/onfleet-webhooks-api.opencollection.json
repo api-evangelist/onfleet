@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Onfleet Webhooks API",
+    "name": "Onfleet Destinations Webhooks API",
     "version": "2.7"
   },
   "request": {

@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Onfleet Organizations API",
+    "name": "Onfleet Destinations Organizations API",
     "version": "2.7"
   },
   "request": {

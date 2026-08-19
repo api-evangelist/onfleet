@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Onfleet Orders API",
+    "name": "Onfleet Destinations Orders API",
     "version": "2.7"
   },
   "request": {

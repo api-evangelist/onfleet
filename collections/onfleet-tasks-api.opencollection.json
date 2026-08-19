@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Onfleet Tasks API",
+    "name": "Onfleet Destinations Tasks API",
     "version": "2.7"
   },
   "request": {

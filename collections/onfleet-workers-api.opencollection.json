@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Onfleet Workers API",
+    "name": "Onfleet Destinations Workers API",
     "version": "2.7"
   },
   "request": {

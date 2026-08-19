@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "25eb1c67-570e-46bb-bb88-a16011b66b4a",
+      "id": "95316893-2b08-4c82-90cb-0e034b09bd0b",
       "name": "Organizations",
       "description": {
         "content": "",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "837d3bf0-1834-45b4-9abb-f952e7c42f2a",
+          "id": "61883344-7522-48d4-a977-dbe414615251",
           "name": "Get Own Organization Details",
           "request": {
             "name": "Get Own Organization Details",
@@ -35,7 +35,7 @@
           },
           "response": [
             {
-              "id": "28c0a7f0-ea5e-4a7f-a08d-cf1f768d2a1d",
+              "id": "8276e342-cba0-4ef4-8226-480e7288f338",
               "name": "Organization",
               "originalRequest": {
                 "url": {
@@ -73,7 +73,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 4672,\n  \"timeLastModified\": 7128,\n  \"name\": \"string\",\n  \"email\": \"3M4aI@lGlVwkmrysTxJUlsmifXOrf.le\",\n  \"country\": \"string\",\n  \"timezone\": \"string\",\n  \"image\": \"string\",\n  \"delegatees\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 4381,\n  \"timeLastModified\": 4228,\n  \"name\": \"string\",\n  \"email\": \"anOOUEvbcGYQ2@nrBxMhtVBe.quv\",\n  \"country\": \"string\",\n  \"timezone\": \"string\",\n  \"image\": \"string\",\n  \"delegatees\": [\n    \"string\",\n    \"string\"\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -84,7 +84,7 @@
           }
         },
         {
-          "id": "44705518-0001-43f1-8790-f217664ce78c",
+          "id": "cec50e31-b2ab-4f40-a3ed-9b9c5e8eb392",
           "name": "Get Delegatee Organization Details",
           "request": {
             "name": "Get Delegatee Organization Details",
@@ -119,7 +119,7 @@
           },
           "response": [
             {
-              "id": "295bf872-3833-48f1-9946-d9c7d921b58e",
+              "id": "a24becc0-ec49-45aa-bc88-553934d6b63c",
               "name": "Organization",
               "originalRequest": {
                 "url": {
@@ -166,7 +166,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 4062,\n  \"timeLastModified\": 9617,\n  \"name\": \"string\",\n  \"email\": \"EpZrfSk@OcWleOFgaXLTapitqpgyS.ty\",\n  \"country\": \"string\",\n  \"timezone\": \"string\",\n  \"image\": \"string\",\n  \"delegatees\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 2458,\n  \"timeLastModified\": 7486,\n  \"name\": \"string\",\n  \"email\": \"sbBo4@XzjYGFnRePqCtDmZytymPkXM.ie\",\n  \"country\": \"string\",\n  \"timezone\": \"string\",\n  \"image\": \"string\",\n  \"delegatees\": [\n    \"string\",\n    \"string\"\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -177,7 +177,7 @@
           }
         },
         {
-          "id": "ac1d7bfd-569a-445e-b29e-311a32d211a2",
+          "id": "271105fb-235d-4b69-a413-2ffe13dd24c5",
           "name": "List Administrators",
           "request": {
             "name": "List Administrators",
@@ -203,7 +203,7 @@
           },
           "response": [
             {
-              "id": "e3a00e01-9dcf-4ab9-b7d7-4f53c5e5b630",
+              "id": "5cc78440-9874-4134-82c7-4a12524b2d38",
               "name": "Administrators",
               "originalRequest": {
                 "url": {
@@ -241,7 +241,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 6730,\n    \"organization\": \"string\",\n    \"email\": \"gmSolu1vvwuU@QusGNYocRU.jpq\",\n    \"name\": \"string\",\n    \"phone\": \"string\",\n    \"isAccountOwner\": false,\n    \"isReadOnly\": true,\n    \"isActive\": false,\n    \"type\": \"standard\",\n    \"teams\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 8595,\n    \"organization\": \"string\",\n    \"email\": \"bUxZemtm@qYpOqFi.znzd\",\n    \"name\": \"string\",\n    \"phone\": \"string\",\n    \"isAccountOwner\": true,\n    \"isReadOnly\": false,\n    \"isActive\": false,\n    \"type\": \"super\",\n    \"teams\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 7929,\n    \"organization\": \"string\",\n    \"email\": \"hSqgIC@fsUcBWNyQXgQcLeYdAAOgcxGKXQLLc.bnb\",\n    \"name\": \"string\",\n    \"phone\": \"string\",\n    \"isAccountOwner\": true,\n    \"isReadOnly\": false,\n    \"isActive\": true,\n    \"type\": \"standard\",\n    \"teams\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 1114,\n    \"organization\": \"string\",\n    \"email\": \"8dLcSMjVUq55b0P@vjRwREaT.ix\",\n    \"name\": \"string\",\n    \"phone\": \"string\",\n    \"isAccountOwner\": false,\n    \"isReadOnly\": true,\n    \"isActive\": false,\n    \"type\": \"super\",\n    \"teams\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -252,7 +252,7 @@
           }
         },
         {
-          "id": "8e7f9e1d-e771-4274-8c87-8173ffb44bef",
+          "id": "dce7cc18-2bdd-4392-a928-7f3619e1d7bd",
           "name": "Create Administrator",
           "request": {
             "name": "Create Administrator",
@@ -291,7 +291,7 @@
           },
           "response": [
             {
-              "id": "a5ecfd79-33c3-493d-aed9-8aa21f47e780",
+              "id": "f549178b-ec2a-463a-9178-31a14a8622b2",
               "name": "Administrator created",
               "originalRequest": {
                 "url": {
@@ -337,7 +337,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 5406,\n  \"organization\": \"string\",\n  \"email\": \"nzkPSEvrcDF@fwnmoGyWCrTnom.hlm\",\n  \"name\": \"string\",\n  \"phone\": \"string\",\n  \"isAccountOwner\": true,\n  \"isReadOnly\": true,\n  \"isActive\": false,\n  \"type\": \"super\",\n  \"teams\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 5943,\n  \"organization\": \"string\",\n  \"email\": \"cOBm2r@FKFipGcVhYbAWEnPvWlFAFo.fnjr\",\n  \"name\": \"string\",\n  \"phone\": \"string\",\n  \"isAccountOwner\": false,\n  \"isReadOnly\": false,\n  \"isActive\": true,\n  \"type\": \"standard\",\n  \"teams\": [\n    \"string\",\n    \"string\"\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -348,7 +348,7 @@
           }
         },
         {
-          "id": "aea48d94-7f74-49c2-9066-f6019a9426ba",
+          "id": "d459c18f-2f11-4728-a510-cbff9f3c1c63",
           "name": "List Teams",
           "request": {
             "name": "List Teams",
@@ -374,7 +374,7 @@
           },
           "response": [
             {
-              "id": "6297a85b-88b7-43b3-9c95-6d866470dc2f",
+              "id": "1badc07d-36f7-4a78-b222-9978e5875beb",
               "name": "Teams",
               "originalRequest": {
                 "url": {
@@ -412,7 +412,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 8377,\n    \"name\": \"string\",\n    \"workers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"managers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"hub\": \"string\",\n    \"enableSelfAssignment\": true\n  },\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 7976,\n    \"name\": \"string\",\n    \"workers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"managers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"hub\": \"string\",\n    \"enableSelfAssignment\": false\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 4818,\n    \"name\": \"string\",\n    \"workers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"managers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"hub\": \"string\",\n    \"enableSelfAssignment\": false\n  },\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 603,\n    \"name\": \"string\",\n    \"workers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"managers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"hub\": \"string\",\n    \"enableSelfAssignment\": false\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -423,7 +423,7 @@
           }
         },
         {
-          "id": "96630e19-bd58-4441-8020-0bb12384e058",
+          "id": "18b50734-484f-41ba-868f-13a08a1c2f14",
           "name": "Create Team",
           "request": {
             "name": "Create Team",
@@ -462,7 +462,7 @@
           },
           "response": [
             {
-              "id": "60f9566d-56dd-4081-9dd6-fa60b57ef30f",
+              "id": "a520b6f8-942e-4363-836c-e8300450a06e",
               "name": "Team created",
               "originalRequest": {
                 "url": {
@@ -508,7 +508,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 7376,\n  \"name\": \"string\",\n  \"workers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"managers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"hub\": \"string\",\n  \"enableSelfAssignment\": true\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 3545,\n  \"name\": \"string\",\n  \"workers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"managers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"hub\": \"string\",\n  \"enableSelfAssignment\": false\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -519,7 +519,7 @@
           }
         },
         {
-          "id": "81c67c1f-ab2b-452a-a8cf-cfef07860c8e",
+          "id": "fd3d2d8b-7527-4d3b-9d1f-63fc388e3d2d",
           "name": "Team Auto-Dispatch",
           "request": {
             "name": "Team Auto-Dispatch",
@@ -567,7 +567,7 @@
           },
           "response": [
             {
-              "id": "67efcea9-4e1b-44d1-8354-b339ca7bdbe7",
+              "id": "b41af51c-6009-4546-8a97-1945b67ec5f8",
               "name": "Auto-dispatch queued",
               "originalRequest": {
                 "url": {
@@ -655,11 +655,11 @@
     ]
   },
   "info": {
-    "_postman_id": "057b3934-5d1c-41b7-90bf-228978cc40ab",
-    "name": "Onfleet Organizations API",
+    "_postman_id": "d8e1c699-2af8-4037-9c16-47172132eeb8",
+    "name": "Onfleet Destinations Organizations API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "The Organizations API exposes information about your Onfleet\norganization and connected delegatee organizations in the Onfleet Connect\ncourier network. Use it to retrieve your own organization details and look\nup delegatees you've connected with for cross-organization deliveries.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",
+      "content": "The Destinations API manages physical addresses associated with tasks.\nDestinations include parsed address fields and a GeoJSON location, and can\nbe reused across tasks. Onfleet geocodes addresses on creation; you can\nalso supply an `unparsed` address.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",
       "type": "text/plain"
     }
   }

@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "eaf5097c-3611-4325-bb26-c20975fd1a2b",
+      "id": "980b61ce-a2e0-414f-ab0f-13a7ea198c34",
       "name": "Orders",
       "description": {
         "content": "",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "2a0e343b-1965-4ff7-99fa-229074a98f57",
+          "id": "a857a69b-c173-4a62-87b7-0ccf5d7a8bda",
           "name": "Create Order",
           "request": {
             "name": "Create Order",
@@ -48,7 +48,7 @@
           },
           "response": [
             {
-              "id": "e1f3485c-ba33-4e8d-b9a2-5892efaf96a0",
+              "id": "ccc74df7-2a36-4c56-ae78-72f13eea044e",
               "name": "Order created",
               "originalRequest": {
                 "url": {
@@ -94,7 +94,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"shortId\": \"string\",\n  \"organization\": \"string\",\n  \"client\": \"string\",\n  \"timeCreated\": 6253,\n  \"deliveryServiceId\": \"string\",\n  \"price\": 9160.94106930977,\n  \"currency\": \"string\",\n  \"status\": \"CREATED\",\n  \"pickupTask\": \"string\",\n  \"dropoffTask\": \"string\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"shortId\": \"string\",\n  \"organization\": \"string\",\n  \"client\": \"string\",\n  \"timeCreated\": 7807,\n  \"deliveryServiceId\": \"string\",\n  \"price\": 6025.981955774326,\n  \"currency\": \"string\",\n  \"status\": \"REJECTED\",\n  \"pickupTask\": \"string\",\n  \"dropoffTask\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -105,7 +105,7 @@
           }
         },
         {
-          "id": "ef534f70-7b71-4ca7-aa37-0355caecdd72",
+          "id": "67fbf6ae-b532-4e17-b288-ffae29d7ed62",
           "name": "Get Order",
           "request": {
             "name": "Get Order",
@@ -140,7 +140,7 @@
           },
           "response": [
             {
-              "id": "ad491103-82c0-43f3-bea8-b0e64e270625",
+              "id": "557ca423-11a3-416d-b799-bef1209f0647",
               "name": "Order",
               "originalRequest": {
                 "url": {
@@ -187,7 +187,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"shortId\": \"string\",\n  \"organization\": \"string\",\n  \"client\": \"string\",\n  \"timeCreated\": 6253,\n  \"deliveryServiceId\": \"string\",\n  \"price\": 9160.94106930977,\n  \"currency\": \"string\",\n  \"status\": \"CREATED\",\n  \"pickupTask\": \"string\",\n  \"dropoffTask\": \"string\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"shortId\": \"string\",\n  \"organization\": \"string\",\n  \"client\": \"string\",\n  \"timeCreated\": 7807,\n  \"deliveryServiceId\": \"string\",\n  \"price\": 6025.981955774326,\n  \"currency\": \"string\",\n  \"status\": \"REJECTED\",\n  \"pickupTask\": \"string\",\n  \"dropoffTask\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -198,7 +198,7 @@
           }
         },
         {
-          "id": "044db89d-4ec0-45d6-8152-3da134e6e028",
+          "id": "e0272148-e249-4da4-9676-8013e57fe0f4",
           "name": "Update Order",
           "request": {
             "name": "Update Order",
@@ -246,7 +246,7 @@
           },
           "response": [
             {
-              "id": "dfd7ca3b-7483-4a3e-a21c-5632375a98cd",
+              "id": "616b5daa-41b7-4860-903b-fef96d3a9fcf",
               "name": "Updated order",
               "originalRequest": {
                 "url": {
@@ -301,7 +301,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"shortId\": \"string\",\n  \"organization\": \"string\",\n  \"client\": \"string\",\n  \"timeCreated\": 6253,\n  \"deliveryServiceId\": \"string\",\n  \"price\": 9160.94106930977,\n  \"currency\": \"string\",\n  \"status\": \"CREATED\",\n  \"pickupTask\": \"string\",\n  \"dropoffTask\": \"string\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"shortId\": \"string\",\n  \"organization\": \"string\",\n  \"client\": \"string\",\n  \"timeCreated\": 7807,\n  \"deliveryServiceId\": \"string\",\n  \"price\": 6025.981955774326,\n  \"currency\": \"string\",\n  \"status\": \"REJECTED\",\n  \"pickupTask\": \"string\",\n  \"dropoffTask\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -312,7 +312,7 @@
           }
         },
         {
-          "id": "dc36884c-d348-47fe-ba12-8cc589e3585b",
+          "id": "1eb9f719-b6b9-4c2f-90e3-8988c75bdb7e",
           "name": "Cancel Order",
           "request": {
             "name": "Cancel Order",
@@ -342,7 +342,7 @@
           },
           "response": [
             {
-              "id": "1380dc17-b22e-4f52-980c-d2351221c36c",
+              "id": "9f53a08f-b238-497b-b015-c0bc2ad8e851",
               "name": "Cancelled",
               "originalRequest": {
                 "url": {
@@ -397,7 +397,7 @@
           }
         },
         {
-          "id": "bf46bce3-1b29-4974-8d30-adec4c51d95a",
+          "id": "bc3875f0-9eb8-45dc-a47e-26c090a8e480",
           "name": "Reject Order",
           "request": {
             "name": "Reject Order",
@@ -442,7 +442,7 @@
           },
           "response": [
             {
-              "id": "c62066f6-8fd6-4223-a212-ef326ee4351b",
+              "id": "801a46bc-cc3d-474b-8352-a99f8c7373ba",
               "name": "Rejected",
               "originalRequest": {
                 "url": {
@@ -505,7 +505,7 @@
           }
         },
         {
-          "id": "900bd17e-c628-41e9-9f77-a2a707b191f2",
+          "id": "d4597868-b43a-4723-8335-16bf94172ae6",
           "name": "Clone Orders",
           "request": {
             "name": "Clone Orders",
@@ -541,7 +541,7 @@
           },
           "response": [
             {
-              "id": "68e76ad0-5ab0-4b26-a949-1735018aca9b",
+              "id": "6e44a883-038f-426e-95cb-1f64a055fa75",
               "name": "Cloned orders",
               "originalRequest": {
                 "url": {
@@ -595,7 +595,7 @@
           }
         },
         {
-          "id": "aba4a02a-1ca1-43dd-9331-97042d5d08aa",
+          "id": "0af4d44a-6e92-496a-a437-da459ddc56cc",
           "name": "Quote Order",
           "request": {
             "name": "Quote Order",
@@ -635,7 +635,7 @@
           },
           "response": [
             {
-              "id": "063504fd-b564-4ba9-b94e-8220b2d65eda",
+              "id": "64f1a74f-0551-4b4b-b804-6f6021f0f963",
               "name": "Price quote",
               "originalRequest": {
                 "url": {
@@ -682,7 +682,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"price\": 9841.071483064337,\n  \"currency\": \"string\",\n  \"estimatedDeliveryTime\": 4977\n}",
+              "body": "{\n  \"price\": 4451.751506701842,\n  \"currency\": \"string\",\n  \"estimatedDeliveryTime\": 9113\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -718,11 +718,11 @@
     ]
   },
   "info": {
-    "_postman_id": "e779877e-fd9d-4bbc-bb21-273949f054a6",
-    "name": "Onfleet Orders API",
+    "_postman_id": "623366d2-371a-4a1a-a3a8-76624d059a0f",
+    "name": "Onfleet Destinations Orders API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "Orders represent a delivery workflow composed of a pair of tasks — a pickup\nand a corresponding dropoff — used by courier organizations and their\nclients in the Onfleet Connect network. The Orders API lets you quote,\ncreate, update, clone, cancel, and reject orders programmatically.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",
+      "content": "The Destinations API manages physical addresses associated with tasks.\nDestinations include parsed address fields and a GeoJSON location, and can\nbe reused across tasks. Onfleet geocodes addresses on creation; you can\nalso supply an `unparsed` address.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",
       "type": "text/plain"
     }
   }

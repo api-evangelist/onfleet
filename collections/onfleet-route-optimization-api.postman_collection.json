@@ -1,22 +1,26 @@
 {
   "item": [
     {
-      "id": "1f884587-ede6-44b2-87d4-ac44014ac648",
-      "name": "Recipients",
+      "id": "0a5901e7-c9ce-48af-9613-6dcfab77c906",
+      "name": "Route Optimization",
       "description": {
         "content": "",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "492545fa-c65d-474b-804a-b2655fa29f6e",
-          "name": "Create Recipient",
+          "id": "fd78163d-48ef-4b0d-bc40-a64c5569b5da",
+          "name": "Initialize Route Optimization",
           "request": {
-            "name": "Create Recipient",
-            "description": {},
+            "name": "Initialize Route Optimization",
+            "description": {
+              "content": "Start an asynchronous route optimization job for a team or set of workers; result delivered via the routeOptimizationJobCompleted webhook. Enterprise-only.",
+              "type": "text/plain"
+            },
             "url": {
               "path": [
-                "recipients"
+                "optimizations",
+                "scheduled"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -38,7 +42,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"skipSMSNotifications\": \"<boolean>\",\n  \"useRecipientLanguage\": \"<boolean>\",\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"\"\n    }\n  ]\n}",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"workers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"team\": \"<string>\",\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"considerDependencies\": \"<boolean>\",\n  \"balance\": {\n    \"byTaskCount\": \"<boolean>\",\n    \"byWorkload\": \"<boolean>\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -48,12 +52,13 @@
           },
           "response": [
             {
-              "id": "bbaae947-5876-43b0-8084-0408d3a31430",
-              "name": "Recipient created",
+              "id": "4f8a2c56-d05e-4653-9df3-1c74e98b30fd",
+              "name": "Optimization queued",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "recipients"
+                    "optimizations",
+                    "scheduled"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -78,7 +83,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"skipSMSNotifications\": \"<boolean>\",\n  \"useRecipientLanguage\": \"<boolean>\",\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"\"\n    }\n  ]\n}",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"tasks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"workers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"team\": \"<string>\",\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"considerDependencies\": \"<boolean>\",\n  \"balance\": {\n    \"byTaskCount\": \"<boolean>\",\n    \"byWorkload\": \"<boolean>\"\n  }\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -94,7 +99,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"organization\": \"string\",\n  \"timeCreated\": 2193,\n  \"timeLastModified\": 1751,\n  \"name\": \"string\",\n  \"phone\": \"string\",\n  \"notes\": \"string\",\n  \"skipSMSNotifications\": false\n}",
+              "body": "{\n  \"optimizationId\": \"string\",\n  \"status\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -105,15 +110,16 @@
           }
         },
         {
-          "id": "a4e1e2b7-1ef6-4601-8ff8-d3165e2a50e2",
-          "name": "Get Recipient By ID",
+          "id": "692e78ab-0507-4f55-bae2-b94a8310cd00",
+          "name": "Start Route Optimization",
           "request": {
-            "name": "Get Recipient By ID",
+            "name": "Start Route Optimization",
             "description": {},
             "url": {
               "path": [
-                "recipients",
-                ":recipientId"
+                "optimizations",
+                ":optimizationId",
+                "start"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -124,7 +130,92 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "recipientId",
+                  "key": "optimizationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97deb94c-c432-49dc-8c75-230050acf6d2",
+              "name": "Started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "optimizations",
+                    ":optimizationId",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "optimizationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d6b131f-c832-4096-acc0-b8ab8286d433",
+          "name": "Get Optimization Status",
+          "request": {
+            "name": "Get Optimization Status",
+            "description": {},
+            "url": {
+              "path": [
+                "optimizations",
+                ":optimizationId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "optimizationId",
                   "description": "(Required) "
                 }
               ]
@@ -140,13 +231,14 @@
           },
           "response": [
             {
-              "id": "d8c67814-82a6-4ac9-9931-e6daa9c89411",
-              "name": "Recipient",
+              "id": "069c19a6-9bbe-43fe-9aec-290b0413e7a6",
+              "name": "Status",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "recipients",
-                    ":recipientId"
+                    "optimizations",
+                    ":optimizationId",
+                    "status"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -157,7 +249,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "recipientId",
+                      "key": "optimizationId",
                       "description": "(Required) "
                     }
                   ]
@@ -187,7 +279,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"organization\": \"string\",\n  \"timeCreated\": 5763,\n  \"timeLastModified\": 4792,\n  \"name\": \"string\",\n  \"phone\": \"string\",\n  \"notes\": \"string\",\n  \"skipSMSNotifications\": true\n}",
+              "body": "{\n  \"optimizationId\": \"string\",\n  \"status\": \"FAILED\",\n  \"progress\": 6605.648391287457\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -198,15 +290,16 @@
           }
         },
         {
-          "id": "b7b2ba78-aff7-41c2-84fa-cff8db6aaf7b",
-          "name": "Update Recipient",
+          "id": "7d94f658-72cc-4e05-ae69-b1342cdcf478",
+          "name": "Apply Optimization Results",
           "request": {
-            "name": "Update Recipient",
+            "name": "Apply Optimization Results",
             "description": {},
             "url": {
               "path": [
-                "recipients",
-                ":recipientId"
+                "optimizations",
+                ":optimizationId",
+                "apply"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -217,42 +310,24 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "recipientId",
+                  "key": "optimizationId",
                   "description": "(Required) "
                 }
               ]
             },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"skipSMSNotifications\": \"<boolean>\",\n  \"useRecipientLanguage\": \"<boolean>\",\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
+            "method": "POST",
+            "auth": null
           },
           "response": [
             {
-              "id": "a54337a0-2d09-42c3-835a-4a8be3ac7230",
-              "name": "Updated recipient",
+              "id": "c8c20ec8-c29e-4a81-9df3-712dc890a9d0",
+              "name": "Applied",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "recipients",
-                    ":recipientId"
+                    "optimizations",
+                    ":optimizationId",
+                    "apply"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -263,7 +338,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "recipientId",
+                      "key": "optimizationId",
                       "description": "(Required) "
                     }
                   ]
@@ -276,34 +351,22 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"skipSMSNotifications\": \"<boolean>\",\n  \"useRecipientLanguage\": \"<boolean>\",\n  \"metadata\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "POST",
+                "body": {}
               },
               "status": "OK",
               "code": 200,
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"organization\": \"string\",\n  \"timeCreated\": 5763,\n  \"timeLastModified\": 4792,\n  \"name\": \"string\",\n  \"phone\": \"string\",\n  \"notes\": \"string\",\n  \"skipSMSNotifications\": true\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             }
           ],
           "event": [],
@@ -312,16 +375,16 @@
           }
         },
         {
-          "id": "d63cdbe6-7c9e-4d6e-8a59-d83bdfc84eb5",
-          "name": "Get Recipient By Name",
+          "id": "be702bf8-074f-4d3d-b998-c7a0ab48c9aa",
+          "name": "Abort Optimization",
           "request": {
-            "name": "Get Recipient By Name",
+            "name": "Abort Optimization",
             "description": {},
             "url": {
               "path": [
-                "recipients",
-                "name",
-                ":name"
+                "optimizations",
+                ":optimizationId",
+                "abort"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -332,30 +395,24 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "name",
+                  "key": "optimizationId",
                   "description": "(Required) "
                 }
               ]
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
+            "method": "POST",
             "auth": null
           },
           "response": [
             {
-              "id": "14193ce8-d6a1-438f-a2d1-7f0c59ab196f",
-              "name": "Recipient",
+              "id": "a9797a71-e760-48ea-8acd-cf17319fd3bf",
+              "name": "Aborted",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "recipients",
-                    "name",
-                    ":name"
+                    "optimizations",
+                    ":optimizationId",
+                    "abort"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -366,7 +423,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "name",
+                      "key": "optimizationId",
                       "description": "(Required) "
                     }
                   ]
@@ -379,13 +436,9 @@
                     },
                     "key": "Authorization",
                     "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
-                "method": "GET",
+                "method": "POST",
                 "body": {}
               },
               "status": "OK",
@@ -393,107 +446,12 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"organization\": \"string\",\n  \"timeCreated\": 5763,\n  \"timeLastModified\": 4792,\n  \"name\": \"string\",\n  \"phone\": \"string\",\n  \"notes\": \"string\",\n  \"skipSMSNotifications\": true\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "866ce407-27cf-43a9-9e28-115ffb0845a9",
-          "name": "Get Recipient By Phone",
-          "request": {
-            "name": "Get Recipient By Phone",
-            "description": {},
-            "url": {
-              "path": [
-                "recipients",
-                "phone",
-                ":phone"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "phone",
-                  "description": "(Required) E.164 formatted phone number."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "653039fa-efbf-4fc2-8c0f-f5061417f343",
-              "name": "Recipient",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "recipients",
-                    "phone",
-                    ":phone"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "phone",
-                      "description": "(Required) E.164 formatted phone number."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"organization\": \"string\",\n  \"timeCreated\": 5763,\n  \"timeLastModified\": 4792,\n  \"name\": \"string\",\n  \"phone\": \"string\",\n  \"notes\": \"string\",\n  \"skipSMSNotifications\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             }
           ],
           "event": [],
@@ -527,8 +485,8 @@
     ]
   },
   "info": {
-    "_postman_id": "cc282cd4-a415-49cc-9898-90a16c6cf46e",
-    "name": "Onfleet Destinations Recipients API",
+    "_postman_id": "8a868861-1e58-4bd2-8b70-e39a943c2f5d",
+    "name": "Onfleet Destinations Route Optimization API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Destinations API manages physical addresses associated with tasks.\nDestinations include parsed address fields and a GeoJSON location, and can\nbe reused across tasks. Onfleet geocodes addresses on creation; you can\nalso supply an `unparsed` address.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",

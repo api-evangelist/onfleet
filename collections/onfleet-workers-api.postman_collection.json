@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "b997b2d0-b28f-4c75-914a-d6280a8be759",
+      "id": "a169c68c-0e0c-4cdf-ba8b-adc7d173118d",
       "name": "Workers",
       "description": {
         "content": "",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "be00ebb7-ff14-43d9-9f6d-e4c4e75d2970",
+          "id": "6c008a31-f4d9-4f8b-8283-fad9e6328fd0",
           "name": "List Workers",
           "request": {
             "name": "List Workers",
@@ -59,7 +59,7 @@
           },
           "response": [
             {
-              "id": "90336aa8-cddb-45a6-b3dc-e2862f9764d6",
+              "id": "70dceea4-f7d4-4f66-9b67-51956d0bd4dd",
               "name": "Workers",
               "originalRequest": {
                 "url": {
@@ -114,7 +114,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 9703,\n    \"timeLastModified\": 731,\n    \"organization\": \"string\",\n    \"name\": \"string\",\n    \"displayName\": \"string\",\n    \"phone\": \"string\",\n    \"activeTask\": \"string\",\n    \"tasks\": [\n      \"string\",\n      \"string\"\n    ],\n    \"onDuty\": true,\n    \"timeLastSeen\": 2399,\n    \"capacity\": 8966.779426953553,\n    \"userData\": {\n      \"platform\": \"string\",\n      \"appVersion\": \"string\",\n      \"deviceDescription\": \"string\"\n    },\n    \"accountStatus\": \"string\",\n    \"teams\": [\n      \"string\",\n      \"string\"\n    ],\n    \"vehicle\": {\n      \"type\": \"MOTORCYCLE\",\n      \"description\": \"string\",\n      \"licensePlate\": \"string\",\n      \"color\": \"string\"\n    },\n    \"location\": [\n      9553.510223018136,\n      4842.2337529131\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 223,\n    \"timeLastModified\": 8456,\n    \"organization\": \"string\",\n    \"name\": \"string\",\n    \"displayName\": \"string\",\n    \"phone\": \"string\",\n    \"activeTask\": \"string\",\n    \"tasks\": [\n      \"string\",\n      \"string\"\n    ],\n    \"onDuty\": false,\n    \"timeLastSeen\": 9875,\n    \"capacity\": 8122.2844894048385,\n    \"userData\": {\n      \"platform\": \"string\",\n      \"appVersion\": \"string\",\n      \"deviceDescription\": \"string\"\n    },\n    \"accountStatus\": \"string\",\n    \"teams\": [\n      \"string\",\n      \"string\"\n    ],\n    \"vehicle\": {\n      \"type\": \"MOTORCYCLE\",\n      \"description\": \"string\",\n      \"licensePlate\": \"string\",\n      \"color\": \"string\"\n    },\n    \"location\": [\n      4787.320770069917,\n      2447.34008112691\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 1795,\n    \"timeLastModified\": 474,\n    \"organization\": \"string\",\n    \"name\": \"string\",\n    \"displayName\": \"string\",\n    \"phone\": \"string\",\n    \"activeTask\": \"string\",\n    \"tasks\": [\n      \"string\",\n      \"string\"\n    ],\n    \"onDuty\": false,\n    \"timeLastSeen\": 6299,\n    \"capacity\": 1187.3936230616666,\n    \"userData\": {\n      \"platform\": \"string\",\n      \"appVersion\": \"string\",\n      \"deviceDescription\": \"string\"\n    },\n    \"accountStatus\": \"string\",\n    \"teams\": [\n      \"string\",\n      \"string\"\n    ],\n    \"vehicle\": {\n      \"type\": \"CAR\",\n      \"description\": \"string\",\n      \"licensePlate\": \"string\",\n      \"color\": \"string\"\n    },\n    \"location\": [\n      849.180858824028,\n      5979.6064732723535\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"timeCreated\": 1455,\n    \"timeLastModified\": 3111,\n    \"organization\": \"string\",\n    \"name\": \"string\",\n    \"displayName\": \"string\",\n    \"phone\": \"string\",\n    \"activeTask\": \"string\",\n    \"tasks\": [\n      \"string\",\n      \"string\"\n    ],\n    \"onDuty\": false,\n    \"timeLastSeen\": 7429,\n    \"capacity\": 6274.341759794204,\n    \"userData\": {\n      \"platform\": \"string\",\n      \"appVersion\": \"string\",\n      \"deviceDescription\": \"string\"\n    },\n    \"accountStatus\": \"string\",\n    \"teams\": [\n      \"string\",\n      \"string\"\n    ],\n    \"vehicle\": {\n      \"type\": \"TRUCK\",\n      \"description\": \"string\",\n      \"licensePlate\": \"string\",\n      \"color\": \"string\"\n    },\n    \"location\": [\n      7476.662255317729,\n      8505.976626159756\n    ]\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -125,7 +125,7 @@
           }
         },
         {
-          "id": "979ab2c9-3295-4f14-897e-5a27b5e75d5b",
+          "id": "4663afd2-de04-42a1-b1aa-5d72d614536c",
           "name": "Create Worker",
           "request": {
             "name": "Create Worker",
@@ -164,7 +164,7 @@
           },
           "response": [
             {
-              "id": "e5afb98f-4671-4e7e-b1ab-91a984bc9a8b",
+              "id": "4baaa338-2426-412d-81f6-7b159387ba46",
               "name": "Worker created",
               "originalRequest": {
                 "url": {
@@ -210,7 +210,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 7997,\n  \"timeLastModified\": 4268,\n  \"organization\": \"string\",\n  \"name\": \"string\",\n  \"displayName\": \"string\",\n  \"phone\": \"string\",\n  \"activeTask\": \"string\",\n  \"tasks\": [\n    \"string\",\n    \"string\"\n  ],\n  \"onDuty\": true,\n  \"timeLastSeen\": 7154,\n  \"capacity\": 5154.185183631971,\n  \"userData\": {\n    \"platform\": \"string\",\n    \"appVersion\": \"string\",\n    \"deviceDescription\": \"string\"\n  },\n  \"accountStatus\": \"string\",\n  \"teams\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vehicle\": {\n    \"type\": \"<string>\",\n    \"description\": \"<string>\",\n    \"licensePlate\": \"<string>\",\n    \"color\": \"<string>\"\n  },\n  \"location\": [\n    4653.8097350247035,\n    1506.8156305523705\n  ]\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 6000,\n  \"timeLastModified\": 3028,\n  \"organization\": \"string\",\n  \"name\": \"string\",\n  \"displayName\": \"string\",\n  \"phone\": \"string\",\n  \"activeTask\": \"string\",\n  \"tasks\": [\n    \"string\",\n    \"string\"\n  ],\n  \"onDuty\": false,\n  \"timeLastSeen\": 6025,\n  \"capacity\": 1476.807355525952,\n  \"userData\": {\n    \"platform\": \"string\",\n    \"appVersion\": \"string\",\n    \"deviceDescription\": \"string\"\n  },\n  \"accountStatus\": \"string\",\n  \"teams\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vehicle\": {\n    \"type\": \"<string>\",\n    \"description\": \"<string>\",\n    \"licensePlate\": \"<string>\",\n    \"color\": \"<string>\"\n  },\n  \"location\": [\n    207.01117046342588,\n    2653.7367398701786\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -221,7 +221,7 @@
           }
         },
         {
-          "id": "eb7b68c9-ab31-47d1-ace5-ec4e588183bb",
+          "id": "43f6c351-f18c-4c50-ba9b-d7d3affdb6c9",
           "name": "Get Single Worker",
           "request": {
             "name": "Get Single Worker",
@@ -267,7 +267,7 @@
           },
           "response": [
             {
-              "id": "d762b66e-2815-45d4-8d6b-58fed546b75a",
+              "id": "2698287d-8820-4e0c-bba5-c2560040faca",
               "name": "Worker",
               "originalRequest": {
                 "url": {
@@ -323,7 +323,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 7997,\n  \"timeLastModified\": 4268,\n  \"organization\": \"string\",\n  \"name\": \"string\",\n  \"displayName\": \"string\",\n  \"phone\": \"string\",\n  \"activeTask\": \"string\",\n  \"tasks\": [\n    \"string\",\n    \"string\"\n  ],\n  \"onDuty\": true,\n  \"timeLastSeen\": 7154,\n  \"capacity\": 5154.185183631971,\n  \"userData\": {\n    \"platform\": \"string\",\n    \"appVersion\": \"string\",\n    \"deviceDescription\": \"string\"\n  },\n  \"accountStatus\": \"string\",\n  \"teams\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vehicle\": {\n    \"type\": \"<string>\",\n    \"description\": \"<string>\",\n    \"licensePlate\": \"<string>\",\n    \"color\": \"<string>\"\n  },\n  \"location\": [\n    4653.8097350247035,\n    1506.8156305523705\n  ]\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 6000,\n  \"timeLastModified\": 3028,\n  \"organization\": \"string\",\n  \"name\": \"string\",\n  \"displayName\": \"string\",\n  \"phone\": \"string\",\n  \"activeTask\": \"string\",\n  \"tasks\": [\n    \"string\",\n    \"string\"\n  ],\n  \"onDuty\": false,\n  \"timeLastSeen\": 6025,\n  \"capacity\": 1476.807355525952,\n  \"userData\": {\n    \"platform\": \"string\",\n    \"appVersion\": \"string\",\n    \"deviceDescription\": \"string\"\n  },\n  \"accountStatus\": \"string\",\n  \"teams\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vehicle\": {\n    \"type\": \"<string>\",\n    \"description\": \"<string>\",\n    \"licensePlate\": \"<string>\",\n    \"color\": \"<string>\"\n  },\n  \"location\": [\n    207.01117046342588,\n    2653.7367398701786\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -334,7 +334,7 @@
           }
         },
         {
-          "id": "2014af4d-fc29-4b34-9920-113ce91740f1",
+          "id": "3581d154-2678-4890-9fc7-a15aa6d04215",
           "name": "Update Worker",
           "request": {
             "name": "Update Worker",
@@ -382,7 +382,7 @@
           },
           "response": [
             {
-              "id": "d7f3e213-df3a-4122-9592-0ef23be80ded",
+              "id": "12a0bc53-44b5-4b07-8629-5fca213edade",
               "name": "Updated worker",
               "originalRequest": {
                 "url": {
@@ -437,7 +437,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 7997,\n  \"timeLastModified\": 4268,\n  \"organization\": \"string\",\n  \"name\": \"string\",\n  \"displayName\": \"string\",\n  \"phone\": \"string\",\n  \"activeTask\": \"string\",\n  \"tasks\": [\n    \"string\",\n    \"string\"\n  ],\n  \"onDuty\": true,\n  \"timeLastSeen\": 7154,\n  \"capacity\": 5154.185183631971,\n  \"userData\": {\n    \"platform\": \"string\",\n    \"appVersion\": \"string\",\n    \"deviceDescription\": \"string\"\n  },\n  \"accountStatus\": \"string\",\n  \"teams\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vehicle\": {\n    \"type\": \"<string>\",\n    \"description\": \"<string>\",\n    \"licensePlate\": \"<string>\",\n    \"color\": \"<string>\"\n  },\n  \"location\": [\n    4653.8097350247035,\n    1506.8156305523705\n  ]\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"timeCreated\": 6000,\n  \"timeLastModified\": 3028,\n  \"organization\": \"string\",\n  \"name\": \"string\",\n  \"displayName\": \"string\",\n  \"phone\": \"string\",\n  \"activeTask\": \"string\",\n  \"tasks\": [\n    \"string\",\n    \"string\"\n  ],\n  \"onDuty\": false,\n  \"timeLastSeen\": 6025,\n  \"capacity\": 1476.807355525952,\n  \"userData\": {\n    \"platform\": \"string\",\n    \"appVersion\": \"string\",\n    \"deviceDescription\": \"string\"\n  },\n  \"accountStatus\": \"string\",\n  \"teams\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vehicle\": {\n    \"type\": \"<string>\",\n    \"description\": \"<string>\",\n    \"licensePlate\": \"<string>\",\n    \"color\": \"<string>\"\n  },\n  \"location\": [\n    207.01117046342588,\n    2653.7367398701786\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -448,7 +448,7 @@
           }
         },
         {
-          "id": "f962b743-65e8-4e9a-9115-a4dd02c31625",
+          "id": "e07feb6d-ea75-46f4-b9ec-1f1c97113df2",
           "name": "Delete Worker",
           "request": {
             "name": "Delete Worker",
@@ -477,7 +477,7 @@
           },
           "response": [
             {
-              "id": "e706eb31-3837-4d85-b859-a01d26d11b49",
+              "id": "dfa3751d-d772-4d69-b8e6-8916061ef729",
               "name": "Worker deleted",
               "originalRequest": {
                 "url": {
@@ -531,7 +531,7 @@
           }
         },
         {
-          "id": "e516dcc4-30e0-4760-96c6-788ecc128225",
+          "id": "d6c965f7-f17d-4c0d-9436-73eaefa8bb99",
           "name": "List Worker's Assigned Tasks",
           "request": {
             "name": "List Worker's Assigned Tasks",
@@ -567,7 +567,7 @@
           },
           "response": [
             {
-              "id": "b903a60a-39d9-420d-a187-e5f46413484d",
+              "id": "966f058d-fe7a-44fa-941c-3cb47cd90a21",
               "name": "Tasks",
               "originalRequest": {
                 "url": {
@@ -626,7 +626,7 @@
           }
         },
         {
-          "id": "115571f7-c717-4453-831b-e04271e2c8f4",
+          "id": "4335f882-8c30-4056-9694-467042238f49",
           "name": "Get Worker's Route Delivery Manifest",
           "request": {
             "name": "Get Worker's Route Delivery Manifest",
@@ -668,7 +668,7 @@
           },
           "response": [
             {
-              "id": "aec35265-943e-46e0-8398-8d7b6a5032db",
+              "id": "82a3c28a-4f75-4580-90a5-292694c82e87",
               "name": "Manifest",
               "originalRequest": {
                 "url": {
@@ -757,11 +757,11 @@
     ]
   },
   "info": {
-    "_postman_id": "af971c0c-6201-48da-af16-d5886d104684",
-    "name": "Onfleet Workers API",
+    "_postman_id": "9b46529a-43ca-4ef7-ac88-fef686e2edae",
+    "name": "Onfleet Destinations Workers API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "The Onfleet Workers API manages drivers (workers) — the on-the-ground\noperators who execute tasks. Endpoints cover creation, listing, deletion,\nduty status, location lookup, and route delivery manifests for compliance.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",
+      "content": "The Destinations API manages physical addresses associated with tasks.\nDestinations include parsed address fields and a GeoJSON location, and can\nbe reused across tasks. Onfleet geocodes addresses on creation; you can\nalso supply an `unparsed` address.\n\n\nContact Support:\n Name: Onfleet Support\n Email: support@onfleet.com",
       "type": "text/plain"
     }
   }

@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Onfleet Route Plans API",
+    "name": "Onfleet Destinations Route Plans API",
     "version": "2.7"
   },
   "request": {
@@ -145,101 +145,6 @@
             }
           },
           "docs": "Add Tasks To Route Plan"
-        }
-      ]
-    },
-    {
-      "info": {
-        "name": "Route Optimization",
-        "type": "folder"
-      },
-      "items": [
-        {
-          "info": {
-            "name": "Initialize Route Optimization",
-            "type": "http"
-          },
-          "http": {
-            "method": "POST",
-            "url": "https://onfleet.com/api/v2/optimizations/scheduled",
-            "body": {
-              "type": "json",
-              "data": "{}"
-            }
-          },
-          "docs": "Start an asynchronous route optimization job for a team or set of workers; result delivered via the routeOptimizationJobCompleted webhook. Enterprise-only."
-        },
-        {
-          "info": {
-            "name": "Start Route Optimization",
-            "type": "http"
-          },
-          "http": {
-            "method": "POST",
-            "url": "https://onfleet.com/api/v2/optimizations/:optimizationId/start",
-            "params": [
-              {
-                "name": "optimizationId",
-                "value": "",
-                "type": "path"
-              }
-            ]
-          },
-          "docs": "Start Route Optimization"
-        },
-        {
-          "info": {
-            "name": "Get Optimization Status",
-            "type": "http"
-          },
-          "http": {
-            "method": "GET",
-            "url": "https://onfleet.com/api/v2/optimizations/:optimizationId/status",
-            "params": [
-              {
-                "name": "optimizationId",
-                "value": "",
-                "type": "path"
-              }
-            ]
-          },
-          "docs": "Get Optimization Status"
-        },
-        {
-          "info": {
-            "name": "Apply Optimization Results",
-            "type": "http"
-          },
-          "http": {
-            "method": "POST",
-            "url": "https://onfleet.com/api/v2/optimizations/:optimizationId/apply",
-            "params": [
-              {
-                "name": "optimizationId",
-                "value": "",
-                "type": "path"
-              }
-            ]
-          },
-          "docs": "Apply Optimization Results"
-        },
-        {
-          "info": {
-            "name": "Abort Optimization",
-            "type": "http"
-          },
-          "http": {
-            "method": "POST",
-            "url": "https://onfleet.com/api/v2/optimizations/:optimizationId/abort",
-            "params": [
-              {
-                "name": "optimizationId",
-                "value": "",
-                "type": "path"
-              }
-            ]
-          },
-          "docs": "Abort Optimization"
         }
       ]
     }
