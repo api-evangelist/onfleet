@@ -7,6 +7,10 @@ apis:
   tags:
   - Last Mile Delivery
   - Logistics
+  - Task
+  tags_raw:
+  - Last Mile Delivery
+  - Logistics
   - Tasks
   humanURL: https://docs.onfleet.com/reference/tasks
   baseURL: https://onfleet.com/api/v2
@@ -89,6 +93,10 @@ apis:
   name: Onfleet Orders API
   tags:
   - Last Mile Delivery
+  - Order
+  - Couriers
+  tags_raw:
+  - Last Mile Delivery
   - Orders
   - Courier
   humanURL: https://docs.onfleet.com/reference/orders
@@ -107,6 +115,11 @@ apis:
 - aid: onfleet:onfleet-organizations-api
   name: Onfleet Organizations & Teams API
   tags:
+  - Last Mile Delivery
+  - Organization
+  - Team
+  - Administrators
+  tags_raw:
   - Last Mile Delivery
   - Organizations
   - Teams
@@ -166,6 +179,10 @@ apis:
   name: Onfleet Webhooks API
   tags:
   - Last Mile Delivery
+  - Webhook
+  - Event
+  tags_raw:
+  - Last Mile Delivery
   - Webhooks
   - Events
   humanURL: https://docs.onfleet.com/reference/webhooks
@@ -200,6 +217,19 @@ apis:
   - type: OpenAPI
     url: openapi/onfleet-route-optimization-api-openapi.yml
 tags:
+- Last Mile Delivery
+- Logistics
+- Fleet Management
+- Dispatch
+- Route Optimization
+- Couriers
+- Drivers
+- Tracking
+- Geocoding
+- Webhook
+- Artificial Intelligence
+- Software-as-a-Service
+tags_raw:
 - Last Mile Delivery
 - Logistics
 - Fleet Management
