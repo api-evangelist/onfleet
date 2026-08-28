@@ -12,11 +12,11 @@ info:
     the underlying OpenAPI descriptions.
   version: 1.0.0
 sourceDescriptions:
-- name: tasksApi
-  url: ../openapi/onfleet-tasks-api-openapi.yml
-  type: openapi
 - name: organizationsApi
   url: ../openapi/onfleet-organizations-api-openapi.yml
+  type: openapi
+- name: tasksApi
+  url: ../openapi/onfleet-tasks-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: dispatch-team-tasks

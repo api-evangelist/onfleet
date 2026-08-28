@@ -11,8 +11,8 @@ info:
     and executed without opening the underlying OpenAPI descriptions.
   version: 1.0.0
 sourceDescriptions:
-- name: routePlansApi
-  url: ../openapi/onfleet-route-plans-api-openapi.yml
+- name: routeOptimizationApi
+  url: ../openapi/onfleet-route-optimization-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: optimize-team-routes

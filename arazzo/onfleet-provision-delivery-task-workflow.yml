@@ -12,11 +12,11 @@ info:
     underlying OpenAPI descriptions.
   version: 1.0.0
 sourceDescriptions:
-- name: recipientsApi
-  url: ../openapi/onfleet-recipients-api-openapi.yml
-  type: openapi
 - name: destinationsApi
   url: ../openapi/onfleet-destinations-api-openapi.yml
+  type: openapi
+- name: recipientsApi
+  url: ../openapi/onfleet-recipients-api-openapi.yml
   type: openapi
 - name: tasksApi
   url: ../openapi/onfleet-tasks-api-openapi.yml
