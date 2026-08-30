@@ -94,7 +94,7 @@ apis:
   tags:
   - Last Mile Delivery
   - Order
-  - Couriers
+  - Courier
   tags_raw:
   - Last Mile Delivery
   - Orders
@@ -222,7 +222,7 @@ tags:
 - Fleet Management
 - Dispatch
 - Route Optimization
-- Couriers
+- Courier
 - Drivers
 - Tracking
 - Geocoding
