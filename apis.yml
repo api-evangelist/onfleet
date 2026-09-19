@@ -158,6 +158,10 @@ apis:
   name: Onfleet Destinations API
   tags:
   - Last Mile Delivery
+  - Destination
+  - Geocoding
+  tags_raw:
+  - Last Mile Delivery
   - Destinations
   - Geocoding
   humanURL: https://docs.onfleet.com/reference/destinations
