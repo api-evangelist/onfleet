@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 3
+edge_count: 4
 edges:
 - tag: Route Optimization
   spec_file: onfleet-route-optimization-api-openapi.yml
@@ -42,3 +42,15 @@ edges:
   evidence: POST /routePlans createRoutePlan; PUT /routePlans/{routePlanId}/tasks addTasksToRoutePlan
   reason: Route plans group delivery tasks into driver routes for last-mile execution on a delivery management
     platform; this is final-leg routing rather than long-horizon network design.
+- tag: Orders
+  spec_file: onfleet-orders-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.7
+  evidence: POST /taskOrders  "Create Order"; POST /taskOrders/{orderShortId}/cancel  "Cancel Order";
+    POST /taskOrders/quote  "Quote Order"
+  reason: Lifecycle of delivery orders (create, update, cancel, reject, clone, quote) on a last-mile delivery
+    platform maps to order capture and fulfilment orchestration. The title mentioning Destinations is
+    spec-splitting noise; operations govern taskOrders.
+  recovered_from: vertical-automotive-mobility-edges.json
