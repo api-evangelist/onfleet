@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Onfleet Destinations Orders API
   description: 'The Destinations API manages physical addresses associated with tasks.
@@ -7,9 +7,7 @@ info:
 
     be reused across tasks. Onfleet geocodes addresses on creation; you can
 
-    also supply an `unparsed` address.
-
-    '
+    also supply an `unparsed` address.'
   version: '2.7'
   contact:
     name: Onfleet Support
@@ -168,21 +166,6 @@ paths:
                     format: int64
 components:
   schemas:
-    OrderCreate:
-      type: object
-      properties:
-        client:
-          type: string
-        deliveryServiceId:
-          type: string
-        price:
-          type: number
-        currency:
-          type: string
-        pickupTask:
-          $ref: onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate
-        dropoffTask:
-          $ref: onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate
     OrderUpdate:
       type: object
       properties:
@@ -209,14 +192,17 @@ components:
           type: integer
           format: int64
         deliveryServiceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         price:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
         currency:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
           type: string
           enum:
@@ -231,6 +217,21 @@ components:
           type: string
         dropoffTask:
           type: string
+    OrderCreate:
+      type: object
+      properties:
+        client:
+          type: string
+        deliveryServiceId:
+          type: string
+        price:
+          type: number
+        currency:
+          type: string
+        pickupTask:
+          $ref: onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate
+        dropoffTask:
+          $ref: onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate
   securitySchemes:
     basicAuth:
       type: http

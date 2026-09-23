@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Onfleet Destinations Tasks API
   description: 'The Destinations API manages physical addresses associated with tasks.
@@ -7,9 +7,7 @@ info:
 
     be reused across tasks. Onfleet geocodes addresses on creation; you can
 
-    also supply an `unparsed` address.
-
-    '
+    also supply an `unparsed` address.'
   version: '2.7'
   contact:
     name: Onfleet Support
@@ -280,18 +278,6 @@ paths:
           description: Worker container updated
 components:
   schemas:
-    Feedback:
-      type: object
-      properties:
-        time:
-          type: integer
-          format: int64
-        rating:
-          type: integer
-          minimum: 1
-          maximum: 5
-        comments:
-          type: string
     Metadata:
       type: object
       required:
@@ -318,152 +304,22 @@ components:
             - api
             - dashboard
             - worker
-    TaskUpdate:
-      type: object
-      properties:
-        notes:
-          type: string
-        completeAfter:
-          type: integer
-          format: int64
-        completeBefore:
-          type: integer
-          format: int64
-        pickupTask:
-          type: boolean
-        quantity:
-          type: integer
-        serviceTime:
-          type: integer
-        metadata:
-          type: array
-          items:
-            $ref: '#/components/schemas/Metadata'
-    TaskList:
-      type: object
-      properties:
-        lastId:
-          type: string
-          nullable: true
-        tasks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Task'
-    AutoAssign:
-      type: object
-      properties:
-        mode:
-          type: string
-          enum:
-          - distance
-          - load
-        team:
-          type: string
-        considerDependencies:
-          type: boolean
-        excludedWorkerIds:
-          type: array
-          items:
-            type: string
-        maxAssignedTaskCount:
-          type: integer
-    Task:
+    Recipient:
       type: object
       properties:
         id:
           type: string
-          description: 24-character resource identifier.
-        shortId:
+        name:
           type: string
-        organization:
+        phone:
           type: string
-        timeCreated:
-          type: integer
-          format: int64
-        timeLastModified:
-          type: integer
-          format: int64
-        executor:
-          type: string
-        merchant:
-          type: string
-        creator:
-          type: string
-        worker:
-          type: string
-          nullable: true
-        destination:
-          $ref: '#/components/schemas/Destination'
-        recipients:
-          type: array
-          items:
-            $ref: '#/components/schemas/Recipient'
-        completeAfter:
-          type: integer
-          format: int64
-          nullable: true
-        completeBefore:
-          type: integer
-          format: int64
-          nullable: true
-        pickupTask:
-          type: boolean
-        dependencies:
-          type: array
-          items:
-            type: string
+          description: E.164 phone number.
         notes:
           type: string
-        quantity:
-          type: integer
-        serviceTime:
-          type: integer
-        state:
-          type: integer
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-        completionDetails:
-          $ref: '#/components/schemas/CompletionDetails'
-        feedback:
-          type: array
-          items:
-            $ref: '#/components/schemas/Feedback'
-        metadata:
-          type: array
-          items:
-            $ref: '#/components/schemas/Metadata'
-        trackingURL:
-          type: string
-          format: uri
-        trackingViewed:
+        skipSMSNotifications:
           type: boolean
-        eta:
-          type: integer
-          format: int64
-          nullable: true
-        delayTime:
-          type: integer
-          nullable: true
-        appearance:
-          type: object
-          properties:
-            triangleColor:
-              type: string
-              nullable: true
-        container:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - ORGANIZATION
-              - TEAM
-              - WORKER
-            organization:
-              type: string
+        organization:
+          type: string
     Destination:
       type: object
       properties:
@@ -501,31 +357,16 @@ components:
           type: array
           items:
             type: string
-    Recipient:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        phone:
-          type: string
-          description: E.164 phone number.
-        notes:
-          type: string
-        skipSMSNotifications:
-          type: boolean
-        organization:
-          type: string
     CompletionDetails:
       type: object
       properties:
         success:
           type: boolean
         time:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int64
-          nullable: true
         notes:
           type: string
         photoUploadIds:
@@ -533,8 +374,9 @@ components:
           items:
             type: string
         signatureUploadId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         events:
           type: array
           items:
@@ -545,6 +387,39 @@ components:
               time:
                 type: integer
                 format: int64
+    TaskUpdate:
+      type: object
+      properties:
+        notes:
+          type: string
+        completeAfter:
+          type: integer
+          format: int64
+        completeBefore:
+          type: integer
+          format: int64
+        pickupTask:
+          type: boolean
+        quantity:
+          type: integer
+        serviceTime:
+          type: integer
+        metadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metadata'
+    Feedback:
+      type: object
+      properties:
+        time:
+          type: integer
+          format: int64
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+        comments:
+          type: string
     TaskCreate:
       type: object
       properties:
@@ -594,6 +469,138 @@ components:
           properties:
             triangleColor:
               type: string
+    AutoAssign:
+      type: object
+      properties:
+        mode:
+          type: string
+          enum:
+          - distance
+          - load
+        team:
+          type: string
+        considerDependencies:
+          type: boolean
+        excludedWorkerIds:
+          type: array
+          items:
+            type: string
+        maxAssignedTaskCount:
+          type: integer
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 24-character resource identifier.
+        shortId:
+          type: string
+        organization:
+          type: string
+        timeCreated:
+          type: integer
+          format: int64
+        timeLastModified:
+          type: integer
+          format: int64
+        executor:
+          type: string
+        merchant:
+          type: string
+        creator:
+          type: string
+        worker:
+          type:
+          - string
+          - 'null'
+        destination:
+          $ref: '#/components/schemas/Destination'
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipient'
+        completeAfter:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        completeBefore:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        pickupTask:
+          type: boolean
+        dependencies:
+          type: array
+          items:
+            type: string
+        notes:
+          type: string
+        quantity:
+          type: integer
+        serviceTime:
+          type: integer
+        state:
+          type: integer
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+        completionDetails:
+          $ref: '#/components/schemas/CompletionDetails'
+        feedback:
+          type: array
+          items:
+            $ref: '#/components/schemas/Feedback'
+        metadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metadata'
+        trackingURL:
+          type: string
+          format: uri
+        trackingViewed:
+          type: boolean
+        eta:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        delayTime:
+          type:
+          - integer
+          - 'null'
+        appearance:
+          type: object
+          properties:
+            triangleColor:
+              type:
+              - string
+              - 'null'
+        container:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - ORGANIZATION
+              - TEAM
+              - WORKER
+            organization:
+              type: string
+    TaskList:
+      type: object
+      properties:
+        lastId:
+          type:
+          - string
+          - 'null'
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
   securitySchemes:
     basicAuth:
       type: http

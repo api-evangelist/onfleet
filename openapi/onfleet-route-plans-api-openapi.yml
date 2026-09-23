@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Onfleet Destinations Route Plans API
   description: 'The Destinations API manages physical addresses associated with tasks.
@@ -7,9 +7,7 @@ info:
 
     be reused across tasks. Onfleet geocodes addresses on creation; you can
 
-    also supply an `unparsed` address.
-
-    '
+    also supply an `unparsed` address.'
   version: '2.7'
   contact:
     name: Onfleet Support
@@ -158,6 +156,76 @@ paths:
                 $ref: '#/components/schemas/RoutePlan'
 components:
   schemas:
+    RoutePlan:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        organization:
+          type: string
+        timeCreated:
+          type: integer
+          format: int64
+        timeLastModified:
+          type: integer
+          format: int64
+        startTime:
+          type: integer
+          format: int64
+        endTime:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        team:
+          type:
+          - string
+          - 'null'
+        worker:
+          type:
+          - string
+          - 'null'
+        vehicleType:
+          type:
+          - string
+          - 'null'
+        startAt:
+          type: string
+          enum:
+          - HUB
+          - WORKER_LOCATION
+          - WORKER_ADDRESS
+        endAt:
+          type: string
+          enum:
+          - HUB
+          - WORKER_LOCATION
+          - WORKER_ADDRESS
+          - ANYWHERE
+        startingHubId:
+          type:
+          - string
+          - 'null'
+        endingHubId:
+          type:
+          - string
+          - 'null'
+        color:
+          type:
+          - string
+          - 'null'
+        tasks:
+          type: array
+          items:
+            type: string
+        state:
+          type: string
+          enum:
+          - DRAFT
+          - ACTIVE
+          - COMPLETED
     RoutePlanCreate:
       type: object
       required:
@@ -207,69 +275,6 @@ components:
           type: array
           items:
             type: string
-    RoutePlan:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        organization:
-          type: string
-        timeCreated:
-          type: integer
-          format: int64
-        timeLastModified:
-          type: integer
-          format: int64
-        startTime:
-          type: integer
-          format: int64
-        endTime:
-          type: integer
-          format: int64
-          nullable: true
-        team:
-          type: string
-          nullable: true
-        worker:
-          type: string
-          nullable: true
-        vehicleType:
-          type: string
-          nullable: true
-        startAt:
-          type: string
-          enum:
-          - HUB
-          - WORKER_LOCATION
-          - WORKER_ADDRESS
-        endAt:
-          type: string
-          enum:
-          - HUB
-          - WORKER_LOCATION
-          - WORKER_ADDRESS
-          - ANYWHERE
-        startingHubId:
-          type: string
-          nullable: true
-        endingHubId:
-          type: string
-          nullable: true
-        color:
-          type: string
-          nullable: true
-        tasks:
-          type: array
-          items:
-            type: string
-        state:
-          type: string
-          enum:
-          - DRAFT
-          - ACTIVE
-          - COMPLETED
   securitySchemes:
     basicAuth:
       type: http

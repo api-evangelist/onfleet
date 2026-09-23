@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Onfleet Destinations API
   description: 'The Destinations API manages physical addresses associated with tasks.
@@ -7,9 +7,7 @@ info:
 
     be reused across tasks. Onfleet geocodes addresses on creation; you can
 
-    also supply an `unparsed` address.
-
-    '
+    also supply an `unparsed` address.'
   version: '2.7'
   contact:
     name: Onfleet Support
@@ -65,43 +63,6 @@ paths:
                 $ref: '#/components/schemas/Destination'
 components:
   schemas:
-    Address:
-      type: object
-      properties:
-        unparsed:
-          type: string
-        number:
-          type: string
-        street:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-        apartment:
-          type: string
-    DestinationCreate:
-      type: object
-      properties:
-        address:
-          allOf:
-          - $ref: '#/components/schemas/Address'
-        location:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            type: number
-        notes:
-          type: string
-        metadata:
-          type: array
-          items:
-            type: object
     Destination:
       type: object
       properties:
@@ -132,6 +93,43 @@ components:
           type: array
           items:
             type: object
+    DestinationCreate:
+      type: object
+      properties:
+        address:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+        location:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            type: number
+        notes:
+          type: string
+        metadata:
+          type: array
+          items:
+            type: object
+    Address:
+      type: object
+      properties:
+        unparsed:
+          type: string
+        number:
+          type: string
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        apartment:
+          type: string
   securitySchemes:
     basicAuth:
       type: http
