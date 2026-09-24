@@ -29,8 +29,6 @@ apis:
     type: JSONStructure
   - url: examples/onfleet-create-task-example.json
     type: Examples
-  - url: graphql/onfleet-graphql.md
-    type: GraphQL
   description: >
     Create, list, fetch, update, clone, force-complete, and delete pickup/dropoff tasks. Tasks are the
 
