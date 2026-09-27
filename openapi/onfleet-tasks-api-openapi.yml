@@ -278,148 +278,6 @@ paths:
           description: Worker container updated
 components:
   schemas:
-    Metadata:
-      type: object
-      required:
-      - name
-      - type
-      - value
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - boolean
-          - number
-          - string
-          - object
-          - array
-        value: {}
-        visibility:
-          type: array
-          items:
-            type: string
-            enum:
-            - api
-            - dashboard
-            - worker
-    Recipient:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        phone:
-          type: string
-          description: E.164 phone number.
-        notes:
-          type: string
-        skipSMSNotifications:
-          type: boolean
-        organization:
-          type: string
-    Destination:
-      type: object
-      properties:
-        id:
-          type: string
-        address:
-          type: object
-          properties:
-            unparsed:
-              type: string
-            number:
-              type: string
-            street:
-              type: string
-            city:
-              type: string
-            state:
-              type: string
-            postalCode:
-              type: string
-            country:
-              type: string
-            apartment:
-              type: string
-        location:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            type: number
-          description: GeoJSON [longitude, latitude].
-        notes:
-          type: string
-        warnings:
-          type: array
-          items:
-            type: string
-    CompletionDetails:
-      type: object
-      properties:
-        success:
-          type: boolean
-        time:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        notes:
-          type: string
-        photoUploadIds:
-          type: array
-          items:
-            type: string
-        signatureUploadId:
-          type:
-          - string
-          - 'null'
-        events:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              time:
-                type: integer
-                format: int64
-    TaskUpdate:
-      type: object
-      properties:
-        notes:
-          type: string
-        completeAfter:
-          type: integer
-          format: int64
-        completeBefore:
-          type: integer
-          format: int64
-        pickupTask:
-          type: boolean
-        quantity:
-          type: integer
-        serviceTime:
-          type: integer
-        metadata:
-          type: array
-          items:
-            $ref: '#/components/schemas/Metadata'
-    Feedback:
-      type: object
-      properties:
-        time:
-          type: integer
-          format: int64
-        rating:
-          type: integer
-          minimum: 1
-          maximum: 5
-        comments:
-          type: string
     TaskCreate:
       type: object
       properties:
@@ -469,24 +327,105 @@ components:
           properties:
             triangleColor:
               type: string
-    AutoAssign:
+    Destination:
       type: object
       properties:
-        mode:
+        id:
           type: string
-          enum:
-          - distance
-          - load
-        team:
+        address:
+          type: object
+          properties:
+            unparsed:
+              type: string
+            number:
+              type: string
+            street:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            postalCode:
+              type: string
+            country:
+              type: string
+            apartment:
+              type: string
+        location:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            type: number
+          description: GeoJSON [longitude, latitude].
+        notes:
           type: string
-        considerDependencies:
-          type: boolean
-        excludedWorkerIds:
+        warnings:
           type: array
           items:
             type: string
-        maxAssignedTaskCount:
+    TaskUpdate:
+      type: object
+      properties:
+        notes:
+          type: string
+        completeAfter:
           type: integer
+          format: int64
+        completeBefore:
+          type: integer
+          format: int64
+        pickupTask:
+          type: boolean
+        quantity:
+          type: integer
+        serviceTime:
+          type: integer
+        metadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metadata'
+    CompletionDetails:
+      type: object
+      properties:
+        success:
+          type: boolean
+        time:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        notes:
+          type: string
+        photoUploadIds:
+          type: array
+          items:
+            type: string
+        signatureUploadId:
+          type:
+          - string
+          - 'null'
+        events:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              time:
+                type: integer
+                format: int64
+    TaskList:
+      type: object
+      properties:
+        lastId:
+          type:
+          - string
+          - 'null'
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
     Task:
       type: object
       properties:
@@ -590,17 +529,78 @@ components:
               - WORKER
             organization:
               type: string
-    TaskList:
+    Metadata:
       type: object
+      required:
+      - name
+      - type
+      - value
       properties:
-        lastId:
-          type:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - boolean
+          - number
           - string
-          - 'null'
-        tasks:
+          - object
+          - array
+        value: {}
+        visibility:
           type: array
           items:
-            $ref: '#/components/schemas/Task'
+            type: string
+            enum:
+            - api
+            - dashboard
+            - worker
+    Feedback:
+      type: object
+      properties:
+        time:
+          type: integer
+          format: int64
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+        comments:
+          type: string
+    Recipient:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        phone:
+          type: string
+          description: E.164 phone number.
+        notes:
+          type: string
+        skipSMSNotifications:
+          type: boolean
+        organization:
+          type: string
+    AutoAssign:
+      type: object
+      properties:
+        mode:
+          type: string
+          enum:
+          - distance
+          - load
+        team:
+          type: string
+        considerDependencies:
+          type: boolean
+        excludedWorkerIds:
+          type: array
+          items:
+            type: string
+        maxAssignedTaskCount:
+          type: integer
   securitySchemes:
     basicAuth:
       type: http

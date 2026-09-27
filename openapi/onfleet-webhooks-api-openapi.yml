@@ -115,6 +115,24 @@ paths:
                     type: string
 components:
   schemas:
+    WebhookCreate:
+      type: object
+      required:
+      - url
+      - trigger
+      properties:
+        url:
+          type: string
+          format: uri
+        name:
+          type: string
+        trigger:
+          type: integer
+        threshold:
+          type: integer
+          description: Required for triggers that compare against a threshold (taskEta
+          taskArrival: null
+          taskDelayed).: null
     Webhook:
       type: object
       properties:
@@ -165,24 +183,6 @@ components:
           type:
           - integer
           - 'null'
-    WebhookCreate:
-      type: object
-      required:
-      - url
-      - trigger
-      properties:
-        url:
-          type: string
-          format: uri
-        name:
-          type: string
-        trigger:
-          type: integer
-        threshold:
-          type: integer
-          description: Required for triggers that compare against a threshold (taskEta
-          taskArrival: null
-          taskDelayed).: null
   securitySchemes:
     basicAuth:
       type: http

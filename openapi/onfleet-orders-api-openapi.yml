@@ -166,17 +166,6 @@ paths:
                     format: int64
 components:
   schemas:
-    OrderUpdate:
-      type: object
-      properties:
-        price:
-          type: number
-        currency:
-          type: string
-        pickupTask:
-          type: object
-        dropoffTask:
-          type: object
     Order:
       type: object
       properties:
@@ -232,6 +221,17 @@ components:
           $ref: onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate
         dropoffTask:
           $ref: onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate
+    OrderUpdate:
+      type: object
+      properties:
+        price:
+          type: number
+        currency:
+          type: string
+        pickupTask:
+          type: object
+        dropoffTask:
+          type: object
   securitySchemes:
     basicAuth:
       type: http

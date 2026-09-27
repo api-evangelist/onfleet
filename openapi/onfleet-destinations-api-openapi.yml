@@ -63,6 +63,25 @@ paths:
                 $ref: '#/components/schemas/Destination'
 components:
   schemas:
+    Address:
+      type: object
+      properties:
+        unparsed:
+          type: string
+        number:
+          type: string
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        apartment:
+          type: string
     Destination:
       type: object
       properties:
@@ -111,25 +130,6 @@ components:
           type: array
           items:
             type: object
-    Address:
-      type: object
-      properties:
-        unparsed:
-          type: string
-        number:
-          type: string
-        street:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-        apartment:
-          type: string
   securitySchemes:
     basicAuth:
       type: http
