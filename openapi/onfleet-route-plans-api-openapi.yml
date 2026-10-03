@@ -156,6 +156,55 @@ paths:
                 $ref: '#/components/schemas/RoutePlan'
 components:
   schemas:
+    RoutePlanCreate:
+      type: object
+      required:
+      - name
+      - startTime
+      - worker
+      properties:
+        name:
+          type: string
+        startTime:
+          type: integer
+          format: int64
+        endTime:
+          type: integer
+          format: int64
+        worker:
+          type: string
+        team:
+          type: string
+        vehicleType:
+          type: string
+          enum:
+          - CAR
+          - MOTORCYCLE
+          - BICYCLE
+          - TRUCK
+        startAt:
+          type: string
+          enum:
+          - HUB
+          - WORKER_LOCATION
+          - WORKER_ADDRESS
+        endAt:
+          type: string
+          enum:
+          - HUB
+          - WORKER_LOCATION
+          - WORKER_ADDRESS
+          - ANYWHERE
+        startingHubId:
+          type: string
+        endingHubId:
+          type: string
+        color:
+          type: string
+        tasks:
+          type: array
+          items:
+            type: string
     RoutePlan:
       type: object
       properties:
@@ -226,55 +275,6 @@ components:
           - DRAFT
           - ACTIVE
           - COMPLETED
-    RoutePlanCreate:
-      type: object
-      required:
-      - name
-      - startTime
-      - worker
-      properties:
-        name:
-          type: string
-        startTime:
-          type: integer
-          format: int64
-        endTime:
-          type: integer
-          format: int64
-        worker:
-          type: string
-        team:
-          type: string
-        vehicleType:
-          type: string
-          enum:
-          - CAR
-          - MOTORCYCLE
-          - BICYCLE
-          - TRUCK
-        startAt:
-          type: string
-          enum:
-          - HUB
-          - WORKER_LOCATION
-          - WORKER_ADDRESS
-        endAt:
-          type: string
-          enum:
-          - HUB
-          - WORKER_LOCATION
-          - WORKER_ADDRESS
-          - ANYWHERE
-        startingHubId:
-          type: string
-        endingHubId:
-          type: string
-        color:
-          type: string
-        tasks:
-          type: array
-          items:
-            type: string
   securitySchemes:
     basicAuth:
       type: http

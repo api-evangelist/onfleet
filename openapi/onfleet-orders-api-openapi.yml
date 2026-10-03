@@ -206,6 +206,17 @@ components:
           type: string
         dropoffTask:
           type: string
+    OrderUpdate:
+      type: object
+      properties:
+        price:
+          type: number
+        currency:
+          type: string
+        pickupTask:
+          type: object
+        dropoffTask:
+          type: object
     OrderCreate:
       type: object
       properties:
@@ -221,17 +232,6 @@ components:
           $ref: onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate
         dropoffTask:
           $ref: onfleet-tasks-api-openapi.yml#/components/schemas/TaskCreate
-    OrderUpdate:
-      type: object
-      properties:
-        price:
-          type: number
-        currency:
-          type: string
-        pickupTask:
-          type: object
-        dropoffTask:
-          type: object
   securitySchemes:
     basicAuth:
       type: http

@@ -82,6 +82,24 @@ components:
           type: string
         apartment:
           type: string
+    DestinationCreate:
+      type: object
+      properties:
+        address:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+        location:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            type: number
+        notes:
+          type: string
+        metadata:
+          type: array
+          items:
+            type: object
     Destination:
       type: object
       properties:
@@ -108,24 +126,6 @@ components:
           type: array
           items:
             type: string
-        metadata:
-          type: array
-          items:
-            type: object
-    DestinationCreate:
-      type: object
-      properties:
-        address:
-          allOf:
-          - $ref: '#/components/schemas/Address'
-        location:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            type: number
-        notes:
-          type: string
         metadata:
           type: array
           items:

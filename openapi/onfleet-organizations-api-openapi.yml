@@ -242,6 +242,30 @@ components:
           type: array
           items:
             type: string
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        timeCreated:
+          type: integer
+          format: int64
+        name:
+          type: string
+        workers:
+          type: array
+          items:
+            type: string
+        managers:
+          type: array
+          items:
+            type: string
+        hub:
+          type:
+          - string
+          - 'null'
+        enableSelfAssignment:
+          type: boolean
     Organization:
       type: object
       properties:
@@ -270,30 +294,6 @@ components:
           type: array
           items:
             type: string
-    Team:
-      type: object
-      properties:
-        id:
-          type: string
-        timeCreated:
-          type: integer
-          format: int64
-        name:
-          type: string
-        workers:
-          type: array
-          items:
-            type: string
-        managers:
-          type: array
-          items:
-            type: string
-        hub:
-          type:
-          - string
-          - 'null'
-        enableSelfAssignment:
-          type: boolean
   securitySchemes:
     basicAuth:
       type: http
