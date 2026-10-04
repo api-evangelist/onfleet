@@ -208,40 +208,6 @@ paths:
           description: Auto-dispatch queued
 components:
   schemas:
-    Administrator:
-      type: object
-      properties:
-        id:
-          type: string
-        timeCreated:
-          type: integer
-          format: int64
-        organization:
-          type: string
-        email:
-          type: string
-          format: email
-        name:
-          type: string
-        phone:
-          type:
-          - string
-          - 'null'
-        isAccountOwner:
-          type: boolean
-        isReadOnly:
-          type: boolean
-        isActive:
-          type: boolean
-        type:
-          type: string
-          enum:
-          - super
-          - standard
-        teams:
-          type: array
-          items:
-            type: string
     Team:
       type: object
       properties:
@@ -291,6 +257,40 @@ components:
           - string
           - 'null'
         delegatees:
+          type: array
+          items:
+            type: string
+    Administrator:
+      type: object
+      properties:
+        id:
+          type: string
+        timeCreated:
+          type: integer
+          format: int64
+        organization:
+          type: string
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        phone:
+          type:
+          - string
+          - 'null'
+        isAccountOwner:
+          type: boolean
+        isReadOnly:
+          type: boolean
+        isActive:
+          type: boolean
+        type:
+          type: string
+          enum:
+          - super
+          - standard
+        teams:
           type: array
           items:
             type: string

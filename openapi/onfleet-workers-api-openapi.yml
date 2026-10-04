@@ -176,24 +176,6 @@ paths:
                 type: object
 components:
   schemas:
-    Vehicle:
-      type: object
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          enum:
-          - CAR
-          - MOTORCYCLE
-          - BICYCLE
-          - TRUCK
-        description:
-          type: string
-        licensePlate:
-          type: string
-        color:
-          type: string
     Worker:
       type: object
       properties:
@@ -283,6 +265,24 @@ components:
           type: string
         additionalCapacities:
           type: object
+    Vehicle:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - CAR
+          - MOTORCYCLE
+          - BICYCLE
+          - TRUCK
+        description:
+          type: string
+        licensePlate:
+          type: string
+        color:
+          type: string
   securitySchemes:
     basicAuth:
       type: http

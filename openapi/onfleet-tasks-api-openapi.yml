@@ -278,22 +278,43 @@ paths:
           description: Worker container updated
 components:
   schemas:
-    Recipient:
+    Destination:
       type: object
       properties:
         id:
           type: string
-        name:
-          type: string
-        phone:
-          type: string
-          description: E.164 phone number.
+        address:
+          type: object
+          properties:
+            unparsed:
+              type: string
+            number:
+              type: string
+            street:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            postalCode:
+              type: string
+            country:
+              type: string
+            apartment:
+              type: string
+        location:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            type: number
+          description: GeoJSON [longitude, latitude].
         notes:
           type: string
-        skipSMSNotifications:
-          type: boolean
-        organization:
-          type: string
+        warnings:
+          type: array
+          items:
+            type: string
     TaskList:
       type: object
       properties:
@@ -305,6 +326,55 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Task'
+    TaskCreate:
+      type: object
+      properties:
+        merchant:
+          type: string
+        executor:
+          type: string
+        destination:
+          oneOf:
+          - type: string
+          - $ref: '#/components/schemas/Destination'
+        recipients:
+          type: array
+          items:
+            oneOf:
+            - type: string
+            - $ref: '#/components/schemas/Recipient'
+        completeAfter:
+          type: integer
+          format: int64
+        completeBefore:
+          type: integer
+          format: int64
+        pickupTask:
+          type: boolean
+        dependencies:
+          type: array
+          items:
+            type: string
+        notes:
+          type: string
+          maxLength: 10000
+        quantity:
+          type: integer
+        serviceTime:
+          type: integer
+        autoAssign:
+          $ref: '#/components/schemas/AutoAssign'
+        container:
+          type: object
+        metadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metadata'
+        appearance:
+          type: object
+          properties:
+            triangleColor:
+              type: string
     Task:
       type: object
       properties:
@@ -408,43 +478,6 @@ components:
               - WORKER
             organization:
               type: string
-    Destination:
-      type: object
-      properties:
-        id:
-          type: string
-        address:
-          type: object
-          properties:
-            unparsed:
-              type: string
-            number:
-              type: string
-            street:
-              type: string
-            city:
-              type: string
-            state:
-              type: string
-            postalCode:
-              type: string
-            country:
-              type: string
-            apartment:
-              type: string
-        location:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            type: number
-          description: GeoJSON [longitude, latitude].
-        notes:
-          type: string
-        warnings:
-          type: array
-          items:
-            type: string
     CompletionDetails:
       type: object
       properties:
@@ -496,6 +529,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Metadata'
+    AutoAssign:
+      type: object
+      properties:
+        mode:
+          type: string
+          enum:
+          - distance
+          - load
+        team:
+          type: string
+        considerDependencies:
+          type: boolean
+        excludedWorkerIds:
+          type: array
+          items:
+            type: string
+        maxAssignedTaskCount:
+          type: integer
     Metadata:
       type: object
       required:
@@ -522,24 +573,22 @@ components:
             - api
             - dashboard
             - worker
-    AutoAssign:
+    Recipient:
       type: object
       properties:
-        mode:
+        id:
           type: string
-          enum:
-          - distance
-          - load
-        team:
+        name:
           type: string
-        considerDependencies:
+        phone:
+          type: string
+          description: E.164 phone number.
+        notes:
+          type: string
+        skipSMSNotifications:
           type: boolean
-        excludedWorkerIds:
-          type: array
-          items:
-            type: string
-        maxAssignedTaskCount:
-          type: integer
+        organization:
+          type: string
     Feedback:
       type: object
       properties:
@@ -552,55 +601,6 @@ components:
           maximum: 5
         comments:
           type: string
-    TaskCreate:
-      type: object
-      properties:
-        merchant:
-          type: string
-        executor:
-          type: string
-        destination:
-          oneOf:
-          - type: string
-          - $ref: '#/components/schemas/Destination'
-        recipients:
-          type: array
-          items:
-            oneOf:
-            - type: string
-            - $ref: '#/components/schemas/Recipient'
-        completeAfter:
-          type: integer
-          format: int64
-        completeBefore:
-          type: integer
-          format: int64
-        pickupTask:
-          type: boolean
-        dependencies:
-          type: array
-          items:
-            type: string
-        notes:
-          type: string
-          maxLength: 10000
-        quantity:
-          type: integer
-        serviceTime:
-          type: integer
-        autoAssign:
-          $ref: '#/components/schemas/AutoAssign'
-        container:
-          type: object
-        metadata:
-          type: array
-          items:
-            $ref: '#/components/schemas/Metadata'
-        appearance:
-          type: object
-          properties:
-            triangleColor:
-              type: string
   securitySchemes:
     basicAuth:
       type: http
