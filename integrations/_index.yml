@@ -132,7 +132,7 @@
     - alpha
     in_cloud: true
     builder: unknown (community connector; contributor not in the record)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: onfleet-meltano
   label: Meltano
@@ -161,5 +161,5 @@
     quality:
     - unknown
     builder: 'community (Meltano Hub variant maintainers: lambtron)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
