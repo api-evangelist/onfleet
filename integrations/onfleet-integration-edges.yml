@@ -1,5 +1,9 @@
-generated: '2026-10-14'
+generated: '2026-10-20'
 method: searched
+source:
+- olo/integrations/olo-integration-edges.yml
+- https://zapier.com/apps/onfleet/integrations
+- https://n8n.io/integrations/onfleet/
 checked:
 - https://connectors.airbyte.com/files/registries/v0/cloud_registry.json
 - https://connectors.airbyte.com/files/registries/v0/oss_registry.json
@@ -11,8 +15,77 @@ checked:
 - https://zapier.com/api/v4/apps/
 - olo/integrations/olo-integration-edges.yml
 - shopify/integrations/shopify-integration-edges.yml
-source:
-- olo/integrations/olo-integration-edges.yml
+- https://composio.dev/toolkits/onfleet
+- https://monid.ai/tools/onfleet
+- https://n8n.io/integrations/onfleet/
+- https://zapier.com/apps/onfleet/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: onfleet
+  url: https://zapier.com/apps/onfleet/integrations
+  external_url: https://onfleet.com/
+  partner_tier: SILVER
+  triggers:
+  - key: sms_recipient_response_missed
+    label: SMS Recipient Response Missed
+  - key: task_arrival
+    label: Task Arrival
+  - key: task_assigned
+    label: Task Assigned
+  - key: task_cloned
+    label: Task Cloned
+  - key: task_complete
+    label: Task Complete
+  - key: task_created
+    label: Task Created
+  - key: task_delayed
+    label: Task Delayed
+  - key: task_deleted
+    label: Task Deleted
+  - key: task_eta
+    label: Task ETA
+  - key: task_failed
+    label: Task Failed
+  - key: task_started
+    label: Task Started
+  - key: task_unassigned
+    label: Task Unassigned
+  - key: task_updated
+    label: Task Updated
+  - key: worker_duty
+    label: Worker Duty
+  actions:
+  - key: cancelOrder
+    label: Cancel Order
+  - key: cloneOrder
+    label: Clone Order
+  - key: createOrder
+    label: Create Order
+  - key: createTask
+    label: Create Task
+  - key: createTasks
+    label: Create Linked Pickup & Dropoff Tasks
+  - key: createTaskTemplate
+    label: Create Task (Template Use)
+  - key: updateOrder
+    label: Update Order
+  searches: []
+- marketplace: n8n
+  channel: open-source-node
+  app: onfleet
+  url: https://n8n.io/integrations/onfleet/
+  identity: title
+  pair_pages: 7
+  pairs:
+  - openai
+  - postgres
+  - shopify
+  - slack
+  - supabase
+  - telegram
+  - woocommerce
 edges:
 - partner_name: Olo (own)
   partner: olo
@@ -184,3 +257,425 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: WooCommerce
+  partner: woocommerce
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/woocommerce
+  direction: third-party
+  category: eCommerce
+  partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
+- partner_name: Ninja Forms
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/ninjaforms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://ninjaforms.com/extensions/zapier/
+- partner_name: MySQL
+  partner: mysql
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/mysql
+  direction: third-party
+  category: Databases
+  partner_url: https://www.mysql.com/
+- partner_name: Square
+  partner: square
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/square
+  direction: third-party
+  category: eCommerce
+  partner_url: https://squareup.com/t/cmtp_performance/pr_developers/d_partnerships/p_zapier/?route=
+- partner_name: WhatsApp Notifications
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/whatsapp-notifications
+  direction: third-party
+  category: Communication
+  partner_url: null
+- partner_name: Magento 2.X
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/magento-v2
+  direction: third-party
+  category: eCommerce
+  partner_url: https://magento.com/
+- partner_name: PostgreSQL
+  partner: postgresql
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/postgresql
+  direction: third-party
+  category: Databases
+  partner_url: http://www.postgresql.org/
+- partner_name: Booqable
+  partner: booqable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/booqable
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://booqable.com/
+- partner_name: Odoo ERP Self Hosted
+  partner: odoo
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/openerp
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.odoo.com/
+- partner_name: Amazon SQS
+  partner: amazon-sqs
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/amazon-sqs
+  direction: third-party
+  category: Amazon
+  partner_url: https://zapier.com/aws.amazon.com
+- partner_name: QuickBooks Online
+  partner: quickbooks
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/quickbooks
+  direction: third-party
+  category: Accounting
+  partner_url: http://intuit.com/
+- partner_name: Google Chat
+  partner: google-chat
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/google-chat
+  direction: third-party
+  category: Google
+  partner_url: https://gsuite.google.com/products/chat/
+- partner_name: Zoho CRM
+  partner: zoho-crm
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/zoho-crm
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://go.zoho.com/wOk
+- partner_name: Facebook Lead Ads (for Business admins)
+  partner: facebook-lead-ads
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/facebook-lead-ads-beta
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://facebook.com/
+- partner_name: WhatsApp Business
+  partner: whatsapp
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/whatsapp-business
+  direction: third-party
+  category: Phone & SMS
+  partner_url: https://business.whatsapp.com/
+- partner_name: Podio
+  partner: podio
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/podio
+  direction: third-party
+  category: Project Management
+  partner_url: https://podio.com/
+- partner_name: Evernote
+  partner: evernote
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/evernote
+  direction: third-party
+  category: Notes
+  partner_url: https://evernote.com/
+- partner_name: Odoo CRM
+  partner: odoo
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/odoo
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.odoo.com/
+- partner_name: Zoho Invoice
+  partner: zoho-invoice
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/zoho-invoice
+  direction: third-party
+  category: Proposal & Invoice Management
+  partner_url: https://go.zoho.com/STD
+- partner_name: CraftMyPDF.com
+  partner: craftmypdf
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/craftmypdfcom
+  direction: third-party
+  category: Documents
+  partner_url: https://craftmypdf.com/?utm_source=zapier&utm_medium=integration&utm_campaign=zapier_app_directory
+- partner_name: Invoice Ninja
+  partner: invoice-ninja
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/invoice-ninja
+  direction: third-party
+  category: Proposal & Invoice Management
+  partner_url: https://www.invoiceninja.com/
+- partner_name: Braintree
+  partner: braintree
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/braintree
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://www.braintreepayments.com/
+- partner_name: GoFormz
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/goformz
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.goformz.com/
+- partner_name: Rasayel
+  partner: rasayel
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/rasayel
+  direction: third-party
+  category: Communication
+  partner_url: https://rasayel.io/
+- partner_name: NutriBot
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/nutribot
+  direction: third-party
+  category: eCommerce
+  partner_url: https://nutribotcrm.com/
+- partner_name: ChannelDock
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/channeldock
+  direction: third-party
+  category: eCommerce
+  partner_url: https://channeldock.com/
+- partner_name: AbleCommerce
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/ablecommerce
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.ablecommerce.com/
+- partner_name: Clockify
+  partner: clockify
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/clockify
+  direction: third-party
+  category: Time Tracking Software
+  partner_url: https://clockify.me/
+- partner_name: Caspio
+  partner: caspio
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/caspio
+  direction: third-party
+  category: App Builder
+  partner_url: https://pages.caspio.com/free-trial
+- partner_name: ClickTime
+  partner: null
+  partner_match: null
+  partner_candidate: zapier
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/onfleet/integrations/clicktime
+  direction: third-party
+  category: Time Tracking Software
+  partner_url: https://zapier.com/www.clicktime.com
+templates:
+- title: Create spreadsheet rows in Google Sheets for completed tasks in Onfleet
+  url: https://zapier.com/apps/google-sheets/integrations/onfleet/1596918/create-spreadsheet-rows-in-google-sheets-for-completed-tasks-in-onfleet
+  apps:
+  - onfleet
+  - google-sheets
+- title: Create tasks in Onfleet from new rows on Google Sheets
+  url: https://zapier.com/apps/google-sheets/integrations/onfleet/13230/create-tasks-in-onfleet-from-new-rows-on-google-sheets
+  apps:
+  - google-sheets
+  - onfleet
+- title: Set up Onfleet tasks for new WooCommerce orders
+  url: https://zapier.com/apps/onfleet/integrations/woocommerce/13269/set-up-onfleet-tasks-for-new-woocommerce-orders
+  apps:
+  - woocommerce
+  - onfleet
+- title: Send Gmail emails for new failed tasks in Onfleet
+  url: https://zapier.com/apps/gmail/integrations/onfleet/197527/send-gmail-emails-for-new-failed-tasks-in-onfleet
+  apps:
+  - onfleet
+  - gmail
+- title: Send Slack channel messages for new delayed tasks in Onfleet
+  url: https://zapier.com/apps/onfleet/integrations/slack/197543/send-slack-channel-messages-for-new-delayed-tasks-in-onfleet
+  apps:
+  - onfleet
+  - slack
+- title: Create Onfleet tasks for new paid Shopify orders
+  url: https://zapier.com/apps/onfleet/integrations/shopify/13268/create-onfleet-tasks-for-new-paid-shopify-orders
+  apps:
+  - shopify
+  - onfleet
+- title: Create Onfleet tasks for new Magento orders
+  url: https://zapier.com/apps/magento/integrations/onfleet/13354/create-onfleet-tasks-for-new-magento-orders
+  apps:
+  - magento
+  - onfleet
+- title: Create Onfleet tasks for new BigCommerce orders
+  url: https://zapier.com/apps/bigcommerce/integrations/onfleet/13355/create-onfleet-tasks-for-new-bigcommerce-orders
+  apps:
+  - bigcommerce
+  - onfleet
+- title: Create linked pickup/dropoff tasks in Onfleet from new rows on Google Sheets
+  url: https://zapier.com/apps/google-sheets/integrations/onfleet/13356/create-linked-pickupdropoff-tasks-in-onfleet-from-new-rows-on-google-sheets
+  apps:
+  - google-sheets
+  - onfleet
+- title: Create Onfleet tasks for new Wufoo forms
+  url: https://zapier.com/apps/onfleet/integrations/wufoo/13357/create-onfleet-tasks-for-new-wufoo-forms
+  apps:
+  - wufoo
+  - onfleet
+- title: Create Onfleet tasks for new Typeform submissions
+  url: https://zapier.com/apps/onfleet/integrations/typeform/13358/create-onfleet-tasks-for-new-typeform-submissions
+  apps:
+  - typeform
+  - onfleet
+- title: Log new JIRA issues in Onfleet
+  url: https://zapier.com/apps/jira-software-server/integrations/onfleet/13381/log-new-jira-issues-in-onfleet
+  apps:
+  - jira-software-server
+  - onfleet
+template_total: 126
