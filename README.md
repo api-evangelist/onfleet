@@ -1,4 +1,4 @@
-# Onfleet (onfleet)
+# Onfleet
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -72,267 +72,262 @@ furniture. Onfleet exposes a comprehensive REST API v2.7 for tasks, workers, rou
 optimization, orders, recipients, destinations, organizations/teams, and webhooks — backed by
 official SDKs in Python, Node.js, PHP, Java, and Go, plus the 150+ courier Onfleet Connect network.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/onfleet/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/onfleet/refs/heads/main/apis.yml)
+**Areas:** Last Mile Delivery · Logistics · Fleet Management · Dispatch · Route Optimization · Couriers · Drivers · Tracking · Geocoding · Webhook · Artificial Intelligence · Software-as-a-Service
 
-## Scope
+## Onfleet on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for Onfleet is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/onfleet/](https://apis.io/providers/onfleet/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (9)
 
-- Last Mile Delivery
-- Logistics
-- Fleet Management
-- Dispatch
-- Route Optimization
-- Courier
-- Drivers
-- Tracking
-- Geocoding
-- Webhooks
-- AI
-- SaaS
+- [Onfleet Tasks API](https://apis.io/apis/onfleet/onfleet-tasks-api/) — Create, list, fetch, update, clone, force-complete, and delete pickup/dropoff tasks. Tasks are the atomic unit of work in Onfleet — each has a destination,…
+- [Onfleet Workers API](https://apis.io/apis/onfleet/onfleet-workers-api/) — Manage drivers — create, list, update, delete, fetch a worker's assigned tasks, and pull a delivery manifest for compliance reporting. Workers are bound to…
+- [Onfleet Route Plans API](https://apis.io/apis/onfleet/onfleet-route-plans-api/) — Create and manage route plans — ordered sequences of tasks assigned to a worker for a time window — and kick off asynchronous route optimization jobs…
+- [Onfleet Orders API](https://apis.io/apis/onfleet/onfleet-orders-api/) — Orders represent a pickup-dropoff task pair shared between a courier organization and its clients on the Onfleet Connect network. Clients can quote, create,…
+- [Onfleet Organizations & Teams API](https://apis.io/apis/onfleet/onfleet-organizations-api/) — Look up your own organization and connected delegatee organizations on Onfleet Connect, manage administrators (Super and Standard, optionally read-only),…
+- [Onfleet Recipients API](https://apis.io/apis/onfleet/onfleet-recipients-api/) — Create and look up end customers (recipients) by ID, name, or E.164 phone number. Recipients carry SMS notification preferences and metadata, and can be…
+- [Onfleet Destinations API](https://apis.io/apis/onfleet/onfleet-destinations-api/) — Manage geocoded physical addresses used as task pickup/dropoff locations. Accepts a parsed address structure or a single `unparsed` field; coordinates are…
+- [Onfleet Webhooks API](https://apis.io/apis/onfleet/onfleet-webhooks-api/) — Register HTTPS callbacks against 27 trigger types covering task lifecycle, worker duty/CRUD, route plan state changes, SMS recipient events, and async job…
+- [Onfleet Route Optimization API](https://apis.io/apis/onfleet/onfleet-route-optimization-api/) — The Route Optimization API from Onfleet — 5 operation(s) for route optimization.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-25T00:00:00.000Z
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Arazzo workflows (13)
 
-### Onfleet Tasks API
+Multi-step workflows that chain operations into a business task.
 
-Create, list, fetch, update, clone, force-complete, and delete pickup/dropoff tasks. Tasks are the
-atomic unit of work in Onfleet — each has a destination, recipient, completion window, optional
-dependencies, and a state lifecycle (Unassigned → Assigned → Active → Completed). Supports
-batch creation (up to 100 per request) and assignment to workers via the containers endpoint.
+- [Onfleet Assign Task to Worker](https://apis.io/arazzos/onfleet/onfleet-assign-task-to-worker-workflow/)
+- [Onfleet Auto-Assign Task](https://apis.io/arazzos/onfleet/onfleet-auto-assign-task-workflow/)
+- [Onfleet Batch Create and List Tasks](https://apis.io/arazzos/onfleet/onfleet-batch-create-and-list-tasks-workflow/)
+- [Onfleet Build Route Plan](https://apis.io/arazzos/onfleet/onfleet-build-route-plan-workflow/)
+- [Onfleet Clone and Force-Complete Task](https://apis.io/arazzos/onfleet/onfleet-clone-and-complete-task-workflow/)
+- [Onfleet Dispatch Team Tasks](https://apis.io/arazzos/onfleet/onfleet-dispatch-team-tasks-workflow/)
+- [Onfleet Fulfill Courier Order](https://apis.io/arazzos/onfleet/onfleet-fulfill-courier-order-workflow/)
+- [Onfleet Onboard Worker to Team](https://apis.io/arazzos/onfleet/onfleet-onboard-worker-to-team-workflow/)
+- [Onfleet Optimize Team Routes](https://apis.io/arazzos/onfleet/onfleet-optimize-team-routes-workflow/)
+- [Onfleet Provision Administrator and Team](https://apis.io/arazzos/onfleet/onfleet-provision-admin-and-team-workflow/)
+- [Onfleet Provision Delivery Task](https://apis.io/arazzos/onfleet/onfleet-provision-delivery-task-workflow/)
+- [Onfleet Register Task Webhook](https://apis.io/arazzos/onfleet/onfleet-register-task-webhook-workflow/)
+- [Onfleet Upsert Recipient and Create Task](https://apis.io/arazzos/onfleet/onfleet-upsert-recipient-and-create-task-workflow/)
 
-- **Human URL:** [https://docs.onfleet.com/reference/tasks](https://docs.onfleet.com/reference/tasks)
-- **Base URL:** `https://onfleet.com/api/v2`
+#### AsyncAPI (1)
 
-#### Tags
+Event-driven and webhook contracts.
 
-- Last Mile Delivery
-- Logistics
-- Tasks
+- [Onfleet Webhooks](https://apis.io/asyncapis/onfleet/onfleet-webhooks-asyncapi/)
 
-#### Properties
+#### Event channels (29)
 
-- [Documentation](https://docs.onfleet.com/reference/tasks.md)
-- [Documentation](https://docs.onfleet.com/reference/create-task.md)
-- [Documentation](https://docs.onfleet.com/reference/list-tasks.md)
-- [OpenAPI](openapi/onfleet-tasks-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/onfleet-tasks-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/onfleet-tasks-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/onfleet-task-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/onfleet-task-structure.json)
-- [Example](examples/onfleet-create-task-example.json)
+Individual events and webhooks the provider emits.
 
-### Onfleet Workers API
+- [auto_dispatch.completed](https://apis.io/channels/onfleet/auto-dispatch-completed/)
+- [route_optimization.completed](https://apis.io/channels/onfleet/route-optimization-completed/)
+- [route_plan.assigned](https://apis.io/channels/onfleet/route-plan-assigned/)
+- [route_plan.completed](https://apis.io/channels/onfleet/route-plan-completed/)
+- [route_plan.created](https://apis.io/channels/onfleet/route-plan-created/)
+- [route_plan.delayed](https://apis.io/channels/onfleet/route-plan-delayed/)
+- [route_plan.started](https://apis.io/channels/onfleet/route-plan-started/)
+- [route_plan.unassigned](https://apis.io/channels/onfleet/route-plan-unassigned/)
+- [route_plan.updated](https://apis.io/channels/onfleet/route-plan-updated/)
+- [sms.recipient.opt_out](https://apis.io/channels/onfleet/sms-recipient-opt-out/)
+- [sms.response.missed](https://apis.io/channels/onfleet/sms-response-missed/)
+- [task.arrival](https://apis.io/channels/onfleet/task-arrival/)
+- [task.assigned](https://apis.io/channels/onfleet/task-assigned/)
+- [task_batch_create.completed](https://apis.io/channels/onfleet/task-batch-create-completed/)
+- [task.cloned](https://apis.io/channels/onfleet/task-cloned/)
+- [task.completed](https://apis.io/channels/onfleet/task-completed/)
+- [task.created](https://apis.io/channels/onfleet/task-created/)
+- [task.delayed](https://apis.io/channels/onfleet/task-delayed/)
+- [task.deleted](https://apis.io/channels/onfleet/task-deleted/)
+- [task.eta](https://apis.io/channels/onfleet/task-eta/)
+- [task.failed](https://apis.io/channels/onfleet/task-failed/)
+- [task.predicted.delay](https://apis.io/channels/onfleet/task-predicted-delay/)
+- [task.started](https://apis.io/channels/onfleet/task-started/)
+- [task.unassigned](https://apis.io/channels/onfleet/task-unassigned/)
+- [task.updated](https://apis.io/channels/onfleet/task-updated/)
+- …and 4 more published on APIs.io
 
-Manage drivers — create, list, update, delete, fetch a worker's assigned tasks, and pull a
-delivery manifest for compliance reporting. Workers are bound to teams, have vehicle metadata
-(CAR/MOTORCYCLE/BICYCLE/TRUCK), and report duty status and location.
+#### GraphQL (1)
 
-- **Human URL:** [https://docs.onfleet.com/reference/workers](https://docs.onfleet.com/reference/workers)
-- **Base URL:** `https://onfleet.com/api/v2`
+GraphQL schemas.
 
-#### Tags
+- [Moved to /providers/onfleet/](https://apis.io/graphqls/onfleet/onfleet-graphql/)
 
-- Last Mile Delivery
-- Drivers
-- Workers
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [Documentation](https://docs.onfleet.com/reference/create-worker.md)
-- [Documentation](https://docs.onfleet.com/reference/delivery-manifest.md)
-- [OpenAPI](openapi/onfleet-workers-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/onfleet-workers-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/onfleet-workers-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/onfleet-worker-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Example](examples/onfleet-create-worker-example.json)
+- [onfleet](https://apis.io/servers/onfleet/onfleet/)
 
-### Onfleet Route Plans API
+#### Agentic access (1)
 
-Create and manage route plans — ordered sequences of tasks assigned to a worker for a time window
-— and kick off asynchronous route optimization jobs (task-based, vehicle-based, or auto-dispatch).
-Optimization endpoints are an Enterprise plan feature; results delivered via the
-routeOptimizationJobCompleted webhook.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://docs.onfleet.com/reference/routeplan](https://docs.onfleet.com/reference/routeplan)
-- **Base URL:** `https://onfleet.com/api/v2`
+- [Onfleet Agentic Access](https://apis.io/agentic-access/onfleet/onfleet-agentic-access/)
 
-#### Tags
+#### JSON Schema (5)
 
-- Last Mile Delivery
-- Route Optimization
-- Route Plans
+The data models the API reads and writes.
 
-#### Properties
+- [OnfleetDestination](https://apis.io/schemas/onfleet/onfleet-destination/)
+- [OnfleetRecipient](https://apis.io/schemas/onfleet/onfleet-recipient/)
+- [OnfleetRoutePlan](https://apis.io/schemas/onfleet/onfleet-route-plan/)
+- [OnfleetTask](https://apis.io/schemas/onfleet/onfleet-task/)
+- [OnfleetWorker](https://apis.io/schemas/onfleet/onfleet-worker/)
 
-- [Documentation](https://docs.onfleet.com/reference/routeplan.md)
-- [Documentation](https://docs.onfleet.com/reference/route-optimization.md)
-- [OpenAPI](openapi/onfleet-route-plans-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/onfleet-route-plans-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/onfleet-route-plans-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/onfleet-route-plan-schema.json) — [JSON Schema](https://json-schema.org/specification)
+#### JSON Structure (1)
 
-### Onfleet Orders API
+Data models expressed in JSON Structure.
 
-Orders represent a pickup-dropoff task pair shared between a courier organization and its clients
-on the Onfleet Connect network. Clients can quote, create, update, clone, cancel, or reject orders;
-couriers can create orders on behalf of clients and respond to them.
+- [Onfleet Task Structure](https://apis.io/json-structure/onfleet/onfleet-task-structure/)
 
-- **Human URL:** [https://docs.onfleet.com/reference/orders](https://docs.onfleet.com/reference/orders)
-- **Base URL:** `https://onfleet.com/api/v2`
+#### JSON-LD (1)
 
-#### Tags
+Linked-data contexts for the provider's vocabulary.
 
-- Last Mile Delivery
-- Orders
-- Courier
+- [Onfleet Context](https://apis.io/jsonld/onfleet/onfleet-context/)
 
-#### Properties
+#### Vocabulary (1)
 
-- [Documentation](https://docs.onfleet.com/reference/orders.md)
-- [OpenAPI](openapi/onfleet-orders-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/onfleet-orders-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/onfleet-orders-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The provider's domain terms, defined.
 
-### Onfleet Organizations & Teams API
+- [Onfleet Vocabulary](https://apis.io/vocabularies/onfleet/onfleet-vocabulary/)
 
-Look up your own organization and connected delegatee organizations on Onfleet Connect, manage
-administrators (Super and Standard, optionally read-only), create and list teams, and trigger
-Team Auto-Dispatch — Onfleet's batch task-to-worker assignment engine (Beta).
+#### Examples (3)
 
-- **Human URL:** [https://docs.onfleet.com/reference/team-auto-dispatch](https://docs.onfleet.com/reference/team-auto-dispatch)
-- **Base URL:** `https://onfleet.com/api/v2`
+Example requests and responses.
 
-#### Tags
+- [Onfleet Create Task Example](https://apis.io/examples/onfleet/onfleet-create-task-example/)
+- [Onfleet Create Worker Example](https://apis.io/examples/onfleet/onfleet-create-worker-example/)
+- [Onfleet Webhook Task Completed Example](https://apis.io/examples/onfleet/onfleet-webhook-task-completed-example/)
 
-- Last Mile Delivery
-- Organizations
-- Teams
-- Administrators
+#### Collections (17)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.onfleet.com/reference/team-auto-dispatch.md)
-- [OpenAPI](openapi/onfleet-organizations-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/onfleet-organizations-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/onfleet-organizations-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Onfleet Destinations API](https://apis.io/collections/onfleet/open-onfleet-destinations-api/)
+- [Onfleet Destinations Orders API](https://apis.io/collections/onfleet/open-onfleet-orders-api/)
+- [Onfleet Destinations Organizations API](https://apis.io/collections/onfleet/open-onfleet-organizations-api/)
+- [Onfleet Destinations Recipients API](https://apis.io/collections/onfleet/open-onfleet-recipients-api/)
+- [Onfleet Destinations Route Optimization API](https://apis.io/collections/onfleet/open-onfleet-route-optimization-api/)
+- [Onfleet Destinations Route Plans API](https://apis.io/collections/onfleet/open-onfleet-route-plans-api/)
+- [Onfleet Destinations Tasks API](https://apis.io/collections/onfleet/open-onfleet-tasks-api/)
+- [Onfleet Destinations Webhooks API](https://apis.io/collections/onfleet/open-onfleet-webhooks-api/)
+- [Onfleet Destinations Workers API](https://apis.io/collections/onfleet/open-onfleet-workers-api/)
+- [Onfleet Destinations API](https://apis.io/collections/onfleet/postman-onfleet-destinations-api/)
+- [Onfleet Orders API](https://apis.io/collections/onfleet/postman-onfleet-orders-api/)
+- [Onfleet Organizations API](https://apis.io/collections/onfleet/postman-onfleet-organizations-api/)
+- [Onfleet Recipients API](https://apis.io/collections/onfleet/postman-onfleet-recipients-api/)
+- [Onfleet Route Plans API](https://apis.io/collections/onfleet/postman-onfleet-route-plans-api/)
+- [Onfleet Tasks API](https://apis.io/collections/onfleet/postman-onfleet-tasks-api/)
+- [Onfleet Webhooks API](https://apis.io/collections/onfleet/postman-onfleet-webhooks-api/)
+- [Onfleet Workers API](https://apis.io/collections/onfleet/postman-onfleet-workers-api/)
 
-### Onfleet Recipients API
+#### Governance rules (3)
 
-Create and look up end customers (recipients) by ID, name, or E.164 phone number. Recipients carry
-SMS notification preferences and metadata, and can be reused across tasks.
+Spectral rulesets for the provider's contracts.
 
-- **Human URL:** [https://docs.onfleet.com/reference/recipients](https://docs.onfleet.com/reference/recipients)
-- **Base URL:** `https://onfleet.com/api/v2`
+- [Onfleet — asyncapi rules](https://apis.io/rules/onfleet/onfleet-asyncapi-spectral-rules/)
+- [Onfleet — jsonschema rules](https://apis.io/rules/onfleet/onfleet-jsonschema-spectral-rules/)
+- [Onfleet API Rules](https://apis.io/rules/onfleet/onfleet-rules/)
 
-#### Tags
+#### Security (4)
 
-- Last Mile Delivery
-- Recipients
-- Customers
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Onfleet Authentication](https://apis.io/security/onfleet/onfleet-authentication/)
+- [Onfleet Domain Security](https://apis.io/security/onfleet/onfleet-domain-security/)
+- [Onfleet Trust Center](https://apis.io/security/onfleet/onfleet-trust-center/)
+- [Onfleet Vulnerability Disclosure](https://apis.io/security/onfleet/onfleet-vulnerability-disclosure/)
 
-- [OpenAPI](openapi/onfleet-recipients-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/onfleet-recipients-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/onfleet-recipients-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/onfleet-recipient-schema.json) — [JSON Schema](https://json-schema.org/specification)
+#### Plans and pricing (2)
 
-### Onfleet Destinations API
+Published plans, tiers and prices.
 
-Manage geocoded physical addresses used as task pickup/dropoff locations. Accepts a parsed
-address structure or a single `unparsed` field; coordinates are returned as GeoJSON
-[longitude, latitude].
+- [Onfleet Plans Pricing](https://apis.io/plans/onfleet/onfleet-plans-pricing/)
+- [Onfleet Price Estimates](https://apis.io/plans/onfleet/onfleet-price-estimates/)
 
-- **Human URL:** [https://docs.onfleet.com/reference/destinations](https://docs.onfleet.com/reference/destinations)
-- **Base URL:** `https://onfleet.com/api/v2`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Last Mile Delivery
-- Destinations
-- Geocoding
+- [Onfleet Rate Limits](https://apis.io/rate-limits/onfleet/onfleet-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://docs.onfleet.com/reference/create-destination.md)
-- [OpenAPI](openapi/onfleet-destinations-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/onfleet-destinations-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/onfleet-destinations-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/onfleet-destination-schema.json) — [JSON Schema](https://json-schema.org/specification)
+What the API costs to run, by operation.
 
-### Onfleet Webhooks API
+- [Onfleet Finops](https://apis.io/finops/onfleet/onfleet-finops/)
 
-Register HTTPS callbacks against 27 trigger types covering task lifecycle, worker duty/CRUD,
-route plan state changes, SMS recipient events, and async job completions (auto-dispatch, task
-batch create, route optimization). Payloads are signed with HMAC-SHA256 using the secret
-obtained from /webhooks/secret.
+## Where to find this API
 
-- **Human URL:** [https://docs.onfleet.com/reference/webhooks](https://docs.onfleet.com/reference/webhooks)
-- **Base URL:** `https://onfleet.com/api/v2`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- Last Mile Delivery
-- Webhooks
-- Events
-
-#### Properties
-
-- [Documentation](https://docs.onfleet.com/reference/webhooks.md)
-- [Documentation](https://docs.onfleet.com/reference/secrets.md)
-- [OpenAPI](openapi/onfleet-webhooks-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/onfleet-webhooks-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/onfleet-webhooks-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/onfleet-webhooks-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Example](examples/onfleet-webhook-task-completed-example.json)
-
-## Common Properties
-
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://onfleet.com)
+- [Website](https://www.onfleet.com/)
 - [Documentation](https://docs.onfleet.com/)
-- [Documentation](https://docs.onfleet.com/reference/introduction)
-- [Getting Started](https://docs.onfleet.com/reference/setup-tutorial)
-- [Documentation](https://docs.onfleet.com/reference/data-types-and-response-formats)
-- [Documentation](https://docs.onfleet.com/reference/querying-by-metadata)
-- [Changelog](https://docs.onfleet.com/changelog/api-documentation-updates-may-2026)
-- [Changelog](https://docs.onfleet.com/changelog/order-endpoints)
-- [Changelog](https://docs.onfleet.com/changelog/custom-fields)
-- [Status Page](https://status.onfleet.com)
-- [Blog](https://onfleet.com/blog)
-- [Sign Up](https://onfleet.com/signup)
+- [Getting started](https://docs.onfleet.com/reference/setup-tutorial)
 - [Pricing](https://onfleet.com/pricing)
-- [Terms of Service](https://onfleet.com/legal)
-- [Privacy Policy](https://onfleet.com/privacy)
 - [Support](https://onfleet.com/support)
-- [GitHub Organization](https://github.com/onfleet)
-- [SDK](https://github.com/onfleet/pyonfleet)
-- [SDK](https://github.com/onfleet/node-onfleet)
-- [SDK](https://github.com/onfleet/php-onfleet)
-- [SDK](https://github.com/onfleet/java-onfleet)
-- [SDK](https://github.com/onfleet/gonfleet)
-- [SDK](https://github.com/onfleet/ruby-onfleet)
-- [Code Examples](https://github.com/onfleet/developer)
-- [Documentation](https://app.getpostman.com/run-collection/14168007-2dc047db-9556-442a-b643-e913027a74cf)
-- [Plans](plans/onfleet-plans-pricing.yml)
-- [Rate Limits](rate-limits/onfleet-rate-limits.yml)
-- [Fin Ops](finops/onfleet-finops.yml)
-- [JSON-LD](json-ld/onfleet-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Vocabulary](vocabulary/onfleet-vocabulary.yml)
-- [Rules](rules/onfleet-rules.yml)
-- [Features](undefined)
-- [Integrations](undefined)
+- [Changelog](https://docs.onfleet.com/changelog/api-documentation-updates-may-2026)
+- [Blog](https://onfleet.com/blog)
+- [Terms of service](https://onfleet.com/legal)
+- [Privacy policy](https://onfleet.com/privacy)
+- [GitHub](https://github.com/onfleet)
+- [Status](https://status.onfleet.com)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 60.5** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.3 |
+| Contract quality | 70.4 |
+| Contract governance | 27.3 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 57.1 |
+| Access clarity | 73.7 |
+
+**Agent readiness 46.3** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 29.1** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/onfleet/](https://apis.io/providers/onfleet/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Onfleet: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/onfleet/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
